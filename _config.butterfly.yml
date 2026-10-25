@@ -1,0 +1,347 @@
+# Butterfly 主题配置（rockjesus.cn 复刻版）
+# 覆盖 themes/butterfly/_config.yml 的默认值，重建发布站 RockJesus.github.io 的原始效果
+
+# Menu 菜单
+menu:
+  主页: / || iconfont icon-aliens-fill
+  加入我们||fab fa-weixin:
+    QQ群: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png || fab fa-qq
+    公众号: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg || fab fa-weixin
+    Github: https://github.com/rockjesus || fab fa-github
+    Gitee: https://gitee.com/rockjesus || fab fa-github-alt
+  打赏||fa fa-credit-card-alt:
+    微信: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png || fab fa-weixin
+    支付宝: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png || fab fa-alipay
+    赞赏: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png || fas fa-qrcode
+  安装: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/az.jpg || fab fa-apple
+  黑果小兵: https://blog.daliansky.net/ || fas fa-heart
+  元宇宙||fas fa-cloud:
+    Sandbox: https://www.sandbox.game/ || fas fa-cloud
+    Decentraland: https://decentraland.org/ || fa-brands fa-playstation
+    画板: http://weavesilk.com/ || fab fa-firefox
+    游戏: https://www.yikm.net/ || fab fa-steam
+    钢琴: https://www.autopiano.cn/ || fa-regular fa-keyboard
+    地图: https://cybermap.kaspersky.com/ || fa-solid fa-map
+    SpaceX: https://www.spacex.com/ || fa-solid fa-rocket
+    NASA: https://www.nasa.gov/multimedia/nasatv/index.html#public || fa-solid fa-earth-americas
+    监控: https://www.skylinewebcams.com/ || fa-solid fa-camera
+  留言/社交||fas fa-sms:
+    留言板: /messageboard/ || fas fa-sms
+    Chat: https://gitter.im/Alienware-hackintosh/community || fab fa-gitlab
+    抖音: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/dou.png || iconfont icon-external_tiktok
+    视频号: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/sph.jpg || fas fa-video
+    电影: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/dy.jpg || fas fa-film
+
+# Social 侧边栏社交图标
+social:
+  fab fa-github: https://github.com/rockjesus || Github
+  fab fa-github-alt: https://gitee.com/rockjesus || gitee
+  fab fa-qq: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png || 外星人黑苹果QQ群
+  fab fa-weixin: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg || 外星人黑苹果公众号
+  fab fa-tiktok: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/dou.png || 抖音
+  fas fa-video: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/sph.jpg || 微信视频号
+  fas fa-film: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/dy.jpg || 电影公众号
+  fab fa-apple: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/az.jpg || 黑苹果远程安装
+  fas fa-heartbeat: https://blog.daliansky.net/ || 黑果小兵
+  fas fa-sms: /messageboard/ || 留言板
+  iconfont icon-aliens-fill: https://gitter.im/Alienware-hackintosh/community || chat
+
+# Site verification 站点验证
+site_verification:
+  - name: google-site-verification
+    content: wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98
+  - name: baidu-site-verification
+    content: a9e08ec56eb07a3e283226ce7db68098
+
+# Analytics 统计
+baidu_analytics: a9e08ec56eb07a3e283226ce7db68098
+google_analytics: G-MBJRWEHZ50
+
+# Highlight 代码高亮主题
+highlight_theme: mac
+
+# Theme color 主题色（紫色系）
+theme_color:
+  enable: true
+  main: rgba(120,47,216,0.7)
+  paginator: rgba(193,30,163,0.7)
+  button_hover: rgba(193,30,163,0.6)
+  text_selection: rgba(120,47,216,0.7)
+  link_color: rgba(120,47,216,0.7)
+  hr_color: rgba(120,47,216,0.7)
+  meta_color: rgba(120,47,216,0.7)
+  blockquote_padding_color: '#000'
+  blockquote_background_color: '#000'
+  code_foreground: '#000'
+  code_background: '#000'
+  toc_color: '#000'
+
+# Beautify 美化
+beautify:
+  enable: true
+  field: site
+  title-prefix-icon: '\f0c1'
+  title-prefix-icon-color: '#F47466'
+
+# Favicon 站点图标
+favicon: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/apple.png
+
+# Background 全站背景
+background: url(https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/oc.png)
+
+# Avatar 头像
+avatar:
+  img: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/black.png
+  effect: false
+
+# Image (文章 / 页面顶部大图)
+index_img: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/header_home.webp
+default_top_img: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/header_post.webp
+
+# Error image 图片加载失败时显示
+error_img:
+  flink: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/4040.gif
+  post_page: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/404.gif
+
+# 404 页面
+error_404:
+  enable: true
+  subtitle: 'Page Not Found jump to https://github.com/RockJesus'
+  background: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/404.gif
+
+# Cover 文章封面
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  position: both
+
+# Post meta 文章信息
+post_meta:
+  page:
+    date_type: created
+    date_format: date
+    categories: true
+    tags: false
+    label: true
+  post:
+    date_type: both
+    date_format: date
+    categories: true
+    tags: false
+    label: true
+
+# Toc 文章目录
+toc:
+  post: false
+  page: false
+  number: true
+  expand: false
+  style: 1
+
+# Post copyright 版权
+post_copyright:
+  enable: true
+  decode: false
+  author_href: http://www.rockjesus.cn
+  license: RockJesus
+  license_url: https://github.com/rockjesus
+
+# Reward 打赏
+reward:
+  enable: true
+  comment: 原创不易，您的支持是鼓励我持续创作的力量！
+  QR_code:
+    - img: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png
+      link: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png
+      text: 微信打赏
+    - img: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png
+      link: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png
+      text: 支付宝打赏
+    - img: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png
+      link: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png
+      text: 赞赏码打赏
+
+# Comments 评论
+comments:
+  use: ['Valine', 'Gitalk']
+  text: true
+  lazyload: true
+  count: false
+  card_post_count: false
+
+# Valine
+valine:
+  appId: RLc30HWPtO9O8AP4i2uMDedp-gzGzoHsz
+  appKey: 2FWO8VTCwsA1gY7DQMBiJDvY
+  placeholder: 说点什么吧
+  avatar: hide
+  guest_info: nick,mail,link
+  pageSize: 10
+  lang: zh-CN
+  recordIP: false
+  serverURLs: ''
+  bg: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/foot.gif
+  emojiCDN: ''
+  enableFlag: false
+  flagCDN: ''
+  requiredFields:
+  defaultAvatar: ''
+  visitor: true
+  option:
+
+# Gitalk
+gitalk:
+  client_id: f73ad14b667643d52ef5
+  client_secret: # 仓库公开前已清空（原值已轮换失效），如需启用请重新填写
+  repo: RockJesus.github.io
+  owner: RockJesus
+  admin: ['RockJesus']
+  option:
+
+# Chat 聊天
+chat_btn: true
+gitter:
+  enable: true
+  room: Alienware-hackintosh/community
+
+# Footer 页脚
+footer:
+  owner:
+    enable: true
+    since: 2019
+  custom_text: <p><a style="margin-inline:3px"target="_blank" href="https://alienware.com"><img src="https://img.shields.io/badge/Hardware-Alienware-silver.svg?logo=Hackaday"></a><a style="margin-inline:3px"target="_blank" href="https://www.apple.com/macos"><img src="https://img.shields.io/badge/platform-MacOS10/13-red.svg?logo=apple"></a><a style="margin-inline:3px"target="_blank" href="https://www.microsoft.com/en-us/windows/"><img src="https://img.shields.io/badge/platform-Windows11-blue.svg?logo=windows"></a><a style="margin-inline:3px"target="_blank" href="https://github.com/acidanthera/OpenCorePkg"><img src="https://img.shields.io/badge/Bootloader-Opencore-silver.svg?logo=OpenCollective"></a><a style="margin-inline:3px"target="_blank" href="https://github.com/CloverHackyColor/CloverBootloader"><img src="https://img.shields.io/badge/Bootloader-Clover-green.svg?logo=4chan"></a><a style="margin-inline:3px"target="_blank" href="https://github.com/acidanthera"><img src="https://img.shields.io/badge/Credits-Acidanthera-purple.svg?logo=Academia"></a><a style="margin-inline:3px"target="_blank" href="https://tonymacx86.com"><img src="https://img.shields.io/badge/Credits-TonymacX86-green.svg?logo=Tesla"></a><a style="margin-inline:3px"target="_blank" href="https://bbs.pcbeta.com"><img src="https://img.shields.io/badge/Credits-PCbeta-red.svg?logo=PyCharm"></a><a style="margin-inline:3px"target="_blank" href="https://blog.daliansky.net/"><img src="https://img.shields.io/badge/Credits-黑果小兵-yellow.svg?logo=Babel"></a><a style="margin-inline:3px"target="_blank" href="https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png"><img src="https://img.shields.io/badge/外星人黑苹果-QQ群-purple.svg?logo=TencentQQ"></a><a style="margin-inline:3px"target="_blank" href="https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg"><img src="https://img.shields.io/badge/外星人黑苹果-微信公众号-silver.svg?logo=WeChat"></a><a style="margin-inline:3px"target="_blank" href="https://rockjesus.cn"><img src="https://img.shields.io/badge/外星人黑苹果-个人博客Blog-silver.svg?logo=Blogger"></a><a style="margin-inline:3px"target="_blank" href="https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/dou.png"><img src="https://img.shields.io/badge/social-tiktok-blue.svg?logo=tiktok"></a><a style="margin-inline:3px"target="_blank" href="https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/sph.jpg"><img src="https://img.shields.io/badge/social-微信视频号-green.svg?logo=AirPlayVideo"></a><a style="margin-inline:3px"target="_blank" href="https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/dy.jpg"><img src="https://img.shields.io/badge/social-电影公众号-red.svg?logo=Aparat"></a><a style="margin-inline:3px"target="_blank" href="https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png"><img src="https://img.shields.io/badge/打赏-支付宝-blue.svg?logo=alipay"></a><a style="margin-inline:3px"target="_blank" href="https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png"><img src="https://img.shields.io/badge/打赏-微信-green.svg?logo=wechat"></a><a style="margin-inline:3px"target="_blank" href="https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png"><img src="https://img.shields.io/badge/打赏-赞赏码-yellow.svg?logo=wechat"></a><a style="margin-inline:3px"target="_blank" href="https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/az.jpg"><img src="https://img.shields.io/badge/黑苹果-远程安装-purple.svg?logo=Atom"></a><a style="margin-inline:3px"target="_blank" href="https://gitter.im/Alienware-hackintosh/community"><img src="https://img.shields.io/badge/Chatroom-Gitter-9cf.svg?logo=gitter"></a><a style="margin-inline:3px"target="_blank" href="https://github.com/RockJesus"><img src="https://img.shields.io/github/stars/rockjesus.svg?logo=ApacheSpark"></a><a style="margin-inline:3px"target="_blank" href="https://github.com/RockJesus"><img src="https://img.shields.io/github/followers/RockJesus.svg?logo=SouthwestAirlines&color=purple"></a><a style="margin-inline:3px"target="_blank" href="https://github.com/RockJesus/Alienware-Hackintosh"><img src="https://img.shields.io/github/downloads/RockJesus/Alienware-Opencore-Theme/total.svg?logo=DocuSign"></a></p>
+  copyright: true
+
+# Copy 复制
+copy:
+  enable: true
+  copyright:
+    enable: true
+    limit_count: 50
+
+# Local Search 本地搜索
+local_search:
+  enable: true
+  preload: false
+
+# Display mode 显示模式
+display_mode: dark
+
+# Subtitle 打字机
+subtitle:
+  enable: true
+  effect: true
+  startDelay: 300
+  typeSpeed: 150
+  backSpeed: 50
+  loop: true
+  sub:
+    - Alienware MacOS by RockJesus
+    - 外星人全系黑苹果系统 by RockJesus
+
+# Darkmode
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: false
+
+# Aside 侧边栏
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  display:
+    archive: false
+    tag: true
+    category: true
+  card_author:
+    enable: true
+    description: 'Technical  Artist 🛸 of  Alienware  👽  MacOS 🖥 外星人黑苹果系统 💻'
+    button:
+      enable: true
+      icon: iconfont icon-aliens-fill
+      text: Follow Me
+      link: https://github.com/rockjesus
+  card_announcement:
+    enable: true
+    content: 'Life is all about the journey ∞#24'
+  card_recent_post:
+    enable: false
+    limit: 5
+    sort: date
+  card_categories:
+    enable: false
+    limit: 8
+    expand: none
+  card_tags:
+    enable: false
+    limit: 40
+    color: false
+  card_archives:
+    enable: false
+    type: monthly
+    format: YYYY年MM月
+    order: -1
+    limit: 8
+  card_webinfo:
+    enable: true
+    post_count: false
+    last_push_date: true
+    sort_order: 3
+
+# Busuanzi 不蒜子
+busuanzi:
+  site_uv: true
+  site_pv: true
+  page_pv: true
+
+# Pjax
+pjax:
+  enable: true
+
+# Canvas nest 线条背景
+canvas_nest:
+  enable: true
+  color: '139,92,246'
+  opacity: 0.7
+  zIndex: -1
+  count: 99
+
+# 右下角按钮距底部距离
+rightside-bottom: -1px
+
+# Lazyload 图片懒加载
+lazyload:
+  enable: true
+  field: site
+
+# Fancybox 灯箱
+fancybox: true
+
+# Aplayer 播放器
+aplayerInject:
+  enable: true
+  per_page: true
+
+# Inject 注入
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/custom.css">
+    - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
+    - <script src="/js/player.js" defer></script>
+  bottom:
+    - <div id="site-player"></div>
+    - <meta name="google-site-verification" content="wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98" />
+    - <script src="/js/weather.js"></script>
+    - <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
+
+# CDN
+CDN:
+  internal_provider: local
+  third_party_provider: jsdelivr
+  version: false
+  option:
+    aplayer_css: /css/AA.css

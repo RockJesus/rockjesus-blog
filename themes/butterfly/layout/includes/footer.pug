@@ -1,0 +1,18 @@
+#footer-wrap
+  if theme.footer.custom_text
+    .footer_custom_text!=`${theme.footer.custom_text}`
+  if theme.footer.copyright
+    .framework-info
+      span= _p('footer.framework') + ' '
+      a(target="_blank" rel="noopener" href='https://hexo.io')= 'Hexo'
+      span.footer-separator |
+      span= _p('footer.theme') + ' '
+      a(target="_blank" rel="noopener" href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
+      span.footer-separator |
+      span= 'Redesigned by '
+      a(target="_blank" rel="noopener" href='https://github.com/rockjesus')
+        = 'RockJesus'
+        if theme.footer.owner.enable && theme.footer.owner.since
+          - var now = new Date()
+          - var nowYear = now.getFullYear()
+          .copyright!= `&copy;${theme.footer.owner.since} - ${nowYear} By ${config.author}`

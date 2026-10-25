@@ -1,0 +1,15 @@
+# 依赖与构建产物
+node_modules/
+public/
+.deploy_git/
+
+# Hexo 数据库缓存
+db.json
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db
+
+# 临时
+hatest_tmp/

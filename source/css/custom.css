@@ -1,0 +1,1590 @@
+/* ============================================================
+   RockJesus.cn 复刻版美化 v1 — Cyberpunk Vaporwave Glass
+   基于 Butterfly 4.5.1 暗色主题的现代化视觉升级
+   原则：不破坏结构/交互，只叠加视觉层
+   ============================================================ */
+
+/* ---------- 设计变量（暗色主基调） ---------- */
+[data-theme='dark'] {
+  --global-bg: #070a14;
+  --card-bg: rgba(19, 23, 40, 0.62);
+  --font-color: rgba(226, 232, 255, 0.82);
+  --btn-bg: linear-gradient(135deg, #8b5cf6, #6366f1);
+  --btn-hover-color: rgba(139, 92, 246, 0.55);
+  --text-bg-hover: rgba(139, 92, 246, 0.32);
+  --pseudo-hover: rgba(34, 211, 238, 0.5);
+  --scrollbar-color: rgba(139, 92, 246, 0.55);
+  --card-box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
+  --card-hover-box-shadow: 0 14px 40px rgba(88, 28, 135, 0.35);
+  --blockquote-color: rgba(196, 205, 255, 0.85);
+  --blockquote-bg: rgba(139, 92, 246, 0.08);
+}
+
+/* ---------- 背景：恢复原始背景图（主题配置 background: oc.png） ---------- */
+#web_bg {
+  background: url(https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/oc.png) center/cover no-repeat;
+  background-attachment: local;
+}
+
+/* ---------- 卡片：暗色玻璃拟态 ---------- */
+#recent-posts > .recent-post-item,
+.layout_page > div:first-child:not(.recent-posts),
+.layout_post > #page,
+.layout_post > #post,
+#aside-content .card-widget {
+  background: rgba(19, 23, 40, 0.62);
+  color: rgba(226, 232, 255, 0.82);
+  border: 1px solid rgba(148, 163, 255, 0.12);
+  border-radius: 16px;
+  backdrop-filter: saturate(120%) blur(12px);
+  -webkit-backdrop-filter: saturate(120%) blur(12px);
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+#recent-posts > .recent-post-item:hover,
+#aside-content .card-widget:hover {
+  transform: translateY(-3px);
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: 0 14px 40px rgba(88, 28, 135, 0.35);
+}
+
+/* 文章封面：圆角 + 悬停微放大 */
+.post_cover {
+  border-radius: 16px;
+  overflow: hidden;
+}
+.post_cover img {
+  transition: transform .6s ease;
+}
+.recent-post-item:hover .post_cover img {
+  transform: scale(1.04);
+}
+
+/* ---------- 首屏标题：霓虹渐变字 ---------- */
+#site-title {
+  background: linear-gradient(90deg, #a78bfa 0%, #22d3ee 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgba(139, 92, 246, 0.55));
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#site-subtitle {
+  color: rgba(196, 205, 255, 0.9);
+  text-shadow: 0 0 18px rgba(139, 92, 246, 0.6), 0 0 8px rgba(34, 211, 238, 0.45);
+}
+
+/* 副标题打字文字：主题紫→青→粉渐变 */
+#site-subtitle #subtitle {
+  background: linear-gradient(90deg, #c4b5fd 0%, #67e8f9 50%, #f0abfc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+#site-subtitle .typed-cursor {
+  color: #22d3ee;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+}
+
+/* 首屏下滑箭头：主题色 */
+#scroll-down i {
+  color: #a78bfa;
+  text-shadow: 0 0 14px rgba(34, 211, 238, 0.65);
+}
+
+#site-name {
+  background: linear-gradient(90deg, #c4b5fd, #67e8f9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 600;
+}
+
+/* ---------- 文章标题与链接 ---------- */
+.article-title {
+  color: rgba(233, 238, 255, 0.95);
+  transition: color .2s ease, text-shadow .2s ease;
+}
+.article-title:hover {
+  background: linear-gradient(90deg, #a78bfa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------- 主页中间（文章卡片）字体：对齐站点主题色 ---------- */
+.recent-post-info .article-meta-wrap {
+  color: rgba(148, 163, 184, 0.85);
+}
+.recent-post-info .article-meta-wrap i {
+  color: #a78bfa;
+}
+.recent-post-info .article-meta-wrap .article-meta-separator {
+  color: rgba(34, 211, 238, 0.5);
+}
+.recent-post-info .article-meta-wrap a {
+  color: #22d3ee;
+}
+.recent-post-info .article-meta-wrap a:hover {
+  color: #f472b6;
+}
+.recent-post-info .content {
+  color: rgba(196, 205, 255, 0.78);
+}
+
+a {
+  color: #a78bfa;
+}
+a:hover {
+  color: #22d3ee;
+}
+
+/* 正文小标题：紫色渐变下划线 */
+.post-content h2,
+.post-content h3 {
+  color: rgba(233, 238, 255, 0.95);
+}
+.post-content h2::before,
+.post-content h3::before {
+  color: #a78bfa;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
+/* ---------- 引用块：霓虹侧边 ---------- */
+.post-content blockquote {
+  border-left: 4px solid transparent;
+  border-image: linear-gradient(180deg, #8b5cf6, #22d3ee) 1;
+  border-radius: 4px;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+/* ---------- 侧栏 ---------- */
+.card-info .author-info__name {
+  background: linear-gradient(90deg, #a78bfa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.item-headline {
+  color: rgba(233, 238, 255, 0.95);
+}
+.item-headline i {
+  color: #a78bfa;
+}
+
+#card-info-btn {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border-radius: 24px;
+  box-shadow: 0 6px 18px rgba(139, 92, 246, 0.45);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+#card-info-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(34, 211, 238, 0.5);
+}
+
+/* 公告卡图标 */
+.card-announcement .item-headline i {
+  color: #22d3ee;
+}
+
+/* ---------- 分页：霓虹激活 ---------- */
+.pagination .page-number,
+.pagination .space {
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 255, 0.18);
+  background: rgba(19, 23, 40, 0.5);
+  transition: all .2s ease;
+}
+.pagination .page-number.current,
+.pagination .page-number:hover {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 14px rgba(139, 92, 246, 0.6);
+}
+
+/* ---------- 按钮组（btn-beautify） ---------- */
+.btn-beautify a,
+.buttons a {
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(99, 102, 241, 0.9));
+  border: 1px solid rgba(148, 163, 255, 0.25);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.btn-beautify a:hover,
+.buttons a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(34, 211, 238, 0.45);
+  color: #fff;
+}
+
+/* ---------- 滚动条：细霓虹 ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b5cf6, #22d3ee);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a78bfa, #67e8f9);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- 选中态 ---------- */
+::selection {
+  background: rgba(139, 92, 246, 0.5);
+  color: #fff;
+}
+
+/* ---------- 页脚：赛博渐变（保留原动画） ---------- */
+@-webkit-keyframes Gradient {
+  0% { background-position: 0 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+@-moz-keyframes Gradient {
+  0% { background-position: 0 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+@keyframes Gradient {
+  0% { background-position: 0 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+#footer {
+  background: linear-gradient(-45deg, rgba(139, 92, 246, 0.22), rgba(244, 114, 182, 0.18), rgba(34, 211, 238, 0.18), rgba(99, 102, 241, 0.22));
+  backdrop-filter: saturate(120%) blur(12px);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 12s ease infinite;
+  -moz-animation: Gradient 12s ease infinite;
+  animation: Gradient 12s ease infinite;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+#footer:before {
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: saturate(120%) blur(12px);
+}
+.framework-info a {
+  color: #a78bfa;
+}
+.framework-info a:hover {
+  color: #22d3ee;
+}
+
+/* ---------- 搜索弹窗 ---------- */
+.search-dialog {
+  border: 1px solid rgba(148, 163, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.6);
+}
+
+/* ---------- 站点统计 / 资讯 ---------- */
+.webinfo .item-count {
+  color: #22d3ee;
+}
+
+/* ---------- 返回顶部等悬浮按钮 ---------- */
+#rightside > div > button {
+  border-radius: 50%;
+  transition: all .2s ease;
+}
+#rightside > div > button:hover {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1) !important;
+  color: #fff !important;
+}
+
+/* ---------- 移动端适配微调 ---------- */
+@media screen and (max-width: 768px) {
+  #recent-posts > .recent-post-item,
+  .layout_post > #page,
+  .layout_post > #post,
+  #aside-content .card-widget {
+    border-radius: 12px;
+  }
+}
+
+/* ============================================================
+   以下为站点原有资产，务必保留（图标字体 / 光标 / 换行规则）
+   ============================================================ */
+body {
+  cursor: url(https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/cur.png), auto;
+}
+
+.hide-block>.hide-button.open,
+.hide-inline>.hide-button.open {
+  display: block
+}
+
+a,
+button,
+img {
+  cursor: url(https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/cur.png), auto
+}
+
+@font-face {
+  font-family: "iconfont"; /* Project id 2875562 */
+  src: url('iconfont.woff2?t=1634632932522') format('woff2'),
+       url('iconfont.woff?t=1634632932522') format('woff'),
+       url('iconfont.ttf?t=1634632932522') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 22px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-QQ:before {
+  content: "\e73e";
+}
+
+.icon-dianying:before {
+  content: "\e60a";
+}
+
+.icon-gangtiexia:before {
+  content: "\e619";
+}
+
+.icon-CombinedShapex:before {
+  content: "\e602";
+}
+
+.icon-aixin:before {
+  content: "\e612";
+}
+
+.icon-weixin:before {
+  content: "\e607";
+}
+
+.icon-external_tiktok:before {
+  content: "\e608";
+}
+
+.icon-github:before {
+  content: "\e722";
+}
+
+.icon-gitee2:before {
+  content: "\e677";
+}
+
+.icon-ufo:before {
+  content: "\e652";
+}
+
+.icon-aliens-fill:before {
+  content: "\ec93";
+}
+
+.icon-aliens-fill1:before {
+  content: "\e874";
+}
+
+.icon-aliens-fill2:before {
+  content: "\e664";
+}
+
+.icon-aliens-fill3:before {
+  content: "\e826";
+}
+
+.icon-aliens-line:before {
+  content: "\e756";
+}
+
+/* ============================================================
+   APlayer 固定迷你播放器 — 赛博蒸汽波玻璃风 V7
+   布局：全幅毛玻璃封面卡（封面铺满 + 半透明磨砂）+ 隐形整卡点击层 + 右下角状态小图标（无圆形按钮）
+   ============================================================ */
+.aplayer.aplayer-fixed {
+  left: 18px;
+  bottom: 18px;
+  z-index: 999;
+  width: 340px;
+  max-width: calc(100vw - 36px);
+}
+.aplayer.aplayer-fixed .aplayer-body {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(15, 18, 32, 0.38);
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(167, 139, 250, 0.45);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), 0 0 24px rgba(167, 139, 250, 0.22);
+  overflow: hidden;
+}
+/* —— 全幅毛玻璃封面卡：封面铺满播放器并以半透明毛玻璃透出 —— */
+.aplayer-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 14px;
+  min-height: 74px;
+  cursor: pointer;
+  background-image: linear-gradient(90deg, rgba(7, 9, 20, 0.5) 0%, rgba(7, 9, 20, 0.15) 55%, rgba(7, 9, 20, 0.42) 100%);
+}
+/* 播放控制：隐形整卡点击层（点击卡片任意处播放/暂停），无圆形按钮遮挡封面 */
+.aplayer-row .aplayer-pic {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  opacity: 0;
+  cursor: pointer;
+}
+/* 右下角播放/暂停状态小图标（无圆形底色，不遮挡封面） */
+.aplayer-row::after {
+  content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='13' height='13'><path d='M8 5v14l11-7z' fill='white'/></svg>");
+  position: absolute;
+  right: 10px;
+  bottom: 7px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.85;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.9));
+  transition: opacity 0.2s ease;
+}
+.aplayer-row.rj-playing::after {
+  content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='13' height='13'><rect x='6' y='5' width='4.5' height='14' rx='1' fill='white'/><rect x='13.5' y='5' width='4.5' height='14' rx='1' fill='white'/></svg>");
+}
+/* 歌曲信息（叠在封面卡上） */
+.aplayer-row .aplayer-info {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  padding: 2px 6px 4px 0;
+  border-bottom: 0;
+}
+.aplayer-row .aplayer-info .aplayer-music {
+  height: auto;
+  margin-bottom: 3px;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.aplayer-row .aplayer-info .aplayer-music .aplayer-title {
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85), 0 0 16px rgba(139, 92, 246, 0.6);
+}
+.aplayer-row .aplayer-info .aplayer-music .aplayer-author {
+  color: #cbd5e1;
+  font-size: 11px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.aplayer-row .aplayer-info .aplayer-controller {
+  height: 22px;
+}
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap {
+  padding: 3px 2px 1px;
+}
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar {
+  background: rgba(255, 255, 255, 0.22);
+  height: 3px;
+  border-radius: 3px;
+}
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded {
+  background: rgba(34, 211, 238, 0.3);
+}
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+  background: linear-gradient(90deg, #a78bfa, #22d3ee, #f472b6);
+  height: 3px;
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(167, 139, 250, 0.6);
+}
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played .aplayer-thumb {
+  background: #f472b6;
+  box-shadow: 0 0 10px rgba(244, 114, 182, 0.95);
+  transform: scale(0.7);
+}
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-time {
+  color: #f0e9ff;
+  font-size: 10px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+.aplayer .aplayer-info .aplayer-controller .aplayer-icon path {
+  fill: #a78bfa;
+  transition: fill 0.2s ease;
+}
+.aplayer .aplayer-info .aplayer-controller .aplayer-icon:hover path {
+  fill: #22d3ee;
+}
+/* —— 播放列表面板 —— */
+.aplayer .aplayer-list {
+  background: rgba(19, 23, 40, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(167, 139, 250, 0.25);
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.4);
+}
+.aplayer .aplayer-list ol {
+  max-height: 260px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(167, 139, 250, 0.5) transparent;
+}
+.aplayer .aplayer-list ol::-webkit-scrollbar {
+  width: 4px;
+}
+.aplayer .aplayer-list ol::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.5);
+  border-radius: 4px;
+}
+.aplayer .aplayer-list ol li {
+  color: #cbd5e1;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 7px 14px;
+  transition: background 0.2s ease;
+}
+.aplayer .aplayer-list ol li:hover {
+  background: rgba(167, 139, 250, 0.12);
+}
+.aplayer .aplayer-list ol li.aplayer-list-light {
+  background: linear-gradient(90deg, rgba(167, 139, 250, 0.3), rgba(34, 211, 238, 0.12));
+  border-left: 2px solid #f472b6;
+}
+.aplayer .aplayer-list ol li .aplayer-list-index {
+  color: #a78bfa;
+  position: relative;
+}
+.aplayer .aplayer-list ol li.aplayer-list-light .aplayer-list-index {
+  color: transparent;
+}
+.aplayer .aplayer-list ol li.aplayer-list-light .aplayer-list-index::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 12px;
+  transform: translate(-50%, -50%);
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 12'><rect x='0' y='4' width='2.5' height='8' rx='1' fill='%23f472b6'/><rect x='5' y='0' width='2.5' height='12' rx='1' fill='%23a78bfa'/><rect x='10' y='2.5' width='2.5' height='9' rx='1' fill='%2322d3ee'/></svg>") center/contain no-repeat;
+  animation: rjEq 0.9s ease-in-out infinite;
+}
+@keyframes rjEq {
+  0%, 100% { transform: translate(-50%, -50%) scaleY(0.7); }
+  50% { transform: translate(-50%, -50%) scaleY(1.15); }
+}
+.aplayer .aplayer-list ol li .aplayer-list-title {
+  color: #e2e8f0;
+}
+.aplayer .aplayer-list ol li.aplayer-list-light .aplayer-list-title {
+  color: #ffffff;
+}
+.aplayer .aplayer-list ol li .aplayer-list-author {
+  color: #64748b;
+}
+.aplayer .aplayer-list ol li .aplayer-list-cur {
+  color: #f472b6;
+}
+/* —— 自动播放被拦截时的提示 —— */
+.rj-tip {
+  position: fixed;
+  left: 18px;
+  bottom: 92px;
+  z-index: 1000;
+  padding: 8px 14px;
+  background: rgba(19, 23, 40, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  border-radius: 999px;
+  color: #e2e8f0;
+  font-size: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(167, 139, 250, 0.25);
+  opacity: 1;
+  transition: opacity 0.6s ease;
+  animation: rjTipIn 0.4s ease;
+}
+@keyframes rjTipIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rj-tip.rj-tip-hide {
+  opacity: 0;
+}
+/* 移动端适配 */
+@media (max-width: 767px) {
+  .aplayer.aplayer-fixed {
+    left: 10px;
+    bottom: 10px;
+    width: auto;
+    max-width: calc(100vw - 20px);
+  }
+  .aplayer-row {
+    padding: 6px 10px;
+    gap: 10px;
+  }
+  .aplayer.aplayer-fixed .aplayer-body {
+    border-radius: 14px;
+  }
+  .aplayer .aplayer-list {
+    border-radius: 0 0 14px 14px;
+  }
+}
+
+/* ============================================================
+   文章正文排版美化 V1 — Cyberpunk Vaporwave Typography
+   覆盖：标题层级 / 段落 / 行内代码 / 代码块 / 表格 / 引用 / 分割线 / 键盘 / 图片 / 链接 / 列表 / 标签 / 版权
+   ============================================================ */
+#article-container {
+  font-size: 1.02em;
+  line-height: 1.9;
+  color: rgba(226, 232, 255, 0.84);
+}
+
+/* —— 标题层级：主题渐变前缀 + 悬停微移（保留原动画） —— */
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4,
+#article-container h5,
+#article-container h6 {
+  color: rgba(240, 243, 255, 0.96);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+#article-container h2::before,
+#article-container h3::before,
+#article-container h4::before,
+#article-container h5::before,
+#article-container h6::before {
+  color: #a78bfa;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.7);
+}
+#article-container h2 {
+  border-bottom: 1px solid rgba(167, 139, 250, 0.28);
+  padding-bottom: 8px;
+}
+#article-container h2:hover,
+#article-container h3:hover,
+#article-container h4:hover {
+  color: #ffffff;
+}
+#article-container a.headerlink::after {
+  color: #a78bfa;
+}
+
+/* —— 段落 —— */
+#article-container p {
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+
+/* —— 行内代码：玻璃芯片 —— */
+#article-container p code,
+#article-container li code,
+#article-container td code {
+  margin: 0 2px;
+  padding: 2px 7px;
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  border-radius: 6px;
+  background: rgba(139, 92, 246, 0.12);
+  color: #e0d7ff;
+  font-size: 0.88em;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+/* —— 代码块：毛玻璃终端 + 霓虹窗口头 —— */
+#article-container pre {
+  position: relative;
+  padding: 16px 18px;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  border-radius: 12px;
+  background: rgba(9, 12, 24, 0.72) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 24px rgba(2, 6, 23, 0.5), 0 0 18px rgba(139, 92, 246, 0.18);
+  overflow-x: auto;
+  line-height: 1.6;
+}
+#article-container pre::before {
+  content: '';
+  display: block;
+  height: 10px;
+  margin-bottom: 12px;
+  background-image:
+    radial-gradient(circle 5px at 4px 5px, rgba(244, 114, 182, 0.9) 100%, transparent),
+    radial-gradient(circle 5px at 22px 5px, rgba(167, 139, 250, 0.9) 100%, transparent),
+    radial-gradient(circle 5px at 40px 5px, rgba(34, 211, 238, 0.9) 100%, transparent);
+}
+#article-container pre code {
+  background: transparent !important;
+  color: #d8deff;
+  font-family: Consolas, 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.9em;
+  text-shadow: none;
+}
+.hljs {
+  background: transparent !important;
+}
+
+/* —— 表格：霓虹描边 —— */
+#article-container table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(19, 23, 40, 0.45);
+}
+#article-container table thead th {
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.28), rgba(34, 211, 238, 0.16));
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 14px;
+}
+#article-container table tbody td {
+  border-top: 1px solid rgba(148, 163, 255, 0.15);
+  padding: 9px 14px;
+  color: rgba(226, 232, 255, 0.85);
+}
+#article-container table tbody tr:nth-child(even) td {
+  background: rgba(148, 163, 255, 0.04);
+}
+#article-container table tbody tr:hover td {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+/* —— 引用块：霓虹侧边 + 玻璃底 —— */
+#article-container blockquote {
+  margin: 20px 0;
+  padding: 14px 18px;
+  border-radius: 0 12px 12px 0;
+  border-left: 4px solid transparent;
+  border-image: linear-gradient(180deg, #8b5cf6, #22d3ee) 1;
+  background: rgba(139, 92, 246, 0.08);
+  color: rgba(196, 205, 255, 0.9);
+}
+#article-container blockquote p {
+  margin-bottom: 6px;
+}
+#article-container blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* —— 分割线：主题渐变 —— */
+#article-container hr {
+  margin: 28px auto;
+  width: 60%;
+  height: 2px;
+  border: none;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #a78bfa, #22d3ee, #f472b6, transparent);
+  opacity: 0.75;
+}
+
+/* —— 键盘键帽 —— */
+#article-container kbd {
+  margin: 0 3px;
+  padding: 3px 8px;
+  border: 1px solid rgba(167, 139, 250, 0.45);
+  border-radius: 6px;
+  background: rgba(139, 92, 246, 0.15);
+  box-shadow: 0 2px 0 rgba(139, 92, 246, 0.35), 0 1px 4px rgba(0, 0, 0, 0.4) inset;
+  color: #e0d7ff;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+/* —— 文章图片：圆角玻璃框 —— */
+#article-container img {
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 255, 0.18);
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.45);
+}
+#article-container img:hover {
+  filter: brightness(1.08);
+}
+
+/* —— 正文链接：虚线描边 + 悬停变色 —— */
+#article-container a:not(.headerlink) {
+  color: #a78bfa;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(167, 139, 250, 0.5);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+#article-container a:not(.headerlink):hover {
+  color: #22d3ee;
+  border-bottom-color: #22d3ee;
+}
+
+/* —— 列表 —— */
+#article-container ul li::marker,
+#article-container ol li::marker {
+  color: #a78bfa;
+}
+#article-container ul li:hover::marker,
+#article-container ol li:hover::marker {
+  color: #22d3ee;
+}
+#article-container li {
+  margin: 5px 0;
+}
+
+/* —— 文章标签 chips —— */
+#post .tag_share .post-meta__tags {
+  border-color: rgba(167, 139, 250, 0.6);
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.1);
+}
+#post .tag_share .post-meta__tags:hover {
+  background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* —— 版权卡：毛玻璃渐变 —— */
+#post .post-copyright {
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 12px;
+  background: rgba(19, 23, 40, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+#post .post-copyright:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.35), 0 4px 16px rgba(2, 6, 23, 0.45);
+}
+#post .post-copyright .post-copyright-meta {
+  color: #22d3ee;
+}
+
+/* ============================================================
+   主页首屏 V9 — 移除大标题 / 打字副标题下移纯紫 / 右上角导航紫色
+   鼠标互动线条（canvas-nest）紫色由 player.js 运行时设置
+   ============================================================ */
+/* 删除主页中央大标题（Alienware Hackintosh） */
+#site-title {
+  display: none;
+}
+
+/* 打字副标题组：水平居中，垂直下移至 75%（即距首屏底部 25%） */
+#page-header.full_page #site-info {
+  top: 75%;
+}
+
+/* 打字副标题：只要紫色文字（覆盖原渐变） */
+#site-subtitle #subtitle {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: #a78bfa;
+  text-shadow: 0 0 12px rgba(139, 92, 246, 0.65);
+}
+#site-subtitle .typed-cursor {
+  color: #a78bfa;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+}
+
+/* 右上角导航文字全部紫色 */
+#nav #menus .site-page,
+#nav .menus_item_child .site-page {
+  color: #a78bfa;
+}
+#nav #menus .site-page i,
+#nav .menus_item_child .site-page i {
+  color: #a78bfa;
+}
+#nav #menus .site-page:hover,
+#nav .menus_item_child .site-page:hover {
+  color: #e0d7ff;
+}
+
+/* ============================================================
+   右下角聊天按钮 — 豆包对话框 V10
+   豆包女生头像按钮 + 毛玻璃弹窗内嵌豆包网页聊天
+   ============================================================ */
+#rightside #chat_btn.rj-doubao-btn {
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(167, 139, 250, 0.5);
+  background: transparent;
+  box-shadow: 0 0 14px rgba(139, 92, 246, 0.55), 0 4px 14px rgba(2, 6, 23, 0.5);
+}
+#chat_btn.rj-doubao-btn .rj-doubao-avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+#chat_btn.rj-doubao-btn.rj-doubao-active {
+  border-color: #22d3ee;
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.6), 0 4px 14px rgba(2, 6, 23, 0.5);
+}
+
+#rj-doubao-panel {
+  position: fixed;
+  right: 18px;
+  bottom: 80px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  max-width: calc(100vw - 36px);
+  height: min(560px, 72vh);
+  overflow: hidden;
+  background: rgba(15, 18, 32, 0.82);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(167, 139, 250, 0.45);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6), 0 0 24px rgba(139, 92, 246, 0.3);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  transform-origin: bottom right;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+#rj-doubao-panel.rj-doubao-open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.rj-doubao-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.25), rgba(34, 211, 238, 0.12));
+  border-bottom: 1px solid rgba(167, 139, 250, 0.3);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+.rj-doubao-head-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.rj-doubao-close {
+  margin-left: auto;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(148, 163, 255, 0.15);
+  color: #e2e8f0;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.rj-doubao-close:hover {
+  background: rgba(244, 114, 182, 0.35);
+  color: #ffffff;
+}
+.rj-doubao-frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: #ffffff;
+}
+@media (max-width: 767px) {
+  #rj-doubao-panel {
+    right: 10px;
+    bottom: 74px;
+    width: calc(100vw - 20px);
+    height: 68vh;
+  }
+}
+
+
+/* ============================================================
+   右下角精简 V11 — 删除「设置」（齿轮）与「折叠」（单栏/双栏切换）按钮
+   ============================================================ */
+#rightside #rightside_config,
+#rightside #hide-aside-btn {
+  display: none !important;
+}
+
+/* ============================================================
+   V12 — 主题渐变紫（Follow Me 同款 135deg #8b5cf6→#6366f1）+ iOS27 液态玻璃
+   #8 主题色统一渐变紫  #12 借鉴 iOS 27 Liquid Glass 全站美化
+   ============================================================ */
+/* —— 全局链接/图标/强调：渐变紫 —— */
+a { color: #8b5cf6; }
+a:hover { color: #6366f1; }
+.framework-info a { color: #8b5cf6; }
+.framework-info a:hover { color: #6366f1; }
+#article-container a:not(.headerlink) { color: #8b5cf6; border-bottom-color: rgba(139,92,246,.5); }
+#article-container a:not(.headerlink):hover { color: #6366f1; border-bottom-color: #6366f1; }
+#article-container h2::before, #article-container h3::before, #article-container h4::before,
+#article-container h5::before, #article-container h6::before { color: #8b5cf6; text-shadow: 0 0 10px rgba(139,92,246,.7); }
+#nav #menus .site-page, #nav .menus_item_child .site-page { color: #8b5cf6; }
+#nav #menus .site-page i, #nav .menus_item_child .site-page i { color: #8b5cf6; }
+#nav #menus .site-page:hover, #nav .menus_item_child .site-page:hover { color: #e0d7ff; }
+#site-subtitle #subtitle { color: #8b5cf6; }
+#site-subtitle .typed-cursor { color: #8b5cf6; }
+#scroll-down i { color: #8b5cf6; }
+.recent-post-info .article-meta-wrap i { color: #8b5cf6; }
+.recent-post-info .article-meta-wrap a { color: #8b5cf6; }
+.recent-post-info .article-meta-wrap a:hover { color: #6366f1; }
+#article-container ul li::marker, #article-container ol li::marker { color: #8b5cf6; }
+.item-headline i { color: #8b5cf6; }
+.webinfo .item-count { color: #8b5cf6; }
+.card-announcement .item-headline i { color: #8b5cf6; }
+#post .post-copyright .post-copyright-meta { color: #8b5cf6; }
+#article-container a.headerlink::after { color: #8b5cf6; }
+#post .tag_share .post-meta__tags { border-color: rgba(139,92,246,.6); background: rgba(139,92,246,.12); color: #c4b5fd; }
+
+/* —— 渐变应用点：Follow Me 同款 135deg #8b5cf6→#6366f1 —— */
+.article-title:hover {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+#site-name {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.pagination .page-number.current, .pagination .page-number:hover {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border-color: transparent;
+  box-shadow: 0 0 16px rgba(139,92,246,.65);
+}
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8b5cf6, #6366f1); }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #a78bfa, #8b5cf6); }
+.aplayer .aplayer-info .aplayer-controller .aplayer-icon path { fill: #8b5cf6; }
+.aplayer .aplayer-info .aplayer-controller .aplayer-icon:hover path { fill: #6366f1; }
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  box-shadow: 0 0 6px rgba(139,92,246,.6);
+}
+.aplayer .aplayer-list ol li.aplayer-list-light {
+  background: linear-gradient(90deg, rgba(139,92,246,.3), rgba(99,102,241,.14));
+  border-left-color: #8b5cf6;
+}
+#footer {
+  background: linear-gradient(-45deg, rgba(139,92,246,.28), rgba(99,102,241,.24), rgba(139,92,246,.16), rgba(99,102,241,.28));
+}
+#article-container blockquote { border-image: linear-gradient(180deg, #8b5cf6, #6366f1) 1; }
+#article-container pre { box-shadow: 0 6px 24px rgba(2,6,23,.5), 0 0 18px rgba(139,92,246,.22); }
+#article-container p code, #article-container li code, #article-container td code {
+  border-color: rgba(139,92,246,.4);
+  background: rgba(139,92,246,.14);
+}
+#article-container table { border-color: rgba(139,92,246,.32); }
+#article-container table thead th {
+  background: linear-gradient(90deg, rgba(139,92,246,.3), rgba(99,102,241,.18));
+}
+#post .tag_share .post-meta__tags:hover { background: linear-gradient(135deg, #8b5cf6, #6366f1); }
+.btn-beautify a, .buttons a { background: linear-gradient(135deg, #8b5cf6, #6366f1); border-color: rgba(139,92,246,.3); }
+.aplayer.aplayer-fixed .aplayer-body { border-color: rgba(139,92,246,.45); box-shadow: 0 8px 32px rgba(0,0,0,.55), 0 0 24px rgba(139,92,246,.25); }
+.aplayer .aplayer-list { border-top-color: rgba(139,92,246,.28); }
+#rj-doubao-panel { border-color: rgba(139,92,246,.5); box-shadow: 0 12px 40px rgba(2,6,23,.6), 0 0 24px rgba(139,92,246,.32); }
+.rj-tip { border-color: rgba(139,92,246,.45); box-shadow: 0 4px 20px rgba(0,0,0,.5), 0 0 12px rgba(139,92,246,.3); }
+#rightside > div > button:hover { background: linear-gradient(135deg, #8b5cf6, #6366f1) !important; }
+
+/* —— iOS 27 Liquid Glass：大圆角 + 高饱和毛玻璃 + 内高光 + 弹性动效 —— */
+#recent-posts > .recent-post-item,
+.layout_page > div:first-child:not(.recent-posts),
+.layout_post > #page, .layout_post > #post,
+#aside-content .card-widget {
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.13);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow: 0 4px 12px rgba(2,6,23,.32), 0 16px 44px rgba(2,6,23,.5), inset 0 1px 0 rgba(255,255,255,.12);
+}
+#recent-posts > .recent-post-item:hover,
+#aside-content .card-widget:hover {
+  transform: translateY(-4px) scale(1.008);
+  border-color: rgba(139,92,246,.5);
+  box-shadow: 0 10px 28px rgba(88,28,135,.3), 0 22px 60px rgba(2,6,23,.55), inset 0 1px 0 rgba(255,255,255,.14);
+}
+#nav .menus_item_child {
+  background: rgba(19,23,40,.72);
+  backdrop-filter: blur(26px) saturate(170%);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  box-shadow: 0 14px 38px rgba(2,6,23,.55), inset 0 1px 0 rgba(255,255,255,.1);
+}
+#nav .menus_item_child li a { border-radius: 10px; }
+#sidebar #sidebar-menus { background: rgba(19,23,40,.72); backdrop-filter: blur(26px) saturate(170%); -webkit-backdrop-filter: blur(26px) saturate(170%); }
+.aplayer.aplayer-fixed .aplayer-body {
+  border-radius: 22px;
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border-color: rgba(255,255,255,.16);
+  box-shadow: 0 8px 32px rgba(0,0,0,.5), 0 0 28px rgba(139,92,246,.28), inset 0 1px 0 rgba(255,255,255,.14);
+}
+.aplayer .aplayer-list { border-radius: 0 0 22px 22px; }
+#rj-doubao-panel { border-radius: 22px; backdrop-filter: blur(30px) saturate(180%); -webkit-backdrop-filter: blur(30px) saturate(180%); }
+.search-dialog { border-radius: 24px; border-color: rgba(255,255,255,.13); backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%); }
+#article-container img { border-radius: 18px; }
+.post_cover { border-radius: 18px; overflow: hidden; }
+
+/* —— 打赏菜单悬停弹出三张二维码（#7）—— */
+#nav .menus_item_child.rj-qr-menu,
+#sidebar-menus .menus_item_child.rj-qr-menu {
+  display: none;
+  flex-direction: row;
+  gap: 10px;
+  padding: 12px 14px;
+  min-width: 356px;
+  width: auto;
+  border-radius: 18px;
+  background: rgba(19,23,40,.8);
+  backdrop-filter: blur(26px) saturate(170%);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  border: 1px solid rgba(139,92,246,.45);
+  box-shadow: 0 16px 40px rgba(2,6,23,.6), 0 0 26px rgba(139,92,246,.28), inset 0 1px 0 rgba(255,255,255,.1);
+}
+#nav .menus_item:hover .menus_item_child.rj-qr-menu,
+#sidebar-menus .menus_item:hover .menus_item_child.rj-qr-menu { display: flex; }
+.rj-qr-item {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 10px 11px;
+  border-radius: 14px;
+  background: rgba(139,92,246,.13);
+  border: 1px solid rgba(139,92,246,.28);
+  color: #e0d7ff !important;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.rj-qr-item:hover {
+  transform: translateY(-3px);
+  background: rgba(139,92,246,.24);
+  box-shadow: 0 8px 20px rgba(139,92,246,.35);
+  color: #fff !important;
+}
+.rj-qr-item img { width: 104px; height: 104px; border-radius: 12px; display: block; box-shadow: 0 4px 14px rgba(2,6,23,.5); }
+.rj-qr-item span { font-size: 12px; letter-spacing: .5px; }
+
+/* —— 人生信条卡（#10）—— */
+.announcement_content.rj-creed {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(196,205,255,.88);
+}
+.announcement_content.rj-creed b {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* —— 3D 旋转地球（#9）—— */
+#rj-globe {
+  position: relative;
+  margin-top: 14px;
+  height: 236px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 42%, rgba(30,58,138,.35), rgba(7,9,20,.9) 70%);
+  border: 1px solid rgba(139,92,246,.4);
+  box-shadow: 0 0 26px rgba(139,92,246,.22), inset 0 0 44px rgba(2,6,23,.65);
+}
+#rj-globe canvas { width: 100%; height: 100%; display: block; }
+#rj-globe .rj-globe-label {
+  position: absolute;
+  left: 0; right: 0; bottom: 7px;
+  text-align: center;
+  font-size: 11.5px;
+  letter-spacing: .4px;
+  color: rgba(196,205,255,.82);
+  text-shadow: 0 0 8px rgba(139,92,246,.6), 0 1px 4px rgba(0,0,0,.8);
+  pointer-events: none;
+}
+
+/* 移动端微调 */
+@media screen and (max-width: 768px) {
+  #recent-posts > .recent-post-item, .layout_post > #page, .layout_post > #post,
+  #aside-content .card-widget { border-radius: 18px; }
+  #rj-globe { height: 210px; }
+  #nav .menus_item_child.rj-qr-menu { min-width: 300px; }
+  .rj-qr-item img { width: 86px; height: 86px; }
+}
+
+/* ============================================================
+   V12.1 — 全站主题色统一为 Follow Me 按钮同款渐变紫
+   清理残留青/粉装饰色，主题一致化（135deg #8b5cf6→#6366f1）
+   ============================================================ */
+/* —— 分割线：紫系渐变 —— */
+#article-container hr {
+  background: linear-gradient(90deg, transparent, #8b5cf6, #6366f1, transparent);
+}
+/* —— 代码块窗口装饰点：紫系三色 —— */
+#article-container pre::before {
+  background-image:
+    radial-gradient(circle 5px at 4px 5px, rgba(139,92,246,.9) 100%, transparent),
+    radial-gradient(circle 5px at 22px 5px, rgba(99,102,241,.9) 100%, transparent),
+    radial-gradient(circle 5px at 40px 5px, rgba(167,139,250,.9) 100%, transparent);
+}
+/* —— 播放器：加载进度 / 滑块 / 当前曲目 / 播放指示 —— */
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded {
+  background: rgba(139,92,246,.3);
+}
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played .aplayer-thumb {
+  background: #8b5cf6;
+  box-shadow: 0 0 10px rgba(139,92,246,.95);
+}
+.aplayer .aplayer-list ol li .aplayer-list-cur { color: #8b5cf6; }
+.aplayer .aplayer-list ol li.aplayer-list-light .aplayer-list-index::before {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 12'><rect x='0' y='4' width='2.5' height='8' rx='1' fill='%238b5cf6'/><rect x='5' y='0' width='2.5' height='12' rx='1' fill='%23a78bfa'/><rect x='10' y='2.5' width='2.5' height='9' rx='1' fill='%236366f1'/></svg>") center/contain no-repeat;
+}
+/* —— 正文列表 marker hover：紫 —— */
+#article-container ul li:hover::marker,
+#article-container ol li:hover::marker { color: #8b5cf6; }
+/* —— 首屏下滑箭头光晕：紫 —— */
+#scroll-down i { text-shadow: 0 0 14px rgba(139,92,246,.65); }
+/* —— 按钮 hover 光晕：紫 —— */
+#card-info-btn:hover { box-shadow: 0 10px 26px rgba(139,92,246,.5); }
+.btn-beautify a:hover,
+.buttons a:hover { box-shadow: 0 8px 22px rgba(99,102,241,.45); }
+/* —— 主题 hover 伪变量：紫 —— */
+[data-theme='dark'] { --pseudo-hover: rgba(139,92,246,.5); }
+/* —— 分页普通页号边框：紫 —— */
+.pagination .page-number,
+.pagination .space { border-color: rgba(139,92,246,.22); }
+/* —— 豆包弹窗：激活态 / 关闭按钮 hover 紫 —— */
+#chat_btn.rj-doubao-btn.rj-doubao-active {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 16px rgba(139,92,246,.6), 0 4px 14px rgba(2,6,23,.5);
+}
+.rj-doubao-close:hover { background: rgba(139,92,246,.35); }
+
+/* ============================================================
+   V12.2 — 文章排版优化补充：图片自适应居中 / 巨图限高 / 表格横滚
+   #11 所有文章排版美化（md 渲染正文）
+   ============================================================ */
+/* —— 正文图片：自适应容器，独立成行的大图自动居中；行内小图保持原样 —— */
+#article-container img {
+  max-width: 100%;
+  height: auto;
+}
+#article-container p > img:only-child,
+#article-container blockquote > p > img:only-child {
+  display: block;
+  margin: 16px auto;
+}
+/* —— 巨型壁纸 GIF（数 MB 大图）：限高显示，避免整屏拉伸 —— */
+#article-container img[src*=".gif"] {
+  max-height: 72vh;
+  width: auto;
+}
+/* —— 正文图片 hover：轻微放大 + 边框光（保留原动画风格） —— */
+#article-container p > img:only-child {
+  transition: transform .3s ease;
+}
+#article-container p > img:only-child:hover {
+  transform: scale(1.012);
+}
+/* —— 表格容器：窄屏横向滚动，不挤压列宽 —— */
+#article-container figure.table,
+#article-container .table-wrap {
+  overflow-x: auto;
+}
+/* —— 大段代码块（长行）横向滚动条美化：紫细条 —— */
+#article-container pre::-webkit-scrollbar {
+  height: 6px;
+}
+#article-container pre::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  border-radius: 3px;
+}
+/* —— 列表排版：缩进与间距更透气 —— */
+#article-container ul,
+#article-container ol {
+  padding-left: 1.6em;
+}
+#article-container li > ul,
+#article-container li > ol {
+  margin: 4px 0 8px;
+}
+/* —— 引用块内段落收紧 —— */
+#article-container blockquote p {
+  margin: 4px 0;
+}
+/* —— 键盘键帽与行内代码在移动端不换行错位 —— */
+@media (max-width: 767px) {
+  #article-container p code,
+  #article-container li code {
+    white-space: nowrap;
+  }
+  #article-container img[src*=".gif"] {
+    max-height: 60vh;
+  }
+}
+
+/* ============================================================
+   V12.3 — iOS 27 Liquid Glass 深度美化（全站玻璃拟态）
+   特征：彩色光斑背景 + 高透毛玻璃面板 + 内高光描边 + 弹性动效 + 光泽扫过
+   原则：只叠加视觉层，不动结构与交互
+   ============================================================ */
+/* —— 背景彩色光斑（iOS27 招牌：多彩柔和光晕缓慢漂移） —— */
+#web_bg {
+  position: fixed;
+}
+#web_bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(620px 420px at 12% 8%, rgba(139, 92, 246, 0.4), transparent 62%),
+    radial-gradient(720px 520px at 88% 16%, rgba(99, 102, 241, 0.34), transparent 62%),
+    radial-gradient(640px 480px at 62% 92%, rgba(34, 211, 238, 0.2), transparent 62%),
+    radial-gradient(520px 420px at 26% 68%, rgba(244, 114, 182, 0.16), transparent 62%);
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  animation: rjGlowShift 26s ease-in-out infinite alternate;
+}
+@keyframes rjGlowShift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-2%, 1.5%, 0) scale(1.05); }
+  100% { transform: translate3d(2%, -2%, 0) scale(1.08); }
+}
+
+/* —— 导航栏液态玻璃（含滚动后的紧凑态） —— */
+#nav {
+  background: rgba(15, 18, 32, 0.32) !important;
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 40px rgba(2, 6, 23, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+#nav.nav-fixed {
+  background: rgba(15, 18, 32, 0.62) !important;
+  box-shadow: 0 12px 44px rgba(2, 6, 23, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* —— 卡片深液态玻璃：更强透光、内高光、弹性悬停 —— */
+#recent-posts > .recent-post-item,
+.layout_page > div:first-child:not(.recent-posts),
+.layout_post > #page,
+.layout_post > #post,
+#aside-content .card-widget {
+  position: relative;
+  background: linear-gradient(145deg, rgba(32, 36, 66, 0.55), rgba(17, 21, 38, 0.38));
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  box-shadow:
+    0 4px 14px rgba(2, 6, 23, 0.28),
+    0 18px 50px rgba(2, 6, 23, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(139, 92, 246, 0.12);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+/* 顶部高光线 */
+#recent-posts > .recent-post-item::before,
+.layout_page > div:first-child:not(.recent-posts)::before,
+.layout_post > #page::before,
+.layout_post > #post::before,
+#aside-content .card-widget::before {
+  content: '';
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+#recent-posts > .recent-post-item:hover,
+#aside-content .card-widget:hover {
+  transform: translateY(-5px) scale(1.012);
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow:
+    0 12px 32px rgba(88, 28, 135, 0.32),
+    0 26px 70px rgba(2, 6, 23, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 34px rgba(139, 92, 246, 0.22);
+}
+
+/* —— 玻璃按钮：内高光 + 光泽扫过 —— */
+#card-info-btn,
+.btn-beautify a,
+.buttons a {
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 6px 20px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -3px 8px rgba(49, 46, 129, 0.35);
+}
+#card-info-btn::after,
+.btn-beautify a::after,
+.buttons a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -65%;
+  width: 42%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  animation: rjShine 3.4s ease-in-out infinite;
+}
+@keyframes rjShine {
+  0% { left: -65%; }
+  55%, 100% { left: 135%; }
+}
+
+/* —— 头像玻璃圈 —— */
+#aside-content .card-info .author-info__avatar img,
+#aside-content .card-info .avatar-img {
+  border-radius: 50% !important;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 0 0 5px rgba(139, 92, 246, 0.22),
+    0 10px 28px rgba(2, 6, 23, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* —— 右侧悬浮按钮玻璃化 —— */
+#rightside > div > button {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 16px rgba(2, 6, 23, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* —— 播放器 / 豆包弹窗 / 搜索弹窗：内高光加强 —— */
+.aplayer.aplayer-fixed .aplayer-body {
+  box-shadow:
+    0 10px 38px rgba(0, 0, 0, 0.55),
+    0 0 34px rgba(139, 92, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+#rj-doubao-panel {
+  box-shadow:
+    0 14px 46px rgba(2, 6, 23, 0.65),
+    0 0 34px rgba(139, 92, 246, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.search-dialog {
+  box-shadow:
+    0 24px 70px rgba(2, 6, 23, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* —— 侧栏菜单玻璃化 —— */
+#sidebar #sidebar-menus {
+  background: linear-gradient(145deg, rgba(32, 36, 66, 0.55), rgba(17, 21, 38, 0.4)) !important;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* —— 文章头图玻璃化（页面头图容器） —— */
+#page-header.post-bg {
+  box-shadow: inset 0 -60px 120px rgba(2, 6, 23, 0.45);
+}
+
+/* 移动端：降低模糊半径保性能，圆角同步 */
+@media screen and (max-width: 768px) {
+  #recent-posts > .recent-post-item,
+  .layout_post > #page,
+  .layout_post > #post,
+  #aside-content .card-widget {
+    border-radius: 20px;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+  #nav {
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+}
+
+/* ============================================================
+   V12.4 — 播放器所有按钮统一主题色（渐变紫 #8b5cf6→#6366f1）
+   覆盖：右下角播放/暂停状态图标、控制器图标、列表播放指示、进度滑块
+   ============================================================ */
+/* 右下角播放状态图标：渐变紫三角 + 紫光晕 */
+.aplayer-row::after {
+  content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='15' height='15'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238b5cf6'/><stop offset='1' stop-color='%236366f1'/></linearGradient></defs><path d='M8 5v14l11-7z' fill='url(%23g)'/></svg>");
+  filter: drop-shadow(0 1px 5px rgba(139, 92, 246, 0.95));
+  opacity: 0.95;
+}
+/* 暂停状态图标：渐变紫双竖条 + 紫光晕 */
+.aplayer-row.rj-playing::after {
+  content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='15' height='15'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238b5cf6'/><stop offset='1' stop-color='%236366f1'/></linearGradient></defs><rect x='6' y='5' width='4.5' height='14' rx='1' fill='url(%23g)'/><rect x='13.5' y='5' width='4.5' height='14' rx='1' fill='url(%23g)'/></svg>");
+  filter: drop-shadow(0 1px 5px rgba(139, 92, 246, 0.95));
+  opacity: 0.95;
+}
+/* 控制器所有图标（上一首/下一首/列表/模式等）：统一渐变紫（SVG path 填充主题紫，悬停加深） */
+.aplayer .aplayer-info .aplayer-controller .aplayer-icon path {
+  fill: #8b5cf6;
+}
+.aplayer .aplayer-info .aplayer-controller .aplayer-icon:hover path {
+  fill: #6366f1;
+}
+/* 列表面板中的播放/暂停小图标 */
+.aplayer .aplayer-list ol li .aplayer-icon path,
+.aplayer .aplayer-list ol li .aplayer-list-cur {
+  fill: #8b5cf6;
+  color: #8b5cf6;
+}
+/* 进度条：滑块与已播渐变紫强化（按钮态反馈） */
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.8);
+}
+.aplayer-row .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played .aplayer-thumb {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 1);
+  transform: scale(0.8);
+}
