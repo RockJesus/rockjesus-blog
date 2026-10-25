@@ -1,0 +1,71 @@
+name: Sync Cloud Visits
+on:
+  schedule:
+    - cron: '0 3,15 * * *'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: 拉取 Upstash 云端访客并合并进 visitors.json
+        env:
+          UPSTASH_TOKEN: ${{ secrets.UPSTASH_REST_TOKEN }}
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const https = require('https');
+          const U = 'https://tight-wren-137459.upstash.io';
+          const T = process.env.UPSTASH_TOKEN;
+          function get(url, headers) {
+            return new Promise((res, rej) => {
+              https.get(url, { headers: headers || {} }, r => {
+                let d = ''; r.on('data', c => d += c); r.on('end', () => res({ ok: r.statusCode >= 200 && r.statusCode < 300, t: d }));
+              }).on('error', rej);
+            });
+          }
+          (async () => {
+            let cloud = {};
+            try {
+              const r = await get(U + '/get/visits', { 'Authorization': 'Bearer ' + T });
+              if (r.ok && r.t.trim()) {
+                const j = JSON.parse(r.t);
+                if (j && j.result) cloud = JSON.parse(j.result);
+              }
+            } catch (e) {}
+            if (!cloud || typeof cloud !== 'object') cloud = {};
+            let local = {};
+            try { local = JSON.parse(fs.readFileSync('source/data/visitors.json', 'utf8')); } catch (e) {}
+            const m = {};
+            for (const k in cloud) if (/^[A-Za-z]{2}$/.test(k)) m[k] = cloud[k];
+            for (const k in local) if (/^[A-Za-z]{2}$/.test(k)) m[k] = Math.max(m[k] || 0, local[k]);
+            const sorted = Object.keys(m).sort((a, b) => m[b] - m[a]);
+            const out = {}; sorted.forEach(k => out[k] = m[k]);
+            fs.writeFileSync('source/data/visitors.json', JSON.stringify(out));
+            console.log('merged:', JSON.stringify(out));
+          })().catch(e => { console.error(e); process.exit(1); });
+          NODE
+      - name: 提交源码仓（跳过构建）
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "RockJesus"
+          git config user.email "rockjesus@users.noreply.github.com"
+          git add source/data/visitors.json
+          git diff --cached --quiet && echo "no change" || {
+            git commit -m "chore: 自动同步云端访客统计 [skip ci]" -q
+            git push https://x-access-token:${GH_TOKEN}@github.com/RockJesus/rockjesus-blog.git main -q
+          }
+      - name: 同步部署仓（线上立即生效）
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CONTENT=$(base64 -w0 source/data/visitors.json)
+          curl -s -X PUT "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/visitors.json?ref=master" \
+            -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            -d "{\"message\":\"chore: 同步云端访客统计\",\"content\":\"${CONTENT}\",\"sha\":$(curl -s -H "Authorization: Bearer ${GH_TOKEN}" "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/visitors.json?ref=master" | python3 -c "import sys,json; print(json.dumps(json.load(sys.stdin).get('sha','')))")}" \
+            | python3 -c "import sys,json; d=json.load(sys.stdin); print('deploy updated:', 'commit' in d)"
