@@ -58,9 +58,14 @@ jobs:
           VERSION=$(awk '/^version:/{print $2; exit}' _config.yml)
           if [ -z "$VERSION" ]; then echo "no version in _config.yml, skip"; exit 0; fi
           TAG="v${VERSION}"
-          if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG" --title "$TAG" --notes "自动发布 v${VERSION} · $(date -u +'%Y-%m-%d %H:%M UTC') · commit ${{ github.sha }}"
-            echo "release ${TAG} created"
-          else
+          API="https://api.github.com/repos/RockJesus/rockjesus-blog"
+          if curl -fsS -H "Authorization: Bearer $GH_TOKEN" "$API/releases/tags/$TAG" >/dev/null 2>&1; then
             echo "release ${TAG} already exists, skip"
+          else
+            curl -fsS -X POST \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "$API/releases" \
+              -d "{\"tag_name\":\"$TAG\",\"target_commitish\":\"main\",\"name\":\"$TAG\",\"body\":\"自动发布 v${VERSION} · $(date -u +'%Y-%m-%d %H:%M UTC') · commit ${GITHUB_SHA}\"}"
+            echo "release ${TAG} created"
           fi
