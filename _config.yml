@@ -10,7 +10,7 @@ author: RockJesus
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
-# Version 站点版本号（每次发布递增，段内十进制不超过9：1.0.9 → 1.1.0）
+# Version 站点版本号（每次发布递增，段内十进制不超过9：1.0.9 → 1.1.0；由流水线自动打 tag 并发布 GitHub Release）
 version: 1.0.0
 
 # URL
