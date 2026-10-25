@@ -1,0 +1,51 @@
+name: Deploy Blog
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blog-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate static site
+        run: npx hexo g
+
+      - name: Ensure domain & nojekyll
+        run: |
+          echo "rockjesus.cn" > public/CNAME
+          touch public/.nojekyll
+
+      - name: Deploy to RockJesus.github.io
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          external_repository: RockJesus/RockJesus.github.io
+          publish_branch: master
+          publish_dir: ./public
+          force_orphan: false
+          keep_files: false
+          user_name: RockJesus
+          user_email: RockJesus@users.noreply.github.com
