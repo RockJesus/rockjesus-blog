@@ -2,14 +2,14 @@
 title: '【Alienware】MAC动 态 鼠 标 主 题'
 date: 2019-01-11 13:48:29
 updated: 2022-11-03 18:56:15
-cover: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/header_mouse.webp
+cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_mouse.webp
 ---
 
-![Alienware_Invader.jpg](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/13.jpg)
+![Alienware_Invader.jpg](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/13.jpg)
 
-![QQ20171027-224500-HD.gif](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/14.gif)
+![QQ20171027-224500-HD.gif](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/14.gif)
 
-![QQ20171027-224351.png](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/15.png)
+![QQ20171027-224351.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/15.png)
 
 > 移植自windows，安装方法在附件里<br>第一次用ps，感谢群里朋友的指点
 
@@ -21,10 +21,10 @@ cover: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/header_mouse.webp
 
 | 外星人黑苹果QQ群：308469644 | 外星人黑苹果微信公众号 | 外星人黑苹果微信小程序 |
 | --- | --- | --- |
-| ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
+| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
 
 # 如果文章对你有帮助，欢迎打赏作者. If u like, Buy me a coffee  :)
 
 | 支付宝打赏 | 微信打赏 | 微信赞赏 |
 | --- | --- | --- |
-| ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |
+| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |

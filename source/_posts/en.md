@@ -2,11 +2,11 @@
 title: 'AW 17 R4 DUAL-GPU MacOS'
 date: 2021-10-06 13:48:25
 updated: 2022-11-03 21:48:07
-cover: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/header_post.webp
+cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_post.webp
 sticky: true
 ---
 
-<br>![aw17.jpg](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/17r4.gif)
+<br>![aw17.jpg](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/17r4.gif)
 
 > [http://bbs.pcbeta.com/viewthread-1797200-1-1.html](http://bbs.pcbeta.com/viewthread-1797200-1-1.html)
 
@@ -16,7 +16,7 @@ sticky: true
 
 > **BIOS Configuration**<br>SATA MODE AHCI<br>SECURE BOOT NO<br>BOOT UEFI
 
-> **Overview**<br>I’ve got dual-gpu working good on 10.13.6,Now just waiting for the webdriver for 10.14.<br>*In windows OS press FN+F7 to change graphic mode:<br>1.dual gpu mode:Indisplay connects to hd630,Exdisplay connects to nvidia 1060<br>2.nvidia gpu only mode:Indisplay &amp; Exdisplay both connects to nvidia 1060<br>![about.png](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/about.png)<br>![pci.png](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/pci.png)
+> **Overview**<br>I’ve got dual-gpu working good on 10.13.6,Now just waiting for the webdriver for 10.14.<br>*In windows OS press FN+F7 to change graphic mode:<br>1.dual gpu mode:Indisplay connects to hd630,Exdisplay connects to nvidia 1060<br>2.nvidia gpu only mode:Indisplay &amp; Exdisplay both connects to nvidia 1060<br>![about.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/about.png)<br>![pci.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/pci.png)
 
 > **What Works**<br>CPU Power Management<br>Battery Support<br>Intel HD 630 &amp; Nvidia GeForce GT 1060(when webdriver has installed)<br>HDMI out (with hotplug) &amp; Audio out(when webdriver has installed)<br>Audio ALC298 (2.1ch with subwoofer)<br>Headphone<br>Brightness &amp; volume Keys<br>Keyboard<br>AlienFX keyboard &amp; logo LED lights (follow the settings on windows os but using vmware boot to windows and load the aw1517 usb device could change Alienfx light on macos)<br>Trackpad with Gestures<br>Webcam<br>WiFi and Bluetooth<br>Ethernet<br>iCloud Services<br>Continuity and Hand-off<br>USB 3.0 &amp; TYPE-C<br>Thunderbolt devices with hotplug before sleep<br>Sleep &amp; Wake (only power button could wakeup system)
 
@@ -44,10 +44,10 @@ sticky: true
 
 | 外星人黑苹果QQ群：308469644 | 外星人黑苹果微信公众号 | 外星人黑苹果微信小程序 |
 | --- | --- | --- |
-| ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
+| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
 
 # 如果文章对你有帮助，欢迎打赏作者. If u like, Buy me a coffee  :)
 
 | 支付宝打赏 | 微信打赏 | 微信赞赏 |
 | --- | --- | --- |
-| ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |
+| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |

@@ -2,14 +2,14 @@
 title: 'Mac雷电3 type-c 热拔插支持'
 date: 2019-01-11 13:48:27
 updated: 2022-11-03 18:56:27
-cover: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/awhd.gif
+cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/awhd.gif
 ---
 
 > 配置Alienware 17 r4<br>雷电3:8086, 15DA,Intel JHL6340 Thunderbolt 3 Bridge (C step) [Alpine Ridge 2C 2016]
 
 > 原先没有任何修改时，开机前插着雷电启动，可以使用雷电设备，但是不能热拔插，睡醒回来也会挂。。。<br>后来发现@the-darkvoid写了macOS-IOElectrify这个KEXT，拿来试试终于可以热拔插了，感谢作者！！！
 
-![屏幕快照 2017-11-19 上午10.13.01.png](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/16.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/17.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/18.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/19.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/20.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/21.png)
+![屏幕快照 2017-11-19 上午10.13.01.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/16.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/17.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/18.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/19.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/20.png)<br>![屏幕快照 2017-11-19 上午10.13.01.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/21.png)
 
 > 貌似把雷电仿冒成了express card所以thunderbolt下无显示。。<br>同机型可直接使用前往[https://github.com/RockJesus/macOS-IOElectrify](https://github.com/RockJesus/macOS-IOElectrify)
 
@@ -30,10 +30,10 @@ cover: https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/awhd.gif
 
 | 外星人黑苹果QQ群：308469644 | 外星人黑苹果微信公众号 | 外星人黑苹果微信小程序 |
 | --- | --- | --- |
-| ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
+| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
 
 # 如果文章对你有帮助，欢迎打赏作者. If u like, Buy me a coffee  :)
 
 | 支付宝打赏 | 微信打赏 | 微信赞赏 |
 | --- | --- | --- |
-| ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://gcore.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |
+| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |
