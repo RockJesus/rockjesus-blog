@@ -10,8 +10,8 @@ author: RockJesus
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
-# Version 站点版本号（v16 起与迭代代号对齐，整数递增：16→17→18；由流水线自动打 tag 并发布 GitHub Release，tag=v${version}）
-version: 16
+# Version 站点版本号（以 GitHub Release 为准，v1.0.x 三段式递增：1.0.3 → 1.0.4；由流水线自动打 tag 并发布 GitHub Release，tag=v${version}）
+version: 1.0.3
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
