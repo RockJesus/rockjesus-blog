@@ -10,6 +10,9 @@ author: RockJesus
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
+# Version 站点版本号（每次发布递增，段内十进制不超过9：1.0.9 → 1.1.0）
+version: 1.0.0
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
 url: http://www.rockjesus.cn
