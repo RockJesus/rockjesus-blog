@@ -2,7 +2,7 @@
 title: '外星人黑苹果clover/opencore收集 alienware hackintosh clover/opencore collection'
 date: 2021-10-07 13:48:25
 updated: 2022-11-03 18:55:54
-cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_ah.webp
+cover: /img/header_ah.webp
 sticky: true
 ---
 
@@ -50,10 +50,10 @@ sticky: true
 
 | 外星人黑苹果QQ群：308469644 | 外星人黑苹果微信公众号 | 外星人黑苹果微信小程序 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
+| ![image](/img/qq.png) | ![image](/img/gzh.jpg) | ![image](/img/xcx.jpg) |
 
 # 如果文章对你有帮助，欢迎打赏作者. If u like, Buy me a coffee  :)
 
 | 支付宝打赏 | 微信打赏 | 微信赞赏 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |
+| ![image](/img/zfb.png) | ![image](/img/wx.png) | ![image](/img/zsm.png) |

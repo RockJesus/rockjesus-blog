@@ -2,12 +2,12 @@
 title: '外星人黑苹果opencore主题 Alienware-Opencore-Theme'
 date: 2021-09-11 13:48:25
 updated: 2022-11-03 18:56:21
-cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_oc.webp
+cover: /img/header_oc.webp
 ---
 
 # Alienware-Opencore-Theme
 
-Alienware Opencore Theme v3 👽<br>![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/oc2.png)<br>操作指南： 仅适用于OC0.6.5 正式版及以上版本
+Alienware Opencore Theme v3 👽<br>![image](/img/oc2.png)<br>操作指南： 仅适用于OC0.6.5 正式版及以上版本
 
 # 下载v3附件中Resources文件夹替换EFI&#x2F;OC&#x2F;同名文件夹；
 
@@ -21,7 +21,7 @@ Setup：<br>Replace EFI &gt; OC &gt; Resources<br>Misc &gt; Boot &gt; PickerVari
 
 ## PS：已上传 opencore configuratort theme downloader
 
-Alienware Opencore Theme v2 👽<br>![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/oc2.png)<br>操作指南： 仅适用于OC0.6.5 正式版及以上版本
+Alienware Opencore Theme v2 👽<br>![image](/img/oc2.png)<br>操作指南： 仅适用于OC0.6.5 正式版及以上版本
 
 下载v2附件中Resources文件夹替换EFI&#x2F;OC&#x2F;同名文件夹；
 
@@ -33,7 +33,7 @@ Setup：<br>Replace EFI &gt; OC &gt; Resources<br>Misc &gt; Boot &gt; PickerVari
 
 ---
 
-Alienware Opencore Theme v1 👽<br>![rockjesus-octheme](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/oc1.png)<br>操作指南： 仅适用于OC0.6.5 正式版及以上版本
+Alienware Opencore Theme v1 👽<br>![rockjesus-octheme](/img/oc1.png)<br>操作指南： 仅适用于OC0.6.5 正式版及以上版本
 
 下载v1附件中Resources文件夹替换EFI&#x2F;OC&#x2F;同名文件夹；
 
@@ -73,10 +73,10 @@ Setup：<br>Replace EFI &gt; OC &gt; Resources<br>Misc &gt; Boot &gt; PickerVari
 
 | 外星人黑苹果QQ群：308469644 | 外星人黑苹果微信公众号 | 外星人黑苹果微信小程序 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
+| ![image](/img/qq.png) | ![image](/img/gzh.jpg) | ![image](/img/xcx.jpg) |
 
 # 如果文章对你有帮助，欢迎打赏作者. If u like, Buy me a coffee  :)
 
 | 支付宝打赏 | 微信打赏 | 微信赞赏 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |
+| ![image](/img/zfb.png) | ![image](/img/wx.png) | ![image](/img/zsm.png) |

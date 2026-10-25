@@ -2,11 +2,11 @@
 title: 'AW 17 R4 笔记本双显卡 MacOS'
 date: 2021-10-06 13:48:26
 updated: 2022-11-03 21:47:54
-cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/alienwareb2.gif
+cover: /img/alienwareb2.gif
 sticky: true
 ---
 
-<br>![WechatIMG12.jpeg](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/17r4.gif)
+<br>![WechatIMG12.jpeg](/img/17r4.gif)
 
 > [http://bbs.pcbeta.com/viewthread-1761528-1-1.html](http://bbs.pcbeta.com/viewthread-1761528-1-1.html)
 
@@ -14,7 +14,7 @@ sticky: true
 
 > **配置**<br>Alienware 17 R4<br>bios版本1.2.4<br>CPU:Intel i7-7700hq<br>显卡:Intel HD630 &#x2F; Nvidia GeForce GT 1060<br>内存:16g<br>硬盘:Sandisk m.2 256G &#x2F;希捷 1T （添加nvme sm961 256g）<br>声卡：alc298<br>网卡：killer e2500 (wifi 更换为dw1560-bcm94352z )
 
-> **成功驱动「HD630+nvidia 1060双显卡」声卡网卡，满足日常使用（双显卡模式请看第二部分）**<br>![about.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/about.png)
+> **成功驱动「HD630+nvidia 1060双显卡」声卡网卡，满足日常使用（双显卡模式请看第二部分）**<br>![about.png](/img/about.png)
 
 > **第一部分（核显模式）**
 
@@ -78,7 +78,7 @@ sticky: true
 
 11&#x2F;9更新 仿冒白苹果鼠标 （自行修改info下的pidvid为你的鼠标id，注意十六进制转十进制）
 
-11&#x2F;10更新 SSDT-PCIALL-Rockjesus 显示所有pci设备信息 适合双显卡版本，可注入声显卡id (clover设置删除相关选项，并勾选injectnvidia)，其他机型可自行参考修改<br>![pci.png](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/pci.png)
+11&#x2F;10更新 SSDT-PCIALL-Rockjesus 显示所有pci设备信息 适合双显卡版本，可注入声显卡id (clover设置删除相关选项，并勾选injectnvidia)，其他机型可自行参考修改<br>![pci.png](/img/pci.png)
 
 11&#x2F;13更新 修复雷电usb-c口支持热拔插 [http://bbs.pcbeta.com/viewthread-1769978-1-1.html](http://bbs.pcbeta.com/viewthread-1769978-1-1.html)
 
@@ -112,10 +112,10 @@ Q1：cpu必须使用这个VoodooTSCSync.kext才能正常使用，否则进入系
 
 | 外星人黑苹果QQ群：308469644 | 外星人黑苹果微信公众号 | 外星人黑苹果微信小程序 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
+| ![image](/img/qq.png) | ![image](/img/gzh.jpg) | ![image](/img/xcx.jpg) |
 
 # 如果文章对你有帮助，欢迎打赏作者. If u like, Buy me a coffee  :)
 
 | 支付宝打赏 | 微信打赏 | 微信赞赏 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |
+| ![image](/img/zfb.png) | ![image](/img/wx.png) | ![image](/img/zsm.png) |

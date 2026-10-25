@@ -2,7 +2,7 @@
 title: '五国/日常问题集合Q&A'
 date: 2019-01-11 13:48:28
 updated: 2022-11-03 18:56:24
-cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/color.gif
+cover: /img/color.gif
 ---
 
 # Busy Timeout[0], kextd wait(0):’AppleACPICPU’
@@ -100,10 +100,10 @@ Bios 下修改<br>csm&#x3D;enable<br>legacy option oprom&#x3D;enable
 
 | 外星人黑苹果QQ群：308469644 | 外星人黑苹果微信公众号 | 外星人黑苹果微信小程序 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
+| ![image](/img/qq.png) | ![image](/img/gzh.jpg) | ![image](/img/xcx.jpg) |
 
 # 如果文章对你有帮助，欢迎打赏作者. If u like, Buy me a coffee  :)
 
 | 支付宝打赏 | 微信打赏 | 微信赞赏 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |
+| ![image](/img/zfb.png) | ![image](/img/wx.png) | ![image](/img/zsm.png) |

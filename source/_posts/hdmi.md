@@ -2,7 +2,7 @@
 title: '一行patch驱动NVIDIA HDMI声音'
 date: 2019-01-11 13:48:30
 updated: 2022-11-03 18:56:08
-cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_hdmi.webp
+cover: /img/header_hdmi.webp
 ---
 
 # **成功测试硬件**
@@ -11,9 +11,9 @@ cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_hdmi.webp
 
 > **测试环境10.13.6 ，9系10系n卡可做参考，当webdriver更新10.14后应该同理**
 
-![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/4.png)
+![image](/img/4.png)
 
-![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/5.png)
+![image](/img/5.png)
 
 > 原帖地址：[WhateverGreen&#x2F;FAQ.GeForce.en.md at master · acidanthera&#x2F;WhateverGreen · GitHub](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.GeForce.en.md)<br>按照这里的操作确实可行，但是只讲到修改dsdt来显示被隐藏的hdmi声音HDAU设备，下面讲到如何通过hotpatch显示设备和驱动设备
 
@@ -21,7 +21,7 @@ cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_hdmi.webp
 
 > 1. win下到设备管理器-声音-nvidia hdmi-记录硬件id和bios硬件位置<br>例如我的硬件id为：厂商id&#x3D;0x10de  设备id&#x3D;0x10f1 （这里注意是硬件id不要记录成codecid）<br>bios硬件位置为：_SB&#x2F;PCI0&#x2F;PEG0&#x2F;PEGP
 
-![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/6.png)
+![image](/img/6.png)
 
 <blockquote>
 <ol start="2">
@@ -35,7 +35,7 @@ cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_hdmi.webp
 </ol>
 </blockquote>
 
-![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/7.png)
+![image](/img/7.png)
 
 <blockquote>
 <ol start="4">
@@ -43,9 +43,9 @@ cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_hdmi.webp
 </ol>
 </blockquote>
 
-![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/8.png)
+![image](/img/8.png)
 
-![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/9.png)
+![image](/img/9.png)
 
 <blockquote>
 <ol start="5">
@@ -53,7 +53,7 @@ cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_hdmi.webp
 </ol>
 </blockquote>
 
-![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/10.png)
+![image](/img/10.png)
 
 > **待完善**<br>使用applealc来驱动hdmi声音，持续测试中。。。
 
@@ -67,10 +67,10 @@ cover: https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/header_hdmi.webp
 
 | 外星人黑苹果QQ群：308469644 | 外星人黑苹果微信公众号 | 外星人黑苹果微信小程序 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/qq.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/gzh.jpg) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/xcx.jpg) |
+| ![image](/img/qq.png) | ![image](/img/gzh.jpg) | ![image](/img/xcx.jpg) |
 
 # 如果文章对你有帮助，欢迎打赏作者. If u like, Buy me a coffee  :)
 
 | 支付宝打赏 | 微信打赏 | 微信赞赏 |
 | --- | --- | --- |
-| ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zfb.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/wx.png) | ![image](https://cdn.jsdelivr.net/gh/rockjesus/rockjesus/img/zsm.png) |
+| ![image](/img/zfb.png) | ![image](/img/wx.png) | ![image](/img/zsm.png) |
