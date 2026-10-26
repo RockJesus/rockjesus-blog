@@ -222,7 +222,7 @@ copy:
 
 # Local Search 本地搜索
 local_search:
-  enable: true
+  enable: false
   preload: false
 
 # Display mode 显示模式
@@ -329,9 +329,9 @@ aplayerInject:
 # Inject 注入
 inject:
   head:
-    - <link rel="stylesheet" href="/css/custom.css?v=1.2.3">
+    - <link rel="stylesheet" href="/css/custom.css?v=1.2.4">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
-    - <script src="/js/player.js?v=1.2.3" defer></script>
+    - <script src="/js/player.js?v=1.2.4" defer></script>
   bottom:
     - <div id="site-player"></div>
     - <meta name="google-site-verification" content="wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98" />
