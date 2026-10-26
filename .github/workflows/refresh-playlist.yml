@@ -1,0 +1,66 @@
+name: Refresh Music Playlist
+on:
+  schedule:
+    - cron: '30 0,6,12,18 * * *'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: 对比素材仓歌单，有更新则写回源码仓备份
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const https = require('https');
+          const tk = process.env.GH_TOKEN;
+          function get(url, headers) {
+            return new Promise((res, rej) => {
+              https.get(url, { headers: headers || {} }, r => {
+                let d = ''; r.on('data', c => d += c); r.on('end', () => res({ ok: r.statusCode >= 200 && r.statusCode < 300, t: d }));
+              }).on('error', rej);
+            });
+          }
+          (async () => {
+            let remote = null;
+            try {
+              const r = await get('https://api.github.com/repos/RockJesus/rockjesus/contents/music/playlist.json?ref=main', {
+                'Authorization': 'Bearer ' + tk, 'User-Agent': 'rj-refresh', 'Accept': 'application/vnd.github+json'
+              });
+              if (r.ok) remote = JSON.parse(Buffer.from(JSON.parse(r.t).content, 'base64').toString('utf8'));
+            } catch (e) { console.error('fetch remote failed:', e.message); }
+            if (!remote || !remote.updated) { console.log('NO_REMOTE_PLAYLIST'); process.exit(0); }
+            let local = {};
+            try { local = JSON.parse(fs.readFileSync('source/data/playlist.json', 'utf8')); } catch (e) {}
+            if (local.updated === remote.updated) {
+              console.log('PLAYLIST_UP_TO_DATE', remote.updated);
+              process.exit(0);
+            }
+            fs.writeFileSync('source/data/playlist.json', JSON.stringify(remote));
+            console.log('PLAYLIST_UPDATED', local.updated || '(none)', '->', remote.updated, '| tracks:', remote.tracks ? remote.tracks.length : 0);
+            const exec = require('child_process').execSync;
+            exec("git config user.name 'RockJesus'");
+            exec("git config user.email 'rockjesus@users.noreply.github.com'");
+            exec('git add source/data/playlist.json');
+            exec('git -c commit.gpgsign=false commit -m "chore: 刷新音乐歌单 [skip ci]" -q');
+            exec('git push https://x-access-token:' + tk + '@github.com/RockJesus/rockjesus-blog.git main -q');
+            console.log('SOURCE_PUSHED');
+          })().catch(e => { console.error(e); process.exit(1); });
+          NODE
+      - name: 同步部署仓（线上立即生效）
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ ! -f source/data/playlist.json ]; then echo "no playlist file"; exit 0; fi
+          SHA=$(curl -s -H "Authorization: Bearer ${GH_TOKEN}" -H "User-Agent: rj-refresh" "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/playlist.json?ref=master" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('sha',''))")
+          CONTENT=$(base64 -w0 source/data/playlist.json)
+          RESP=$(curl -s -X PUT "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/playlist.json?ref=master" \
+            -H "Authorization: Bearer ${GH_TOKEN}" -H "User-Agent: rj-refresh" -H "Accept: application/vnd.github+json" \
+            -d "{\"message\":\"chore: 同步最新歌单\",\"content\":\"${CONTENT}\",\"sha\":\"${SHA}\"}")
+          echo "$RESP" | python3 -c "import sys,json; d=json.load(sys.stdin); print('DEPLOY_UPDATED', 'commit' in d)"
