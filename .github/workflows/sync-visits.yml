@@ -29,12 +29,32 @@ jobs:
             });
           }
           (async () => {
+            // 主数据源：visits_<CC> 原子计数（含建站至今迁移基数）
             let cloud = {};
             try {
-              const r = await get(U + '/get/visits', { 'Authorization': 'Bearer ' + T });
+              const r = await get(U + '/keys/visits_*', { 'Authorization': 'Bearer ' + T });
               if (r.ok && r.t.trim()) {
                 const j = JSON.parse(r.t);
-                if (j && j.result) cloud = JSON.parse(j.result);
+                const ks = (j.result || []).filter(k => /^visits_[A-Za-z]{2}$/.test(k));
+                if (ks.length) {
+                  const m = await get(U + '/mget/' + ks.map(encodeURIComponent).join('/'), { 'Authorization': 'Bearer ' + T });
+                  const mj = JSON.parse(m.t);
+                  (mj.result || []).forEach((v, i) => {
+                    const n = parseInt(v, 10);
+                    if (n > 0) cloud[ks[i].slice(7)] = n;
+                  });
+                }
+              }
+            } catch (e) {}
+            // 兜底：旧格式 visits JSON（老版本客户端仍可能写入）
+            try {
+              const r2 = await get(U + '/get/visits', { 'Authorization': 'Bearer ' + T });
+              if (r2.ok && r2.t.trim()) {
+                const j2 = JSON.parse(r2.t);
+                if (j2 && j2.result) {
+                  const legacy = JSON.parse(j2.result);
+                  for (const k in legacy) if (/^[A-Za-z]{2}$/.test(k) && legacy[k] > (cloud[k] || 0)) cloud[k] = legacy[k];
+                }
               }
             } catch (e) {}
             if (!cloud || typeof cloud !== 'object') cloud = {};
