@@ -330,9 +330,9 @@ aplayerInject:
 inject:
   head:
     - <link rel="stylesheet" href="/css/tokens.css?v=1.5.5">
-    - <link rel="stylesheet" href="/css/custom.css?v=1.7.3">
+    - <link rel="stylesheet" href="/css/custom.css?v=1.7.4">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
-    - <script src="/js/player.js?v=1.7.3" defer></script>
+    - <script src="/js/player.js?v=1.7.4" defer></script>
   bottom:
     - <div id="site-player"></div>
     - <meta name="google-site-verification" content="wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98" />
