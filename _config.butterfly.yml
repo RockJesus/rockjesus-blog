@@ -289,7 +289,7 @@ aside:
   card_webinfo:
     enable: true
     post_count: false
-    last_push_date: true
+    last_push_date: false
     sort_order: 3
 
 # Busuanzi 不蒜子（服务已失效，统计改由 player.js + Upstash 自有计数接管）
@@ -332,7 +332,7 @@ inject:
     - <link rel="stylesheet" href="/css/tokens.css?v=1.5.5">
     - <link rel="stylesheet" href="/css/custom.css?v=1.5.5">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
-    - <script src="/js/player.js?v=1.5.5" defer></script>
+    - <script src="/js/player.js?v=1.5.6" defer></script>
   bottom:
     - <div id="site-player"></div>
     - <meta name="google-site-verification" content="wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98" />
