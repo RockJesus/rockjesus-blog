@@ -1,7 +1,9 @@
 name: Refresh Music Playlist
 on:
   schedule:
-    - cron: '30 0,6,12,18 * * *'
+    # 每小时对齐素材仓（素材仓 cron 每 2h 刷新 vkey）；有变化才写，无变化零副作用。
+    # vkey 有效期有限，同步越及时线上可播率越高；前端另有每 10 分钟轮询兜底。
+    - cron: '30 * * * *'
   workflow_dispatch: {}
 permissions:
   contents: write
