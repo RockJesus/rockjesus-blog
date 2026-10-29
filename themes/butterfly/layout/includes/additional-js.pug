@@ -8,7 +8,28 @@ div
   if theme.medium_zoom
     script(src=url_for(theme.asset.medium_zoom))
   else if theme.fancybox
-    script(src=url_for(theme.asset.fancybox_v4))
+    //- 灯箱只有点开图片才需要，25KB 不该压在首屏。
+    //- 注意：不能直接关 theme.fancybox —— utils.js 的 loadLightbox 里
+    //- 「给 <img> 包 <a data-fancybox>」那一步也受这个开关控制，关掉就再也绑不上。
+    //- 所以保留包装逻辑，只把脚本改成空闲后加载：先放一个占位的 Fancybox.bind
+    //- 把调用排队，真库到位后重放，主题代码一行不用动。
+    script.
+      (function () {
+        var q = window.__fbQueue = [];
+        window.Fancybox = { bind: function (s, o) { q.push([s, o]); } };
+        function go () {
+          var s = document.createElement('script');
+          s.src = '!{url_for(theme.asset.fancybox_v4)}';
+          s.onload = function () {
+            q.forEach(function (a) { try { Fancybox.bind(a[0], a[1]); } catch (e) {} });
+            q.length = 0;
+          };
+          document.body.appendChild(s);
+        }
+        addEventListener('load', function () {
+          window.requestIdleCallback ? requestIdleCallback(go, { timeout: 4000 }) : setTimeout(go, 2000);
+        });
+      })();
 
   if theme.instantpage
     script(src=url_for(theme.asset.instantpage), type='module')
