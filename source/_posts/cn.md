@@ -8,9 +8,9 @@ sticky: true
 
 <br>![WechatIMG12.jpeg](/img/17r4.gif)
 
-> [http://bbs.pcbeta.com/viewthread-1761528-1-1.html](http://bbs.pcbeta.com/viewthread-1761528-1-1.html)
+> [https://bbs.pcbeta.com/viewthread-1761528-1-1.html](https://bbs.pcbeta.com/viewthread-1761528-1-1.html)
 
-> [http://bbs.pcbeta.com/viewthread-1797200-1-1.html](http://bbs.pcbeta.com/viewthread-1797200-1-1.html)
+> [https://bbs.pcbeta.com/viewthread-1797200-1-1.html](https://bbs.pcbeta.com/viewthread-1797200-1-1.html)
 
 > **配置**<br>Alienware 17 R4<br>bios版本1.2.4<br>CPU:Intel i7-7700hq<br>显卡:Intel HD630 &#x2F; Nvidia GeForce GT 1060<br>内存:16g<br>硬盘:Sandisk m.2 256G &#x2F;希捷 1T （添加nvme sm961 256g）<br>声卡：alc298<br>网卡：killer e2500 (wifi 更换为dw1560-bcm94352z )
 
@@ -80,7 +80,7 @@ sticky: true
 
 11&#x2F;10更新 SSDT-PCIALL-Rockjesus 显示所有pci设备信息 适合双显卡版本，可注入声显卡id (clover设置删除相关选项，并勾选injectnvidia)，其他机型可自行参考修改<br>![pci.png](/img/pci.png)
 
-11&#x2F;13更新 修复雷电usb-c口支持热拔插 [http://bbs.pcbeta.com/viewthread-1769978-1-1.html](http://bbs.pcbeta.com/viewthread-1769978-1-1.html)
+11&#x2F;13更新 修复雷电usb-c口支持热拔插 [https://bbs.pcbeta.com/viewthread-1769978-1-1.html](https://bbs.pcbeta.com/viewthread-1769978-1-1.html)
 
 1&#x2F;27更新 增加nvme sm961 256g 替换wifi dw1560（bcm94352z）无线蓝牙完美更新clover&#x2F;驱动&#x2F;优化等
 
@@ -90,9 +90,9 @@ sticky: true
 
 10&#x2F;24更新 修复hdmi声音输出
 
-> clover美化贴:<br>[http://bbs.pcbeta.com/viewthread-1725492-1-1.html](http://bbs.pcbeta.com/viewthread-1725492-1-1.html)<br>[http://bbs.pcbeta.com/viewthread-1724405-1-1.html](http://bbs.pcbeta.com/viewthread-1724405-1-1.html)<br>[http://bbs.pcbeta.com/viewthread-1770623-1-1.html](http://bbs.pcbeta.com/viewthread-1770623-1-1.html)<br>[http://bbs.pcbeta.com/viewthread-1766401-1-1.html](http://bbs.pcbeta.com/viewthread-1766401-1-1.html)<br>声卡帖子：[http://bbs.pcbeta.com/viewthread-1729541-1-1.html](http://bbs.pcbeta.com/viewthread-1729541-1-1.html)<br>鼠标主题：[http://bbs.pcbeta.com/viewthread-1766401-1-1.html](http://bbs.pcbeta.com/viewthread-1766401-1-1.html)
+> clover美化贴:<br>[https://bbs.pcbeta.com/viewthread-1725492-1-1.html](https://bbs.pcbeta.com/viewthread-1725492-1-1.html)<br>[https://bbs.pcbeta.com/viewthread-1724405-1-1.html](https://bbs.pcbeta.com/viewthread-1724405-1-1.html)<br>[https://bbs.pcbeta.com/viewthread-1770623-1-1.html](https://bbs.pcbeta.com/viewthread-1770623-1-1.html)<br>[https://bbs.pcbeta.com/viewthread-1766401-1-1.html](https://bbs.pcbeta.com/viewthread-1766401-1-1.html)<br>声卡帖子：[https://bbs.pcbeta.com/viewthread-1729541-1-1.html](https://bbs.pcbeta.com/viewthread-1729541-1-1.html)<br>鼠标主题：[https://bbs.pcbeta.com/viewthread-1766401-1-1.html](https://bbs.pcbeta.com/viewthread-1766401-1-1.html)
 
-PS： mac下修改键盘灯方法 [http://bbs.pcbeta.com/viewthread-1780839-1-1.html](http://bbs.pcbeta.com/viewthread-1780839-1-1.html)
+PS： mac下修改键盘灯方法 [https://bbs.pcbeta.com/viewthread-1780839-1-1.html](https://bbs.pcbeta.com/viewthread-1780839-1-1.html)
 
 更新10.13.4后发现不用屏蔽独显了，也不需修改或添加edid文件，睡眠完美，又省了两步，不错！
 

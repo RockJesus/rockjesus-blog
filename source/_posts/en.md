@@ -8,7 +8,7 @@ sticky: true
 
 <br>![aw17.jpg](/img/17r4.gif)
 
-> [http://bbs.pcbeta.com/viewthread-1797200-1-1.html](http://bbs.pcbeta.com/viewthread-1797200-1-1.html)
+> [https://bbs.pcbeta.com/viewthread-1797200-1-1.html](https://bbs.pcbeta.com/viewthread-1797200-1-1.html)
 
 > [https://www.tonymacx86.com/threads/guide-alienware-17-r4-dual-gpu-macos-mojave.263577/](https://www.tonymacx86.com/threads/guide-alienware-17-r4-dual-gpu-macos-mojave.263577/)
 
