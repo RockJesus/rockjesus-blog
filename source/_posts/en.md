@@ -34,7 +34,19 @@ cover: /img/header_post.webp
 
 > **Audio**<br>ALC298: layout-id&#x3D;11 [https://github.com/acidanthera/AppleALC](https://github.com/acidanthera/AppleALC)<br>Headphone&#x2F;Headset volume ALCplugfix(deprecated):<br>Code:<br>cd alc_fix<br>chmod +x install.sh<br>.&#x2F;install.sh<br>Headphone&#x2F;Headset volume fix Combojack(newway):<br>Code:<br>cd ComboJack<br>chmod +x install.sh<br>.&#x2F;install.sh<br>Install Boom 3D APP to get better audio output
 
-> **Change log**<br>hdmi audio changed to hotpatch from dsdt patch<br>usbports.kext<br>cpu pm 800-3800mhz<br>Add smcmotionsensor<br>Fixed BT issue by droping DMAR table<br>change virtualsmc to fakesmc for getting more sensors (Fan &amp; nvidia temp)<br>Add intel &amp; nvidia GPU PM<br>alcplugfix seems not working on 10.14,changed to verstub(combojack) for headset fix<br>smbios&#x3D;mbp15,1<br>New released lilu &amp; whatevergeen etc,No need to hotpatch hdmi audio any more,but still need voodoohda to make hdmi audio work<br>changed to virtualsmc
+> **Change log**
+>
+> - hdmi audio changed to hotpatch from dsdt patch
+> - usbports.kext
+> - cpu pm 800-3800mhz
+> - Add smcmotionsensor
+> - Fixed BT issue by droping DMAR table
+> - change virtualsmc to fakesmc for getting more sensors (Fan &amp; nvidia temp)
+> - Add intel &amp; nvidia GPU PM
+> - alcplugfix seems not working on 10.14, changed to verstub(combojack) for headset fix
+> - smbios&#x3D;mbp15,1
+> - New released lilu &amp; whatevergeen etc, No need to hotpatch hdmi audio any more, but still need voodoohda to make hdmi audio work
+> - changed to virtualsmc
 
 > **Dump request**<br>I really need a dump of real Macbookpro 14,3’s full acpi dsdt&#x2F;ssdt &amp; IOREG &amp; system report.spx , Any help will be appreciated!
 

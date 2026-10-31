@@ -9,13 +9,16 @@ nav#nav
     if (theme.algolia_search.enable || theme.local_search.enable)
       #search-button
         a.site-page.social-icon.search
-          i.fas.fa-search.fa-fw
+          svg.rj-nav-icon(viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true')
+            circle(cx='11' cy='11' r='6.5')
+            path(d='m16 16 4.5 4.5')
           span=' '+_p('search.title')
     !=partial('includes/header/menu_item', {}, {cache: true})
 
     #toggle-menu
       //- 纯图标、无文字，读屏软件读不出任何名称，补一条无障碍名
       a.site-page(role='button' aria-label='展开导航菜单' title='展开导航菜单')
-        i.fas.fa-bars.fa-fw
+        svg.rj-nav-icon(viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true')
+          path(d='M4 7h16M4 12h16M4 17h16')
 
 

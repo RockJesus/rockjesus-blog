@@ -69,7 +69,11 @@ sticky: true
 
 10&#x2F;16更新 优化核显版本
 
-10&#x2F;31更新 添加蓝牙注入 （解决蓝牙开关问题）<br>添加lpc注入 （kabylake到底需不需要加载lpc？）<br>自行删除fakesmc下蓝牙和lpc条目，以后可以无痛更新fakesmc了
+10&#x2F;31 更新
+
+- 添加蓝牙注入（解决蓝牙开关问题）
+- 添加 lpc 注入（kabylake 到底需不需要加载 lpc？）
+- 自行删除 fakesmc 下蓝牙和 lpc 条目，以后可以无痛更新 fakesmc 了
 
 11&#x2F;1更新 终于能睡醒了！适用于睡醒黑屏的情况 （删除clover里edid注入相关选项）
 

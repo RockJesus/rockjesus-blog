@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /* 构建期直链可用性探测：把「有 url 但实际打不开」的曲目也剔掉。
  *
  * 背景：上游 music-sync 解析出的 vkey 直链里有相当一部分是 403/410 的死链
@@ -174,4 +173,8 @@ async function main() {
   );
 }
 
-main().catch(e => { console.error('probe_playlist: 崩溃', e); process.exit(1); });
+// 仅在直接 `node scripts/probe_playlist.js` 时执行；
+// hexo 会把 scripts/*.js 当脚本加载（包裹成模块），守卫避免误跑探测/杀掉构建
+if (require.main === module) {
+  main().catch(e => { console.error('probe_playlist: 崩溃', e); process.exit(1); });
+}

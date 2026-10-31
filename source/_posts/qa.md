@@ -8,11 +8,26 @@ cover: /img/color.gif
 
 # Busy Timeout[0], kextd wait(0):’AppleACPICPU’
 
-这个错误找了很多帖子，最后将Clover 更新到最新版本，并将Clover下的kexts&#x2F;other目录下的kext全部复制到kexts&#x2F;10.13下解决。<br>换fakesmc<br>删除4个温度kext<br>开机clover-option-Bin下选项打勾尝试
+这个错误找了很多帖子，最后将Clover 更新到最新版本，并将Clover下的kexts&#x2F;other目录下的kext全部复制到kexts&#x2F;10.13下解决。
+
+- 换 fakesmc
+- 删除 4 个温度 kext
+- 开机 clover-option-Bin 下选项打勾尝试
 
 # hd4400-4600花屏 8苹果
 
-一。添加AzulPatcher4600.kext<br>ig-platform-id 0x04128086<br>fake-id-intelgfx 0x0a260006<br>二、在clover中注入一个修改过的EDID<br>00FFFFFFFFFFFF000DAE351700000000321601049526157802D495A355509D270F505400000001010101010101010101010101010101B43B804A71383440302035007ED710000018000000FE004E3137334847452D4531310A20000000FE00434D4E0A202020202020202020000000FE004E3137334847452D4531310A2000E0<br>或者直接贴clover config代码
+一、添加 AzulPatcher4600.kext
+
+- ig-platform-id 0x04128086
+- fake-id-intelgfx 0x0a260006
+
+二、在 clover 中注入一个修改过的 EDID
+
+```
+00FFFFFFFFFFFF000DAE351700000000321601049526157802D495A355509D270F505400000001010101010101010101010101010101B43B804A71383440302035007ED710000018000000FE004E3137334847452D4531310A20000000FE00434D4E0A202020202020202020000000FE004E3137334847452D4531310A2000E0
+```
+
+或者直接贴 clover config 代码
 
 ```plaintext
 <key>Graphics</key>
@@ -47,7 +62,10 @@ SEdFLUUxMQogAOA=
 
 # still waiting for root device
 
-开启ahci<br>换usb口尝试<br>CPUS＝1<br>更新fakesmc
+- 开启 ahci
+- 换 usb 口尝试
+- CPUS＝1
+- 更新 fakesmc
 
 # Mbr安装找不到内核
 
@@ -55,11 +73,21 @@ SEdFLUUxMQogAOA=
 
 # 双显卡上两行 &amp;解决外接屏幕滞留问题
 
-clover injectNv&#x3D;&#x3D;的都打勾<br>添加clover&#x2F;drivers64UEFI&#x2F;EmuVariableUefi-64.efi
+- clover injectNv&#x3D;&#x3D; 的都打勾
+- 添加 clover&#x2F;drivers64UEFI&#x2F;EmuVariableUefi-64.efi
 
 # 在安装High Sierra启动过程中，选择-v跑时会出现”Attempting system restart…MACH Reboot”，而不用-v图跑直接显示苹果标志时则不会出现。
 
-更换fakesmc<br>删除4个温度kexts<br>fix headers打勾<br>drop掉 mach<br>Drop掉 DMAR<br>drop掉MATS，<br>drop掉BGRT。<br>drop掉#MCFG<br>drop oem都不勾<br>dart&#x3D;0
+- 更换 fakesmc
+- 删除 4 个温度 kexts
+- fix headers 打勾
+- drop 掉 mach
+- Drop 掉 DMAR
+- drop 掉 MATS
+- drop 掉 BGRT
+- drop 掉 #MCFG
+- drop oem 都不勾
+- dart&#x3D;0
 
 # app store下载有问题
 
@@ -71,15 +99,26 @@ clover injectNv&#x3D;&#x3D;的都打勾<br>添加clover&#x2F;drivers64UEFI&#x2F;
 
 # 卡osaptio ++++++++++
 
-cpu kernel lapic 打勾<br>更换OsxAptioFix。。。efi
+- cpu kernel lapic 打勾
+- 更换 OsxAptioFix。。。efi
 
 # n卡 驱动
 
-web 打勾<br>添加clover&#x2F;drivers64UEFI&#x2F;EmuVariableUefi-64.efi<br>device设置里删nv相关patch<br>删除dgpu.aml<br>nvram&#x3D;no （开机clover界面f11可清除nvram）<br>nvda_drv&#x3D;1<br>lilu+nvidiagraphicsfixup
+- web 打勾
+- 添加 clover&#x2F;drivers64UEFI&#x2F;EmuVariableUefi-64.efi
+- device 设置里删 nv 相关 patch
+- 删除 dgpu.aml
+- nvram&#x3D;no（开机 clover 界面 f11 可清除 nvram）
+- nvda_drv&#x3D;1
+- lilu + nvidiagraphicsfixup
 
 # 更新系统后闪退重启
 
-bash &lt;(curl -s [https://raw.githubusercontent.com/Benjamin-Dobell/nvidia-update/master/nvidia-update.sh](https://raw.githubusercontent.com/Benjamin-Dobell/nvidia-update/master/nvidia-update.sh))<br>更新fakesmc+lilu等相关驱动 删除4个温度传感器驱动<br>-lilubeta<br>-liluoff
+`bash &lt;(curl -s https://raw.githubusercontent.com/Benjamin-Dobell/nvidia-update/master/nvidia-update.sh)`
+
+- 更新 fakesmc+lilu 等相关驱动，删除 4 个温度传感器驱动
+- -lilubeta
+- -liluoff
 
 # 蓝牙开关
 
@@ -91,7 +130,9 @@ usbinjectall+btinjector 添加usb里蓝牙id
 
 # 多显示器同时连接开机黑屏
 
-Bios 下修改<br>csm&#x3D;enable<br>legacy option oprom&#x3D;enable
+- Bios 下修改
+- csm&#x3D;enable
+- legacy option oprom&#x3D;enable
 
 # 蓝牙搜不到设备无法使用
 

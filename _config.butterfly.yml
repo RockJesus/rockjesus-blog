@@ -3,30 +3,30 @@
 
 # Menu 菜单
 menu:
-  主页: / || iconfont icon-aliens-fill
-  加入我们||fab fa-weixin:
+  主页: / || svg:home
+  加入我们||svg:users:
     QQ群: /img/qq.png || fab fa-qq
     公众号: /img/gzh.jpg || fab fa-weixin
     Github: https://github.com/rockjesus || fab fa-github
     Gitee: https://gitee.com/rockjesus || fab fa-github-alt
-  打赏||fa fa-credit-card-alt:
+  打赏||svg:gift:
     微信: /img/wx.png || fab fa-weixin
     支付宝: /img/zfb.png || fab fa-alipay
-    赞赏: /img/zsm.png || fas fa-qrcode
-  安装: /img/az.jpg || fab fa-apple
-  黑果小兵: https://blog.daliansky.net/ || fas fa-heart
-  元宇宙||fas fa-cloud:
-    Sandbox: https://www.sandbox.game/ || fas fa-cloud
+    赞赏: /img/zsm.png || svg:qrcode
+  安装: /img/az.jpg || svg:download
+  黑果小兵: https://blog.daliansky.net/ || svg:heart
+  元宇宙||svg:planet:
+    Sandbox: https://www.sandbox.game/ || svg:cloud
     Decentraland: https://decentraland.org/ || fa-brands fa-playstation
     画板: https://weavesilk.com/ || fab fa-firefox
     游戏: https://www.yikm.net/ || fab fa-steam
-    钢琴: https://www.autopiano.cn/ || fa-regular fa-keyboard
-    地图: https://cybermap.kaspersky.com/ || fa-solid fa-map
-    SpaceX: https://www.spacex.com/ || fa-solid fa-rocket
-    NASA: https://www.nasa.gov/multimedia/nasatv/index.html#public || fa-solid fa-earth-americas
-    监控: https://www.skylinewebcams.com/ || fa-solid fa-camera
-  留言/社交||fas fa-sms:
-    留言板: /messageboard/ || fas fa-sms
+    钢琴: https://www.autopiano.cn/ || svg:keyboard
+    地图: https://cybermap.kaspersky.com/ || svg:map
+    SpaceX: https://www.spacex.com/ || svg:rocket
+    NASA: https://www.nasa.gov/multimedia/nasatv/index.html#public || svg:earth
+    监控: https://www.skylinewebcams.com/ || svg:camera
+  留言/社交||svg:sms:
+    留言板: /messageboard/ || svg:sms
     Chat: https://gitter.im/Alienware-hackintosh/community || fab fa-gitlab
     抖音: /img/dou.png || iconfont icon-external_tiktok
     视频号: /img/sph.jpg || fas fa-video
@@ -339,7 +339,7 @@ index_post_content:
 inject:
   head:
     - <link rel="stylesheet" href="/css/tokens.css?v=1.5.6">
-    - <link rel="stylesheet" href="/css/custom.css?v=1.9.18">
+    - <link rel="stylesheet" href="/css/custom.css?v=1.9.19">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
     - <script src="/js/player.js?v=1.8.23" defer></script>
     - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');addEventListener('load',function(){var go=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};window.requestIdleCallback?requestIdleCallback(go,{timeout:3000}):setTimeout(go,1500);});document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
