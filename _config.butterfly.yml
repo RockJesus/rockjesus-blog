@@ -333,7 +333,7 @@ inject:
     - <link rel="stylesheet" href="/css/tokens.css?v=1.5.5">
     - <link rel="stylesheet" href="/css/custom.css?v=1.9.7">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
-    - <script src="/js/player.js?v=1.8.19" defer></script>
+    - <script src="/js/player.js?v=1.8.20" defer></script>
     - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');addEventListener('load',function(){var go=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};window.requestIdleCallback?requestIdleCallback(go,{timeout:3000}):setTimeout(go,1500);});document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
   bottom:
     - <div id="site-player"></div>
