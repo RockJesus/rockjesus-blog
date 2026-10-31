@@ -45,6 +45,7 @@ social:
   fas fa-heartbeat: https://blog.daliansky.net/ || 黑果小兵
   fas fa-sms: /messageboard/ || 留言板
   iconfont icon-aliens-fill: https://gitter.im/Alienware-hackintosh/community || chat
+  fas fa-rss: /atom.xml || RSS 订阅
 
 # Site verification 站点验证
 site_verification:
@@ -238,12 +239,12 @@ subtitle:
   enable: true
   effect: true
   startDelay: 300
-  typeSpeed: 150
-  backSpeed: 50
+  typeSpeed: 70
+  backSpeed: 30
   loop: true
   sub:
-    - Alienware MacOS by RockJesus
-    - 外星人全系黑苹果系统 by RockJesus
+    - Alienware Hackintosh
+    - 外星人全系黑苹果
 
 # Darkmode
 darkmode:
@@ -339,7 +340,7 @@ index_post_content:
 inject:
   head:
     - <link rel="stylesheet" href="/css/tokens.css?v=1.5.6">
-    - <link rel="stylesheet" href="/css/custom.css?v=1.9.19">
+    - <link rel="stylesheet" href="/css/custom.css?v=1.9.20">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
     - <script src="/js/player.js?v=1.8.23" defer></script>
     - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');addEventListener('load',function(){var go=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};window.requestIdleCallback?requestIdleCallback(go,{timeout:3000}):setTimeout(go,1500);});document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
@@ -348,7 +349,7 @@ inject:
     - <meta name="google-site-verification" content="wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98" />
     # 和风天气挂件已下线：widget.qweather.net 域名现在解析不到（NXDOMAIN），
     # 脚本每页都加载失败并报控制台错误，故连同 /js/weather.js 配置一起移除。
-    - <script src="/js/live2d-guard.js?v=1.0.1" defer></script>
+    - <script src="/js/live2d-guard.js?v=1.0.2" defer></script>
 
 # CDN
 CDN:
