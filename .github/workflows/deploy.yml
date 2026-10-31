@@ -39,6 +39,18 @@ jobs:
       - name: Trim playlist asset
         run: node scripts/trim_playlist.js
 
+      # 直链可用性探测：trim 只剔「根本没有 url」的（3064→961），但这 961 条里
+      # 只有 130 条真能读出字节，其余 831 条 CDN 直接 403（版权/会员限制）。
+      # 实测该比例与 vkey 年龄无关（08:29 与 10:43 两版歌单结果完全一致），
+      # 也与地域无关（本机与 GitHub runner 都是 130/961），是稳定的死链分布。
+      # 不筛的话播放器每隔几首就撞一次死链、报错跳歌。
+      # 单条只读前 2KB 即断，32 并发约 25~35s，可播数低于 PROBE_MIN 时自动回退不写。
+      - name: Probe dead stream links
+        env:
+          PROBE_CONCURRENCY: '32'
+          PROBE_MIN: '40'
+        run: node scripts/probe_playlist.js public/data/playlist.json
+
       - name: Ensure domain & nojekyll
         run: |
           echo "rockjesus.cn" > public/CNAME
