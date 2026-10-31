@@ -1,5 +1,6 @@
 ---
 title: 'Mac下修改键盘背景灯的通用方法'
+description: '不装第三方驱动也能改外星人键盘背光：在 macOS 下借助虚拟机里的官方工具写入，附完整步骤。'
 date: 2019-01-11 13:48:26
 updated: 2022-11-03 18:56:11
 cover: /img/header_light.webp

@@ -1,5 +1,6 @@
 ---
 title: '终于驱动了笔记本ALC269VC的低音炮'
+description: '三星 NT550P7C 上的 ALC269VC 2.1 声道：前面板扬声器加后置低音炮，从 VoodooHDA 换到 AppleALC 的完整配置过程。'
 date: 2019-01-11 13:48:31
 updated: 2022-11-03 18:55:58
 cover: /img/header_alc.webp

@@ -117,7 +117,7 @@ cover:
   index_enable: true
   aside_enable: true
   archives_enable: true
-  position: both
+  position: right
 
 # Post meta 文章信息
 post_meta:
@@ -327,20 +327,28 @@ aplayerInject:
   enable: true
   per_page: true
 
+# 首页卡片摘要
+# 1 只显示 description｜2 有 description 用它、否则截断正文｜3 一律截断正文
+# 用 3 时 strip_html 会把开头那几行「参考链接」的裸 URL 直接截进摘要，
+# 首页会出现一整段 https://bbs.pcbeta.com/...（2026-11-01 修）
+index_post_content:
+  method: 2
+  length: 500
+
 # Inject 注入
 inject:
   head:
-    - <link rel="stylesheet" href="/css/tokens.css?v=1.5.5">
-    - <link rel="stylesheet" href="/css/custom.css?v=1.9.8">
+    - <link rel="stylesheet" href="/css/tokens.css?v=1.5.6">
+    - <link rel="stylesheet" href="/css/custom.css?v=1.9.18">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
-    - <script src="/js/player.js?v=1.8.22" defer></script>
+    - <script src="/js/player.js?v=1.8.23" defer></script>
     - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');addEventListener('load',function(){var go=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};window.requestIdleCallback?requestIdleCallback(go,{timeout:3000}):setTimeout(go,1500);});document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
   bottom:
     - <div id="site-player"></div>
     - <meta name="google-site-verification" content="wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98" />
     # 和风天气挂件已下线：widget.qweather.net 域名现在解析不到（NXDOMAIN），
     # 脚本每页都加载失败并报控制台错误，故连同 /js/weather.js 配置一起移除。
-    - "<script>(function(){var cfg={model:{jsonPath:'/live2dw/assets/miku.model.json'},display:{position:'right',width:200,height:400,hOffset:150,vOffset:-68},mobile:{show:false,scale:0.5},log:false,pluginJsPath:'lib/',pluginModelPath:'assets/',pluginRootPath:'live2dw/',tagMode:false};function go(){var s=document.createElement('script');s.src='/live2dw/lib/L2Dwidget.min.js';s.onload=function(){window.L2Dwidget&&L2Dwidget.init(cfg);};document.body.appendChild(s);}addEventListener('load',function(){window.requestIdleCallback?requestIdleCallback(go,{timeout:4000}):setTimeout(go,2000);});})();</script>"
+    - <script src="/js/live2d-guard.js?v=1.0.1" defer></script>
 
 # CDN
 CDN:

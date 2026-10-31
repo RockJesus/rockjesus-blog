@@ -43,6 +43,11 @@ header#page-header(class=isHomeClass style=bg_img)
         if(theme.social)
           #site_social_icons
             !=fragment_cache('social', function(){return partial('includes/header/social')})
+        //- 首屏行动按钮：原来这一屏只有一行 24px 打字副标题，
+        //- 900px 高度上等于空白画布。两个入口把视线接住。
+        #rj-hero-cta
+          a.rj-hero-btn.is-primary(href=url_for('/archives/')) 浏览全部文章
+          a.rj-hero-btn(href='https://github.com/RockJesus/Alienware-Hackintosh' target='_blank' rel='noopener noreferrer') 下载 EFI
       #scroll-down
         i.fas.fa-angle-down.scroll-down-effects
     else

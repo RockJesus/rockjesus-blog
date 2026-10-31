@@ -1,5 +1,6 @@
 ---
 title: '五国/日常问题集合Q&A'
+description: '黑苹果常见五国与开机报错的处理笔记，从 Busy Timeout、kextd wait 一路排到 Clover 版本更新。'
 date: 2019-01-11 13:48:28
 updated: 2022-11-03 18:56:24
 cover: /img/color.gif

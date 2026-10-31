@@ -1,5 +1,6 @@
 ---
 title: 'CLOVER高清开机动画主题'
+description: 'Clover 1920×1080 高清开机动画主题合集，含 awmanhd、awhd、yoona 等多套，解压即用。'
 date: 2019-01-11 13:48:25
 updated: 2022-11-03 18:56:31
 cover: /img/header_theme.webp

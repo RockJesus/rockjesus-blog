@@ -14,7 +14,8 @@ nav#nav
     !=partial('includes/header/menu_item', {}, {cache: true})
 
     #toggle-menu
-      a.site-page
+      //- 纯图标、无文字，读屏软件读不出任何名称，补一条无障碍名
+      a.site-page(role='button' aria-label='展开导航菜单' title='展开导航菜单')
         i.fas.fa-bars.fa-fw
 
 

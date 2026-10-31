@@ -1,5 +1,6 @@
 ---
 title: 'Mac雷电3 type-c 热拔插支持'
+description: 'Alienware 17 R4 的 JHL6340 雷电 3 控制器在 macOS 下实现热拔插的 SSDT 与端口配置。'
 date: 2019-01-11 13:48:27
 updated: 2022-11-03 18:56:27
 cover: /img/awhd.gif

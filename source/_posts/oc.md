@@ -1,5 +1,6 @@
 ---
 title: '外星人黑苹果opencore主题 Alienware-Opencore-Theme'
+description: 'Alienware 风格的 OpenCore 开机主题 v3，适用 OC 0.6.5 及以上，替换 Resources 文件夹即可。'
 date: 2021-09-11 13:48:25
 updated: 2022-11-03 18:56:21
 cover: /img/header_oc.webp

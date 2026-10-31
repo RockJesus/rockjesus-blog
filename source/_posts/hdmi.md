@@ -1,5 +1,6 @@
 ---
 title: '一行patch驱动NVIDIA HDMI声音'
+description: 'Alienware 17 R4 / ALC298 上，用一行 patch 让 NVIDIA 显卡的 HDMI 输出带上声音，附测试环境与可复用改法。'
 date: 2019-01-11 13:48:30
 updated: 2022-11-03 18:56:08
 cover: /img/header_hdmi.webp

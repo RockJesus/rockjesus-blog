@@ -1,5 +1,6 @@
 ---
 title: '外星人黑苹果clover/opencore收集 alienware hackintosh clover/opencore collection'
+description: 'Alienware 全系黑苹果的 Clover / OpenCore 引导与驱动合集，按机型整理 EFI 下载与更新记录。'
 date: 2021-10-07 13:48:25
 updated: 2022-11-03 18:55:54
 cover: /img/header_ah.webp
