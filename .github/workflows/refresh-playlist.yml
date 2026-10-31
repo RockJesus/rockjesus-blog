@@ -57,21 +57,7 @@ jobs:
             console.log('SOURCE_PUSHED');
           })().catch(e => { console.error(e); process.exit(1); });
           NODE
-      - name: 同步部署仓（历史遗留的直写通道，已由 deploy.yml 接管）
-        # 这一步用 GITHUB_TOKEN 直写 RockJesus.github.io，跨仓库必然 403。
-        # 歌单现在通过源码仓提交触发 deploy.yml 发布，这里只是保留兜底，不再让整条流水线变红。
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ ! -f source/data/playlist.json ]; then echo "no playlist file"; exit 0; fi
-          LOCAL_UPDATED=$(python3 -c "import json; print(json.load(open('source/data/playlist.json')).get('updated',''))")
-          REMOTE_B64=$(curl -s -H "Authorization: Bearer ${GH_TOKEN}" -H "User-Agent: rj-refresh" "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/playlist.json?ref=master" | python3 -c "import sys,json; print(json.load(sys.stdin).get('content',''))")
-          REMOTE_UPDATED=$(echo "$REMOTE_B64" | base64 -d 2>/dev/null | python3 -c "import sys,json; print(json.load(sys.stdin).get('updated',''))" 2>/dev/null || echo "")
-          if [ "$LOCAL_UPDATED" = "$REMOTE_UPDATED" ]; then echo "DEPLOY_UP_TO_DATE $LOCAL_UPDATED"; exit 0; fi
-          SHA=$(curl -s -H "Authorization: Bearer ${GH_TOKEN}" -H "User-Agent: rj-refresh" "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/playlist.json?ref=master" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('sha',''))")
-          CONTENT=$(base64 -w0 source/data/playlist.json)
-          RESP=$(curl -s -X PUT "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/playlist.json?ref=master" \
-            -H "Authorization: Bearer ${GH_TOKEN}" -H "User-Agent: rj-refresh" -H "Accept: application/vnd.github+json" \
-            -d "{\"message\":\"chore: 同步最新歌单\",\"content\":\"${CONTENT}\",\"sha\":\"${SHA}\"}")
-          echo "$RESP" | python3 -c "import sys,json; d=json.load(sys.stdin); print('DEPLOY_UPDATED', 'commit' in d)"
+      # 直写部署仓这一步已删除：GITHUB_TOKEN 无权写 RockJesus.github.io（跨仓库必然 403），
+      # 以前靠 continue-on-error 硬吞；歌单现在由源码仓提交触发 deploy.yml 统一发布。
+      - name: 说明（部署走 deploy.yml）
+        run: echo "歌单已写入源码仓，部署由 Deploy Blog 完成"
