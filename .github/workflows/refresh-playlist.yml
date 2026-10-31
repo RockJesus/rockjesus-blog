@@ -50,12 +50,17 @@ jobs:
             exec("git config user.name 'RockJesus'");
             exec("git config user.email 'rockjesus@users.noreply.github.com'");
             exec('git add source/data/playlist.json');
-            exec('git -c commit.gpgsign=false commit -m "chore: 刷新音乐歌单 [skip ci]" -q');
+            // 不能带 [skip ci]：GITHUB_TOKEN 无权写另一个仓库（RockJesus.github.io），
+            // 所以「同步部署仓」那一步一直 403；歌单只能靠源码仓提交触发 deploy.yml 发布。
+            exec('git -c commit.gpgsign=false commit -m "chore: 刷新音乐歌单" -q');
             exec('git push https://x-access-token:' + tk + '@github.com/RockJesus/rockjesus-blog.git main -q');
             console.log('SOURCE_PUSHED');
           })().catch(e => { console.error(e); process.exit(1); });
           NODE
-      - name: 同步部署仓（线上立即生效，仅歌单有变化时）
+      - name: 同步部署仓（历史遗留的直写通道，已由 deploy.yml 接管）
+        # 这一步用 GITHUB_TOKEN 直写 RockJesus.github.io，跨仓库必然 403。
+        # 歌单现在通过源码仓提交触发 deploy.yml 发布，这里只是保留兜底，不再让整条流水线变红。
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -64,22 +69,9 @@ jobs:
           REMOTE_B64=$(curl -s -H "Authorization: Bearer ${GH_TOKEN}" -H "User-Agent: rj-refresh" "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/playlist.json?ref=master" | python3 -c "import sys,json; print(json.load(sys.stdin).get('content',''))")
           REMOTE_UPDATED=$(echo "$REMOTE_B64" | base64 -d 2>/dev/null | python3 -c "import sys,json; print(json.load(sys.stdin).get('updated',''))" 2>/dev/null || echo "")
           if [ "$LOCAL_UPDATED" = "$REMOTE_UPDATED" ]; then echo "DEPLOY_UP_TO_DATE $LOCAL_UPDATED"; exit 0; fi
-          python3 - <<'PY'
-          import json, base64, os, urllib.request
-          api = "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/playlist.json?ref=master"
-          h = {"Authorization": "Bearer " + os.environ['GH_TOKEN'], "User-Agent": "rj-refresh", "Accept": "application/vnd.github+json"}
-          sha = ''
-          try:
-              req = urllib.request.Request(api, headers=h)
-              sha = json.load(urllib.request.urlopen(req)).get('sha', '')
-          except Exception as e:
-              print('GET_SHA_FAIL', e); os._exit(1)
-          content = base64.b64encode(open('source/data/playlist.json', 'rb').read()).decode()
-          body = json.dumps({"message": "chore: 同步最新歌单", "content": content, "sha": sha}).encode()
-          try:
-              req = urllib.request.Request(api, data=body, method='PUT', headers=h)
-              d = json.load(urllib.request.urlopen(req))
-              print('DEPLOY_UPDATED', 'commit' in d)
-          except Exception as e:
-              print('PUT_FAIL', e); os._exit(1)
-          PY
+          SHA=$(curl -s -H "Authorization: Bearer ${GH_TOKEN}" -H "User-Agent: rj-refresh" "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/playlist.json?ref=master" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('sha',''))")
+          CONTENT=$(base64 -w0 source/data/playlist.json)
+          RESP=$(curl -s -X PUT "https://api.github.com/repos/RockJesus/RockJesus.github.io/contents/data/playlist.json?ref=master" \
+            -H "Authorization: Bearer ${GH_TOKEN}" -H "User-Agent: rj-refresh" -H "Accept: application/vnd.github+json" \
+            -d "{\"message\":\"chore: 同步最新歌单\",\"content\":\"${CONTENT}\",\"sha\":\"${SHA}\"}")
+          echo "$RESP" | python3 -c "import sys,json; d=json.load(sys.stdin); print('DEPLOY_UPDATED', 'commit' in d)"
