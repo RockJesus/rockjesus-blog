@@ -43,9 +43,7 @@ updated: 2022-11-27 20:50:09
 <a class="btn-beautify purple larger" target="_blank" rel="noopener" href="https://github.com/rockjesus" 
   title="RockJesus Github"><i class="fab fa-github"></i><span>RockJesus Github</span></a>
 
-[![Anurag&#39;s GitHub stats](https://github-readme-stats.vercel.app/api?username=RockJesus&count_private=true&include_all_commits=true&show_icons=true&theme=nightowl&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)](https://github.com/RockJesus)<br>[![trophy](https://github-profile-trophy.vercel.app/?username=rockjesus&theme=nord)](https://github.com/RockJesus)
-
-[![map](http://rf.revolvermaps.com/w/3/s/a/8/0/2/ffffff/010020/aa0000/04a1ptxjy5e.png)](https://github.com/rockjesus)[![map](http://rf.revolvermaps.com/h/m/a/0/ff0000/256/40/04a1ptxjy5e.png)](https://github.com/rockjesus)
+[![GitHub Stars](https://img.shields.io/github/stars/RockJesus?style=for-the-badge&logo=github&labelColor=1b1f3b&color=8b5cf6)](https://github.com/RockJesus) [![GitHub Followers](https://img.shields.io/github/followers/RockJesus?style=for-the-badge&logo=github&labelColor=1b1f3b&color=0ea5e9)](https://github.com/RockJesus) [![Alienware-Hackintosh Downloads](https://img.shields.io/github/downloads/RockJesus/Alienware-Hackintosh/total?style=for-the-badge&logo=apple&labelColor=1b1f3b&color=22c55e)](https://github.com/RockJesus/Alienware-Hackintosh)<br>
 
 <div id="aplayer-gdzxbGhQ" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="3787157504" data-server="tencent" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#FFFFFF"

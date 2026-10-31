@@ -205,7 +205,9 @@ gitalk:
 # Chat 聊天
 chat_btn: true
 gitter:
-  enable: true
+  # sidecar.gitter.im 已 NXDOMAIN；聊天按钮（#chat_btn）由 player.js 接管为豆包面板，
+  # 不再需要 Gitter 的 sidecar 脚本。
+  enable: false
   room: Alienware-hackintosh/community
 
 # Footer 页脚
@@ -336,8 +338,8 @@ inject:
   bottom:
     - <div id="site-player"></div>
     - <meta name="google-site-verification" content="wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98" />
-    - <script src="/js/weather.js"></script>
-    - <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
+    # 和风天气挂件已下线：widget.qweather.net 域名现在解析不到（NXDOMAIN），
+    # 脚本每页都加载失败并报控制台错误，故连同 /js/weather.js 配置一起移除。
     - "<script>(function(){var cfg={model:{jsonPath:'/live2dw/assets/miku.model.json'},display:{position:'right',width:200,height:400,hOffset:150,vOffset:-68},mobile:{show:false,scale:0.5},log:false,pluginJsPath:'lib/',pluginModelPath:'assets/',pluginRootPath:'live2dw/',tagMode:false};function go(){var s=document.createElement('script');s.src='/live2dw/lib/L2Dwidget.min.js';s.onload=function(){window.L2Dwidget&&L2Dwidget.init(cfg);};document.body.appendChild(s);}addEventListener('load',function(){window.requestIdleCallback?requestIdleCallback(go,{timeout:4000}):setTimeout(go,2000);});})();</script>"
 
 # CDN
