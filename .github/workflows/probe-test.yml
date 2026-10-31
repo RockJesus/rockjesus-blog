@@ -2,6 +2,9 @@ name: Probe Test (temp)
 
 on:
   workflow_dispatch: {}
+  push:
+    paths:
+      - '.github/workflows/probe-test.yml'
 
 jobs:
   probe:
