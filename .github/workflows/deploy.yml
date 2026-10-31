@@ -33,6 +33,12 @@ jobs:
       - name: Generate static site
         run: npx hexo g
 
+      # 歌单瘦身：剔掉无直链（版权/会员限制）的曲目，产物 gzip 184KB→124KB。
+      # hexo filter 在 CI 里会跟静态资源写入抢时序（public 为空，existsSync 常扑空），
+      # 所以这里作为确定性的一步显式再跑一次（幂等）。
+      - name: Trim playlist asset
+        run: node scripts/trim_playlist.js
+
       - name: Ensure domain & nojekyll
         run: |
           echo "rockjesus.cn" > public/CNAME

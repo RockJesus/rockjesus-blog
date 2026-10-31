@@ -7,51 +7,66 @@
  *
  * 实测（2026-10-31 歌单）：
  *   原样   558KB / gzip 184KB
- *   瘦身后 381KB / gzip 124KB
- * 对首屏 + 每 10 分钟的轮询拉取都省 60KB。
+ *   瘦身后 376KB / gzip 124KB
+ * 首屏与每 10 分钟的轮询拉取各省 60KB。
  *
  * 两个约束：
  *   1. 源文件 source/data/playlist.json 保持上游格式不动（上游还会重写它）；
- *      只在 after_generate 阶段改 public 里的产物。
- *   2. 一首直链都解析不出来时（vkey 全局过期）原样保留，让播放器走种子曲兜底，
- *      不要把产物写成空数组。
+ *      只改 public 里的产物。
+ *   2. 一首直链都解析不出来时（vkey 全局过期）原样保留，让播放器走种子曲兜底。
  * 兜底地址 raw.githubusercontent 上的仍是全量文件，normalize() 对两种格式都认。
+ *
+ * 两种跑法（都要，别删其中一个）：
+ *   · 构建后由 hexo filter 触发 —— 本地 `hexo g` 直接生效；
+ *   · `node scripts/trim_playlist.js` —— CI 里显式跑一步。
+ *     CI 必须走 CLI：public/ 是空的，静态资源与 after_generate 之间存在写入竞态，
+ *     filter 里 existsSync 常常还没文件（2026-10-31 首次上线就因此没瘦身成功）。
  */
 const fs = require('fs');
 const path = require('path');
 
-hexo.extend.filter.register('after_generate', function () {
-  const file = path.join(hexo.public_dir, 'data', 'playlist.json');
-  if (!fs.existsSync(file)) return;
-
+function trimFile(file) {
+  if (!fs.existsSync(file)) return 'missing';
   let raw, data;
   try {
     raw = fs.readFileSync(file, 'utf8');
     data = JSON.parse(raw);
   } catch (e) {
-    hexo.log.warn('trim_playlist: 解析失败，跳过');
-    return;
+    return 'parse-failed';
   }
 
   const tracks = Array.isArray(data.tracks) ? data.tracks : [];
-  if (!tracks.length) return;
+  if (!tracks.length) return 'empty';
 
   const playable = tracks.filter(t => t && t.url);
-  if (!playable.length || playable.length === tracks.length) return;
+  if (!playable.length) return 'no-playable';       // 直链全过期 → 保留原样
+  if (playable.length === tracks.length) return 'already-slim';
 
-  const out = {
+  const slim = JSON.stringify({
     updated: data.updated,
     total: tracks.length,
     playable: playable.length,
     tracks: playable
-  };
-  const slim = JSON.stringify(out);
-  if (slim.length >= raw.length) return;
+  });
+  if (slim.length >= raw.length) return 'no-gain';
 
   fs.writeFileSync(file, slim);
-  hexo.log.info(
-    'trim_playlist: %d 首 → %d 首可播，产物 %dKB → %dKB',
-    tracks.length, playable.length,
-    Math.round(raw.length / 1024), Math.round(slim.length / 1024)
-  );
-}, 5);
+  return `${tracks.length}→${playable.length} 首, ${Math.round(raw.length / 1024)}KB→${Math.round(slim.length / 1024)}KB`;
+}
+
+if (require.main === module) {
+  // CLI：默认裁 public/data/playlist.json（可在 CI 的 hexo g 之后单独跑）
+  const file = path.resolve(process.argv[2] || 'public/data/playlist.json');
+  const r = trimFile(file);
+  console.log('trim_playlist:', r, '·', file);
+  // missing 在 CI 属于异常（说明产物没生成），让流水线红掉比静默上线好
+  if (r === 'missing' || r === 'parse-failed') process.exit(1);
+} else {
+  hexo.extend.filter.register('after_generate', function () {
+    const file = path.join(hexo.public_dir, 'data', 'playlist.json');
+    const r = trimFile(file);
+    if (r !== 'missing' && r !== 'already-slim') {
+      hexo.log.info('trim_playlist: %s', r);
+    }
+  }, 5);
+}
