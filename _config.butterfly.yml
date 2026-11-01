@@ -317,6 +317,13 @@ canvas_nest:
 # 右下角按钮距底部距离
 rightside-bottom: -1px
 
+# 右下角浮标分组：主题默认把 darkmode 塞在「设置」二级菜单里，
+# 要展开齿轮才能点，等于藏起来了。这里把它提到常驻组，放在回到顶部之上。
+rightside_item_order:
+  enable: true
+  hide: readmode,translate,hideAside
+  show: toc,chat,comment,darkmode
+
 # Lazyload 图片懒加载
 lazyload:
   enable: true
