@@ -7,7 +7,14 @@ doctype html
 html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside)
   head
     include ./head.pug
+    //- 首屏大图预加载：header 的背景图是行内 style 写的，浏览器解析晚，提前抢
+    if page.type !== '404'
+      - var heroImg = is_home() ? theme.index_img : theme.default_top_img
+      if heroImg
+        link(rel='preload' as='image' href=url_for(heroImg))
   body
+    //- 无障碍：键盘用户第一个 Tab 直接跳过导航到正文
+    a.skip-link(href='#content-inner') 跳到主要内容
     if theme.preloader.enable
       !=partial('includes/loading/index', {}, {cache: true})
 

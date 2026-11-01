@@ -63,6 +63,8 @@ google_analytics:
 
 # Highlight 代码高亮主题
 highlight_theme: mac
+highlight_copy: true
+highlight_lang: true
 
 # Theme color 主题色（紫色系）
 theme_color:
@@ -137,7 +139,7 @@ post_meta:
 
 # Toc 文章目录
 toc:
-  post: false
+  post: true
   page: false
   number: true
   expand: false
@@ -340,9 +342,10 @@ index_post_content:
 inject:
   head:
     - <link rel="stylesheet" href="/css/tokens.css?v=1.5.6">
-    - <link rel="stylesheet" href="/css/custom.css?v=1.9.20">
+    - <link rel="stylesheet" href="/css/custom.css?v=1.9.21">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
-    - <script src="/js/player.js?v=1.8.23" defer></script>
+    - <script src="/js/player.js?v=1.8.24" defer></script>
+    - <script src="/js/rj-enhance.js?v=1.0.0" defer></script>
     - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');addEventListener('load',function(){var go=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};window.requestIdleCallback?requestIdleCallback(go,{timeout:3000}):setTimeout(go,1500);});document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
   bottom:
     - <div id="site-player"></div>
