@@ -1,34 +1,49 @@
 - const { readmode, translate, darkmode, aside, chat_btn } = theme
+-
+  // RJ 右下浮标图标库 — 与导航菜单同一套线性语言（stroke 1.8 / currentColor / 24 网格）
+  // 名字 → path；元素上的 aria-label 同时充当无障碍名称与 CSS 悬浮标签（::after attr）
+  const RJ_RS_ICONS = {
+    settings: '<path d="M4 8h9.6M18.4 8h1.6M4 16h1.6M10.4 16h9.6"/><circle cx="16" cy="8" r="2.2"/><circle cx="8" cy="16" r="2.2"/>',
+    book: '<path d="M12 6.6C10.3 5.3 8.3 4.7 4.8 4.7v13.1c3.5 0 5.5.6 7.2 1.9 1.7-1.3 3.7-1.9 7.2-1.9V4.7c-3.5 0-5.5.6-7.2 1.9z"/><path d="M12 6.6v13.1"/>',
+    moon: '<path d="M20.2 14.6A8.4 8.4 0 1 1 9.4 3.8a6.6 6.6 0 0 0 10.8 10.8z"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2.9v2.1M12 19v2.1M4.6 4.6l1.5 1.5M17.9 17.9l1.5 1.5M2.9 12H5M19 12h2.1M4.6 19.4l1.5-1.5M17.9 6.1l1.5-1.5"/>',
+    columns: '<rect x="3.4" y="4.4" width="17.2" height="15.2" rx="2.4"/><path d="M9.6 4.4v15.2"/>',
+    list: '<path d="M9 6.6h11M9 12h11M9 17.4h11"/><circle cx="4.7" cy="6.6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.7" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.7" cy="17.4" r="1.1" fill="currentColor" stroke="none"/>',
+    chat: '<path d="M20 11.8a7.7 7.7 0 0 1-11.3 6.8L4.2 19.5l1-4.5A7.7 7.7 0 1 1 20 11.8z"/><path d="M8.7 11.7h.01M12 11.7h.01M15.3 11.7h.01"/>',
+    comment: '<path d="M20 15.2a2.2 2.2 0 0 1-2.2 2.2H8.4L4 21V6.4a2.2 2.2 0 0 1 2.2-2.2h11.6A2.2 2.2 0 0 1 20 6.4z"/><path d="M8.4 9.9h7.2M8.4 13.4h4.4"/>',
+    up: '<path d="M12 19.2V5.2"/><path d="m6.4 10.8 5.6-5.6 5.6 5.6"/>',
+  }
+  const RJ_RS_SVG = (name, cls) => `<svg class="rj-rs-ico${cls ? ' ' + cls : ''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${RJ_RS_ICONS[name] || ''}</svg>`
 mixin rightsideItem(array)
   each item in array
     case item
       when 'readmode'
         if is_post() && readmode
-          button#readmode(type="button" title=_p('rightside.readmode_title'))
-            i.fas.fa-book-open
+          button#readmode(type="button" aria-label="阅读模式")
+            != RJ_RS_SVG('book')
       when 'translate'
         if translate.enable
           button#translateLink(type="button" title=_p('rightside.translate_title'))= translate.default
       when 'darkmode'
         if darkmode.enable && darkmode.button
-          button#darkmode(type="button" title=_p('rightside.night_mode_title'))
-            i.fas.fa-adjust
+          button#darkmode(type="button" aria-label="切换深浅色")
+            != RJ_RS_SVG('moon', 'rj-ico-moon') + RJ_RS_SVG('sun', 'rj-ico-sun')
       when 'hideAside'
         if aside.enable && aside.button && page.aside !== false
-          button#hide-aside-btn(type="button" title=_p('rightside.aside'))
-            i.fas.fa-arrows-alt-h
+          button#hide-aside-btn(type="button" aria-label="单栏/双栏")
+            != RJ_RS_SVG('columns')
       when 'toc'
         if showToc
-          button#mobile-toc-button.close(type="button" title=_p("rightside.toc"))
-            i.fas.fa-list-ul
+          button#mobile-toc-button.close(type="button" aria-label="目录")
+            != RJ_RS_SVG('list')
       when 'chat'
         if chat_btn
-          button#chat_btn(type="button" title=_p("rightside.chat"))
-            i.fas.fa-sms
+          button#chat_btn(type="button" aria-label="和豆包聊天")
+            != RJ_RS_SVG('chat')
       when 'comment'
         if commentsJsLoad
-          a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
-            i.fas.fa-comments
+          a#to_comment(href="#post-comment" aria-label="跳到评论")
+            != RJ_RS_SVG('comment')
 
 #rightside
   - const { enable, hide, show } = theme.rightside_item_order
@@ -42,19 +57,20 @@ mixin rightsideItem(array)
   #rightside-config-show
     if enable
       if hide
-        button#rightside_config(type="button" title=_p("rightside.setting"))
-          i.fas.fa-cog.fa-spin
+        button#rightside_config(type="button" aria-label="设置")
+          != RJ_RS_SVG('settings')
     else
       if is_post()
         if (readmode || translate.enable || (darkmode.enable && darkmode.button))
-          button#rightside_config(type="button" title=_p("rightside.setting"))
-            i.fas.fa-cog.fa-spin
+          button#rightside_config(type="button" aria-label="设置")
+            != RJ_RS_SVG('settings')
       else if translate.enable || (darkmode.enable && darkmode.button)
-        button#rightside_config(type="button" title=_p("rightside.setting"))
-          i.fas.fa-cog.fa-spin
+        button#rightside_config(type="button" aria-label="设置")
+          != RJ_RS_SVG('settings')
 
     if showArray
       +rightsideItem(showArray)
 
-    button#go-up(type="button" title=_p("rightside.back_to_top"))
-      i.fas.fa-arrow-up
+    button#go-up(type="button" aria-label="回到顶部")
+      span.rj-rs-ring(aria-hidden="true")
+      != RJ_RS_SVG('up')
