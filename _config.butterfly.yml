@@ -101,7 +101,9 @@ avatar:
   effect: false
 
 # Image (文章 / 页面顶部大图)
-index_img: /img/header_home.webp
+# 首页头图：同一段素材的静帧。它有三重身份 —— 视频未加载时的海报、
+# 省流/减弱动效用户唯一看到的画面、JS 关闭时的兜底。
+index_img: /img/hero-poster.webp
 default_top_img: /img/header_post.webp
 
 # Error image 图片加载失败时显示
@@ -349,10 +351,10 @@ index_post_content:
 inject:
   head:
     - <link rel="stylesheet" href="/css/tokens.css?v=1.5.7">
-    - <link rel="stylesheet" href="/css/custom.css?v=1.9.30">
+    - <link rel="stylesheet" href="/css/custom.css?v=1.9.31">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
     - <script src="/js/player.js?v=1.8.25" defer></script>
-    - <script src="/js/rj-enhance.js?v=1.0.1" defer></script>
+    - <script src="/js/rj-enhance.js?v=1.0.2" defer></script>
     - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');addEventListener('load',function(){var go=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};window.requestIdleCallback?requestIdleCallback(go,{timeout:3000}):setTimeout(go,1500);});document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
   bottom:
     - <div id="site-player"></div>
