@@ -3,11 +3,11 @@ title: 'AW 17 R4 笔记本双显卡 MacOS'
 description: 'Alienware 17 R4（i7-7700HQ + HD630 / GTX 1060）双显卡黑苹果实录：BIOS 设置、驱动取舍与踩坑记录。'
 date: 2021-10-06 13:48:26
 updated: 2022-11-03 21:47:54
-cover: /img/alienwareb2.gif
+cover: /img/alienwareb2-poster.webp
 sticky: true
 ---
 
-<br>![WechatIMG12.jpeg](/img/17r4.gif)
+<br><video class="rj-gifv" src="/img/17r4.mp4" poster="/img/17r4-poster.webp" autoplay loop muted playsinline title="WechatIMG12.jpeg"></video>
 
 > [https://bbs.pcbeta.com/viewthread-1761528-1-1.html](https://bbs.pcbeta.com/viewthread-1761528-1-1.html)
 

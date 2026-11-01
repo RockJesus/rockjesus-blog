@@ -8,7 +8,7 @@ cover: /img/header_mouse.webp
 
 ![Alienware_Invader.jpg](/img/13.jpg)
 
-![QQ20171027-224500-HD.gif](/img/14.gif)
+<video class="rj-gifv rj-gifv-strip" src="/img/14.mp4" poster="/img/14-poster.webp" autoplay loop muted playsinline title="QQ20171027-224500-HD.gif"></video>
 
 ![QQ20171027-224351.png](/img/15.png)
 

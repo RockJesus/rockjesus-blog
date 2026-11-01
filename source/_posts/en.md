@@ -6,7 +6,7 @@ updated: 2022-11-03 21:48:07
 cover: /img/header_post.webp
 ---
 
-<br>![aw17.jpg](/img/17r4.gif)
+<br><video class="rj-gifv" src="/img/17r4.mp4" poster="/img/17r4-poster.webp" autoplay loop muted playsinline title="aw17.jpg"></video>
 
 > [https://bbs.pcbeta.com/viewthread-1797200-1-1.html](https://bbs.pcbeta.com/viewthread-1797200-1-1.html)
 

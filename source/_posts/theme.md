@@ -6,37 +6,37 @@ updated: 2022-11-03 18:56:31
 cover: /img/header_theme.webp
 ---
 
-> awmanhd （1920x1080）<br>![The_Alien_Logo_Reveal_1080p_20171123143002.gif](/img/bgz.gif)
+> awmanhd （1920x1080）<br><video class="rj-gifv" src="/img/bgz.mp4" poster="/img/bgz-poster.webp" autoplay loop muted playsinline title="The_Alien_Logo_Reveal_1080p_20171123143002.gif"></video>
 
-> awhd （1920x1080）<br>![121217kgb9cw6yggmbdaba.gif](/img/awhd.gif)
+> awhd （1920x1080）<br><video class="rj-gifv" src="/img/awhd.mp4" poster="/img/awhd-poster.webp" autoplay loop muted playsinline title="121217kgb9cw6yggmbdaba.gif"></video>
 
-> 做个网红主题 yoona （1920x1080）<br>![yoona.gif](/img/yoona.gif)
+> 做个网红主题 yoona （1920x1080）<br><video class="rj-gifv" src="/img/yoona.mp4" poster="/img/yoona-poster.webp" autoplay loop muted playsinline title="yoona.gif"></video>
 
-> alienwarewb<br>![1478430300.gif](/img/alienwarewb.gif)
+> alienwarewb<br><video class="rj-gifv" src="/img/alienwarewb.mp4" poster="/img/alienwarewb-poster.webp" autoplay loop muted playsinline title="1478430300.gif"></video>
 
-> alienwareb<br>![alienwareb.gif](/img/alienwareb.gif)
+> alienwareb<br><video class="rj-gifv" src="/img/alienwareb.mp4" poster="/img/alienwareb-poster.webp" autoplay loop muted playsinline title="alienwareb.gif"></video>
 
-> alienwareb2<br>![alienwareb2.gif](/img/alienwareb2.gif)
+> alienwareb2<br><video class="rj-gifv" src="/img/alienwareb2.mp4" poster="/img/alienwareb2-poster.webp" autoplay loop muted playsinline title="alienwareb2.gif"></video>
 
 > alienwarebr<br>![alienwarebr.gif](/img/header_theme.webp)
 
-> mac<br>![mac.gif](/img/mac.gif)
+> mac<br><video class="rj-gifv" src="/img/mac.mp4" poster="/img/mac-poster.webp" autoplay loop muted playsinline title="mac.gif"></video>
 
-> alienwarebb<br>![alienwarebb.gif](/img/alienwarebb.gif)
+> alienwarebb<br><video class="rj-gifv" src="/img/alienwarebb.mp4" poster="/img/alienwarebb-poster.webp" autoplay loop muted playsinline title="alienwarebb.gif"></video>
 
-> aurora<br>![aurora.gif](/img/aurora.gif)
+> aurora<br><video class="rj-gifv" src="/img/aurora.mp4" poster="/img/aurora-poster.webp" autoplay loop muted playsinline title="aurora.gif"></video>
 
-> lake<br>![lake.gif](/img/lake.gif)
+> lake<br><video class="rj-gifv" src="/img/lake.mp4" poster="/img/lake-poster.webp" autoplay loop muted playsinline title="lake.gif"></video>
 
-> rock<br>![rock.gif](/img/rock.gif)
+> rock<br><video class="rj-gifv" src="/img/rock.mp4" poster="/img/rock-poster.webp" autoplay loop muted playsinline title="rock.gif"></video>
 
-> sea<br>![sea.gif](/img/sea.gif)
+> sea<br><video class="rj-gifv" src="/img/sea.mp4" poster="/img/sea-poster.webp" autoplay loop muted playsinline title="sea.gif"></video>
 
-> star<br>![star.gif](/img/star.gif)
+> star<br><video class="rj-gifv" src="/img/star.mp4" poster="/img/star-poster.webp" autoplay loop muted playsinline title="star.gif"></video>
 
-> starhd<br>![starhd.gif](/img/starhd.gif)
+> starhd<br><video class="rj-gifv" src="/img/starhd.mp4" poster="/img/starhd-poster.webp" autoplay loop muted playsinline title="starhd.gif"></video>
 
-> color<br>![color.gif](/img/color.gif)
+> color<br><video class="rj-gifv" src="/img/color.mp4" poster="/img/color-poster.webp" autoplay loop muted playsinline title="color.gif"></video>
 
 > colorv2 (with icon)<br>![coloricon.png](/img/colorv2.png)
 
