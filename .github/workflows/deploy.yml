@@ -51,6 +51,15 @@ jobs:
           PROBE_MIN: '40'
         run: node scripts/probe_playlist.js public/data/playlist.json
 
+      # 静态资源缓存破防：把 html 里 <link>/<script> 指向的站内 css/js 的 ?v=
+      # 换成「文件内容 sha1 前 10 位」。原先是 _config.butterfly.yml 里手写的
+      # 死值（custom.css?v=1.9.37 等），样式改了几轮版本号没动，导致浏览器与
+      # CDN 继续发旧文件，排查时无法区分「缓存」与「真 bug」（2026-11-03 踩过）。
+      # 必须放在 probe 之后、部署之前：要读的是最终产物，且 hash 依据最终文件内容。
+      # 同样走 CLI 而不是只靠 hexo filter —— public/ 写入有时序竞态（见 trim 那条注释）。
+      - name: Stamp asset versions
+        run: node scripts/asset-version.js
+
       - name: Ensure domain & nojekyll
         run: |
           echo "rockjesus.cn" > public/CNAME
