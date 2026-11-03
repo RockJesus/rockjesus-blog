@@ -49,22 +49,23 @@ function walkHtml(dir, out) {
   return out;
 }
 
-function run() {
-  if (!fs.existsSync(PUBLIC)) {
+function run(publicDir) {
+  const PUBLIC_DIR = publicDir || PUBLIC;
+  if (!fs.existsSync(PUBLIC_DIR)) {
     return { ok: false, reason: 'public/ 不存在（需先 hexo g）' };
   }
 
   const hashCache = new Map();
   function versionOf(urlPath) {
     if (hashCache.has(urlPath)) return hashCache.get(urlPath);
-    const abs = path.join(PUBLIC, urlPath.replace(/^\//, ''));
+    const abs = path.join(PUBLIC_DIR, urlPath.replace(/^\//, ''));
     let v = null;
     if (fs.existsSync(abs) && fs.statSync(abs).isFile()) v = sha1of(abs);
     hashCache.set(urlPath, v);
     return v;
   }
 
-  const htmlFiles = walkHtml(PUBLIC, []);
+  const htmlFiles = walkHtml(PUBLIC_DIR, []);
   let touchedFiles = 0;
   let touchedRefs = 0;
   const missing = new Set();
@@ -113,18 +114,24 @@ function run() {
 
 module.exports = run;
 
-/* ---- 跑法 1：hexo filter（本地 hexo g） ---- */
+/* ---- 跑法 1：hexo filter ----
+ * 必须用 after_generate，且优先级不能太早：
+ *   hexo 的 after_generate 在「所有文件写入之前」触发，此时 public/ 里连 HTML 都没有，
+ *   直接扫盘必然扑空（CI 首跑日志实测：「filter 跳过：public/ 不存在」）。
+ *   所以这里改成监听 'exit' —— 生成全部结束、进程退出前才跑，
+ *   此时 public/ 完整可读。trim_playlist.js 用 after_generate 能成功，
+ *   是因为它读的 data/playlist.json 由更早的生成器写好，属于巧合，不能照搬。
+ *   即便这里漏跑，CI 里还有 node scripts/asset-version.js 兜底。 */
 if (typeof hexo !== 'undefined' && hexo && hexo.extend && hexo.extend.filter) {
-  hexo.extend.filter.register('after_generate', function () {
+  hexo.on('exit', function () {
     try {
-      const r = run();
-      if (r.ok) {
-        console.log(`[asset-version] filter 完成：${r.touchedFiles} 个 HTML，${r.touchedRefs} 处引用`);
-      } else {
-        console.log(`[asset-version] filter 跳过：${r.reason}`);
+      const r = run(hexo.public_dir);
+      if (r.ok && r.touchedRefs > 0) {
+        hexo.log.info('[asset-version] %s 个 HTML / %s 处引用已更新版本号',
+          r.touchedFiles, r.touchedRefs);
       }
     } catch (e) {
-      console.warn('[asset-version] filter 出错（不阻断构建）：', e.message);
+      hexo.log.warn('[asset-version] 出错（不阻断构建）：' + e.message);
     }
   });
 }
