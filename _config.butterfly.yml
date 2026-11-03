@@ -348,6 +348,10 @@ index_post_content:
   length: 500
 
 # Inject 注入
+# 注意：下面 css/js 的 ?v= 只是「构建后」的占位值，不要手工维护。
+# scripts/asset-version.js 会在部署前把它们统一替换成对应文件的
+# 内容哈希（sha1 前 10 位）：内容变则 URL 变，内容不变则缓存继续有效。
+# 也就是说这里写什么版本号都不影响线上结果，改样式不必再手动升号。
 inject:
   head:
     - <link rel="stylesheet" href="/css/tokens.css?v=1.5.7">
