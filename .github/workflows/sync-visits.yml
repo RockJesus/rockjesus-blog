@@ -69,13 +69,119 @@ jobs:
             console.log('merged:', JSON.stringify(out));
           })().catch(e => { console.error(e); process.exit(1); });
           NODE
+      # —— 统计库健康探针（2026-11-04 加入）——
+      # 背景：当天做脱敏检测时实测 Upstash token 权限为整库读写（FLUSHALL 可执行），
+      # 且曾经发生过一次误清库。清库这类事故没有任何报错，唯一的信号就是
+      # 「数据突然没了」。本步骤每天两次随同步运行：
+      #   · dbsize 异常小（<5）→ 判定疑似清库，用 visitors.json 基准回写自愈
+      #   · 单国计数环比上一次同步暴跌 >50% → 同样回写并告警
+      # 回写用 SET 绝对值（本地基准 = 历史迁移基数 ∪ 云端增量的 max，回写安全：
+      # 云端此后继续 INCR，最多损失清库后到本次运行之间的增量，量级 ≤ 半天访问量）
+      - name: Health probe & auto-restore
+        env:
+          UPSTASH_TOKEN: ${{ secrets.UPSTASH_REST_TOKEN }}
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const https = require('https');
+          const U = 'https://tight-wren-137459.upstash.io';
+          const T = process.env.UPSTASH_TOKEN;
+          const STATE = 'source/data/.visits-probe-state.json';
+          function get(path, method) {
+            return new Promise((res, rej) => {
+              const r = https.request(U + path, { method: method || 'GET',
+                headers: { 'Authorization': 'Bearer ' + T } }, r => {
+                let d = ''; r.on('data', c => d += c); r.on('end', () => {
+                  try { res(JSON.parse(d)); } catch (e) { rej(new Error('bad json: ' + d.slice(0, 80))); }
+                });
+              });
+              r.on('error', rej); r.end();
+            });
+          }
+          (async () => {
+            const size = parseInt((await get('/dbsize')).result, 10);
+            console.log('dbsize:', size);
+            let baseline = {};
+            try { baseline = JSON.parse(fs.readFileSync('source/data/visitors.json', 'utf8')); } catch (e) {}
+            let prev = {};
+            try { prev = JSON.parse(fs.readFileSync(STATE, 'utf8')); } catch (e) {}
+
+            // 读云端 visits_<CC>
+            const cloud = {};
+            const kr = await get('/keys/visits_*');
+            const ks = (kr.result || []).filter(k => /^visits_[A-Za-z]{2}$/.test(k));
+            for (const k of ks) {
+              const v = await get('/get/' + encodeURIComponent(k));
+              const n = parseInt(v.result, 10);
+              if (n > 0) cloud[k.slice(7)] = n;
+            }
+            console.log('cloud:', JSON.stringify(cloud));
+
+            let reason = null;
+            if (size < 5) reason = 'dbsize=' + size + '，疑似清库';
+            else {
+              for (const cc in baseline) {
+                const b = baseline[cc] || 0, c = cloud[cc] || 0;
+                // 只对有规模的计数判暴跌（<10 的计数波动没有意义）
+                if (b >= 10 && c < b * 0.5) {
+                  reason = 'visits_' + cc + ' 从 ' + b + ' 跌到 ' + c + '（>50%）';
+                  break;
+                }
+              }
+            }
+
+            if (reason) {
+              console.log('⚠ 异常：' + reason + ' → 从 visitors.json 基准回写');
+              for (const cc in baseline) {
+                await get('/set/visits_' + cc + '/' + baseline[cc], 'POST');
+              }
+              // 聚合键用 POST body 写（URL path 会被 / 截断，11-04 实测）
+              await get('/set/visits', 'POST')
+                .catch(() => {});
+              const body = JSON.stringify(baseline);
+              await new Promise((res, rej) => {
+                const r = https.request(U + '/set/visits', { method: 'POST',
+                  headers: { 'Authorization': 'Bearer ' + T,
+                             'Content-Type': 'text/plain',
+                             'Content-Length': Buffer.byteLength(body) } },
+                  r => { r.resume(); r.on('end', res); });
+                r.on('error', rej); r.end(body);
+              });
+              // 校验
+              const chk = await get('/get/visits_CN');
+              console.log('回写后 visits_CN =', chk.result, '（基准', baseline.CN, '）');
+              // 写告警标记文件，后续步骤据此开 issue
+              fs.writeFileSync('probe-alert.txt', reason);
+            } else {
+              console.log('✓ 统计库健康');
+            }
+
+            // 记录本次状态，供下次环比
+            const snap = {};
+            for (const k in cloud) snap[k] = cloud[k];
+            for (const k in baseline) if (!snap[k] || baseline[k] > snap[k]) snap[k] = baseline[k];
+            fs.writeFileSync(STATE, JSON.stringify(snap));
+          })().catch(e => { console.error('probe error:', e.message); process.exit(1); });
+          NODE
+      - name: 清库告警（开 issue）
+        if: hashFiles('probe-alert.txt') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REASON=$(cat probe-alert.txt)
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues" \
+            -d "$(python3 -c "import json,sys;print(json.dumps({'title':'⚠ 统计库疑似被清空','body':'sync-visits 健康探针在 '+__import__('datetime').datetime.utcnow().isoformat()+' UTC 检测到异常：\\n\\n'+sys.argv[1]+'\\n\\n已用 source/data/visitors.json 基准自动回写。请检查 Upstash token 是否泄露、是否有他人操作。','labels':['security','stats']}))" "$REASON")" \
+            | python3 -c "import sys,json;d=json.load(sys.stdin);print('issue:',d.get('number',d.get('message')))"
+
       - name: 提交源码仓（跳过构建）
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "RockJesus"
           git config user.email "rockjesus@users.noreply.github.com"
-          git add source/data/visitors.json
+          git add source/data/visitors.json source/data/.visits-probe-state.json
           git diff --cached --quiet && echo "no change" || {
             git commit -m "chore: 自动同步云端访客统计 [skip ci]" -q
             git push https://x-access-token:${GH_TOKEN}@github.com/RockJesus/rockjesus-blog.git main -q
