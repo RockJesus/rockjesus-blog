@@ -1,4 +1,5 @@
 name: Deploy Blog
+# retrigger 2026-11-04: 上一次 Deploy 步骤遇 commit_refs_rules 偶发失败
 
 on:
   push:
