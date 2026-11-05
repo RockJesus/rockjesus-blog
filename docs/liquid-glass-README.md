@@ -2,6 +2,10 @@
 
 > **version: 1.0.0** · 2026-11-05
 >
+> **全站统一**：除侧栏卡片外，导航胶囊、下拉菜单、搜索弹窗、移动端侧滑、
+> 播放列表、404 卡片、主列文章卡片已全部统一到同一材质，
+> 见 `liquid-glass-global.css`（15 节，含暗背景补偿与正文加厚）。
+>
 > 材质自身的语义化版本。每次改动材质后递增并同步推送：
 > 破坏性改参数名/结构 → MAJOR；新增档位或令牌 → MINOR；纯调参/修 bug → PATCH。
 > 与站点缓存用的 `?v=<sha1>` 无关，后者由 `scripts/asset-version.js` 自动生成。
@@ -451,3 +455,58 @@ MAJOR  破坏性变更（改令牌名、改类名、删档位）
 MINOR  新增档位 / 新增可调令牌
 PATCH  纯调参、修 bug、文档修正
 ```
+
+
+---
+
+## 十三、全站统一（liquid-glass-global.css）
+
+2026-11-05 晚，站长要求「一并统一网站内所有卡片、弹窗、下拉菜单等」。
+
+### 覆盖范围
+
+| 组件 | 选择器 | 虚化 | 说明 |
+|---|---|---|---|
+| 主列文章卡 | `#recent-posts > .recent-post-item` | 88px | 原为暗玻璃 28px |
+| 侧栏卡片 | `#aside-content .card-widget` | 88px | 同复刻档 |
+| 导航胶囊 | `#nav #menus` / `#nav #blog_name` | 44px | 原为 `#f8f9fc` 实色 |
+| 下拉菜单 | `.menus_item_child`（含 `.rj-qr-menu`） | 40px | 原为实心深板 |
+| 搜索弹窗 | `.search-dialog` | 40px | — |
+| 移动侧滑 | `#sidebar-menus` | 40px + 额外自发光 | 背后常是纯黑封面 |
+| 播放列表 | `.aplayer .aplayer-list` | 40px | — |
+| 404 卡片 | `#error-wrap .error-content` | 48px | 含紫色占位块透明化 |
+| 正文容器 | `#article-container` | — | 单独加厚，见下 |
+
+### 两个必须记住的教训
+
+**① 亮玻璃在暗背景上等于「不存在」。**
+
+复刻档材质是「白 5% + 88px 模糊」。站点首页封面是近黑图，玻璃几乎完全消失，只剩一圈白线。参考图之所以亮，是因为 iPhone 截图里背后本身就有彩色内容 —— 玻璃是乘法的，背后为 0 时乘什么都是 0。
+
+解法：
+- 基色提到 9%，角部柔光 20%
+- 额外叠两层 `radial-gradient` 白色自发光（加法，不违反「无暗膜」原则）
+- 移动端侧滑单独再加一档（26% / 16%），因为那里背后永远是黑封面
+
+**② 同一材质要有「厚度差」，不是全站一个参数。**
+
+正文是几千字连续阅读，88px 透光会让文字不断跟壁纸星点争注意力。正文容器单独叠一层 22% 暗底 + 4px 模糊，回到「薄玻璃」档。这不是不统一，而是 iOS 的 Thick/Regular/Thin 三档逻辑 —— 信息密度决定玻璃厚度。
+
+### 选择器特异性的坑（第二次踩）
+
+`custom.css` 里有大量 `[data-theme='light'] #nav ...`、`:root:not([data-theme='light']) #aside-content .card-widget` 这类高特异性规则，实测特异性可达 (1,2,1)。
+
+**规则**：本文件所有选择器统一用 `html #xxx` 双类前缀，必要时加 `!important`。缺一个都会被 custom.css 压回去，而且**不报错、不提示**，只能靠 `getComputedStyle` 逐项核对。
+
+### 部署踩坑：commit_refs_rules
+
+推送后首次构建失败：
+
+```
+remote: fatal error in commit_refs_rules
+! [remote rejected] master -> master
+```
+
+这是 `RockJesus.github.io` 仓库侧的推送规则临时拒绝，**与代码无关**（同一次构建的 hexo g 全部成功）。等 2 分钟重新推一次即通过。遇到这个错误不要改代码，先重试。
+
+另外：本 token 无 `actions:write` 权限，**不能 rerun failed workflow**，只能靠新提交触发。
