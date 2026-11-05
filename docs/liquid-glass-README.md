@@ -1,4 +1,10 @@
-# Liquid Glass 侧边栏卡片材质（v6 · 参考图复刻档）
+# Liquid Glass 侧边栏卡片材质
+
+> **version: 1.0.0** · 2026-11-05
+>
+> 材质自身的语义化版本。每次改动材质后递增并同步推送：
+> 破坏性改参数名/结构 → MAJOR；新增档位或令牌 → MINOR；纯调参/修 bug → PATCH。
+> 与站点缓存用的 `?v=<sha1>` 无关，后者由 `scripts/asset-version.js` 自动生成。
 
 ## 一句话
 
@@ -420,4 +426,28 @@ document.querySelectorAll('#aside-content .card-widget')
 document.querySelectorAll('.rj-lg').forEach(c => c.classList.add('rj-lg--ultra'));
 // 关闭
 document.querySelectorAll('.rj-lg').forEach(c => c.classList.remove('rj-lg--ultra'));
+```
+
+---
+
+## 十二、发布约定（站长已确认，长期生效）
+
+**改完就自动推送，不用再问。**
+
+| 项 | 约定 |
+|---|---|
+| 目标仓库 | `RockJesus/rockjesus-blog`，分支 `main` |
+| CSS | → `source/css/liquid-glass.css` |
+| JS | → `source/js/liquid-glass.js` |
+| 本文档 | → `docs/liquid-glass-README.md` |
+| 推送方式 | GitHub Contents API（沙箱内 `git clone` 直连 github.com:443 会超时，`curl`/REST 正常） |
+| 版本号 | 每次推送同步递增文件头 `version:` 与本文件顶部版本 |
+| 预览 HTML | **不推**。165KB 内嵌 base64 壁纸，属本地查看用产物 |
+
+版本递增规则：
+
+```
+MAJOR  破坏性变更（改令牌名、改类名、删档位）
+MINOR  新增档位 / 新增可调令牌
+PATCH  纯调参、修 bug、文档修正
 ```
