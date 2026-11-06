@@ -1,6 +1,6 @@
 # Liquid Glass 侧边栏卡片材质
 
-> **version: 1.1.0** · 2026-11-06
+> **version: 1.2.0** · 2026-11-06
 >
 > **全站统一**：除侧栏卡片外，导航胶囊、下拉菜单、搜索弹窗、移动端侧滑、
 > 播放列表、404 卡片、主列文章卡片已全部统一到同一材质，
@@ -562,3 +562,41 @@ remote: fatal error in commit_refs_rules
 ### 14.5 正文对比度复核
 
 改后实测正文文字 / 背景 = **5.7:1**，仍通过 WCAG AA。
+
+---
+
+## 十五、v1.2.0 · 微交互层（2026-11-06）
+
+站长要求「UI 和交互再高级一点」。原则：**只加可验证的微观反馈，不改版式**。
+
+### 15.1 主列卡片光斑
+
+侧栏 `.rj-lg--spot` 早就有跟随光标的光斑，主列文章卡一直没有 —— 因为它现在归 `liquid-glass-global.css` 管，
+`::before`（亮线）与 `::after`（暗补偿）都被占用，伪元素没得用。
+
+做法：JS 注入 `<span class="rj-lg-spot-host rj-lg--spot">`，absolute 铺满卡片、`pointer-events:none`，
+光斑写在这个 host 自己的 `::after` 上；坐标事件仍挂在卡片上。
+显隐不能靠 host 自己的 `:hover`（它 pointer-events:none 永远不 hover），由
+`卡片:hover > .rj-lg-spot-host::after` 驱动。
+
+实测：hover 到 (30%, 40%) → host 的 `--mx/--my` = `30.00% / 40.00%`，光斑 opacity 0.998；
+移到 (75%, 70%) → 同步更新。注入幂等（11 张卡 = 11 个 host，pjax 往返不重复）。
+
+### 15.2 弹性入场
+
+新增 `rj-spring-in`：`translateY(8px) scale(.965)` 起步，`cubic-bezier(.34,1.4,.64,1)` 收尾。
+逐帧实测位移：`6.47 → 2.94 → 1.38 → 0.04 → -0.34 → -0.39`（末尾轻微过冲再回落，这是回弹手感）。
+覆盖：导航下拉、扫码菜单、搜索弹窗、打赏弹层。
+
+### 15.3 又一个特异性坑
+
+扫码菜单有一条 `:hover ... .menus_item_child.rj-qr-menu { animation: rjQrIn }`（第 2763 行）。
+新规则特异性不够时**完全没反应**，`getComputedStyle().animationName` 仍是 `rjQrIn`。
+必须写成同特异性 `#nav .menus_items .menus_item:hover .menus_item_child.rj-qr-menu` 才压得住。
+
+**这是本项目第三次栽在特异性上**（前两次见 §13、§14.3）。改样式后一律回读 `animationName` / `background` 验证。
+
+### 15.4 降级
+
+`prefers-reduced-motion: reduce` 下弹性入场全部 `animation:none`；光斑保留（静态高光，无位移动画）。
+触屏（`hover:none`）光斑常驻 0.35 不透明度，与侧栏同策略。
