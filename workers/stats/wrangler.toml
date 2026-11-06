@@ -1,0 +1,18 @@
+name = "stats-proxy"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# 通过 Cloudflare 控制台给 rockjesus.cn 挂路由：
+#   rockjesus.cn/api/stats*  →  stats-proxy
+# 或在此声明（需先把 rockjesus.cn 托管在本账号的 zone 里）：
+# routes = [
+#   { pattern = "rockjesus.cn/api/stats*", zone_name = "rockjesus.cn" }
+# ]
+
+# 必须用 secret 注入，不要写进 wrangler.toml 提交到仓库：
+#   wrangler secret put UPSTASH_URL
+#   wrangler secret put UPSTASH_TOKEN
+#   wrangler secret put ADMIN_KEY     # 可选，仅调试用
+
+[vars]
+# 非敏感项可以直接写，留空表示完全由控制台注入
