@@ -2,6 +2,13 @@
 
 版本：1.0.0 · 2026-11-07
 
+> **已部署（2026-11-07 上线）**
+> - 端点：`https://hot-emu-9529.rockjesus.deno.net/api/stats`
+> - Deno 项目：`rockjesus / hot-emu-9529`（<https://console.deno.com/rockjesus/hot-emu-9529>）
+> - 环境变量 `UPSTASH_URL` / `UPSTASH_TOKEN` 已配置；Upstash token 已于同日轮换，旧 token 作废
+> - 前端 `source/js/player.js` 的 `STATS_API` 已指向该端点（本地 localhost 仍走同域）
+> - 验证：`GET /api/stats` 返回 `{"pv":{...},"visits":{...}}`；`?incr=CN`、`?pv=/ah/&only=1` 均正常
+
 ## 背景
 
 2026-11-04 安全修复后，前端不再持有 Upstash token，改走服务端代理 `/api/stats`。
