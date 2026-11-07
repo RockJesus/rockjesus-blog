@@ -103,11 +103,7 @@ avatar:
 # Image (文章 / 页面顶部大图)
 # 首页头图：同一段素材的静帧。它有三重身份 —— 视频未加载时的海报、
 # 省流/减弱动效用户唯一看到的画面、JS 关闭时的兜底。
-# 首屏不再用静态头图：hero-poster.webp 平均亮度只有 2/255，基本纯黑，
-# 挂上去等于给 100vh 首屏蒙一块黑布，把 #web_bg 壁纸与 #rj-oc-video 藏起来。
-# 置空后页头透明（custom.css 末尾「首屏深色蒙版：删掉」负责清掉底色），
-# 首屏直接显示壁纸动效。
-index_img:
+index_img: /img/hero-poster.webp
 default_top_img: /img/header_post.webp
 
 # Error image 图片加载失败时显示
