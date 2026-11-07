@@ -4,6 +4,7 @@ description: 'Alienware 17 R4 的 JHL6340 雷电 3 控制器在 macOS 下实现�
 date: 2019-01-11 13:48:27
 updated: 2022-11-03 18:56:27
 cover: /img/awhd-poster.webp
+cover_video: /img/awhd.mp4
 ---
 
 > 配置Alienware 17 r4<br>雷电3:8086, 15DA,Intel JHL6340 Thunderbolt 3 Bridge (C step) [Alpine Ridge 2C 2016]

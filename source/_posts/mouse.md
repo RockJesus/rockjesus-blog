@@ -3,7 +3,8 @@ title: '【Alienware】MAC动 态 鼠 标 主 题'
 description: '移植自 Windows 的 Alienware 动态鼠标主题，mac 与 win 两版打包下载，附安装方法。'
 date: 2019-01-11 13:48:29
 updated: 2022-11-03 18:56:15
-cover: /img/header_mouse.webp
+cover: /img/star-poster.webp
+cover_video: /img/star.mp4
 ---
 
 ![Alienware_Invader.jpg](/img/13.jpg)

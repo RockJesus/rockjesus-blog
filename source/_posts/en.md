@@ -3,7 +3,8 @@ title: 'AW 17 R4 DUAL-GPU MacOS'
 description: 'Running macOS Mojave on an Alienware 17 R4 with dual GPUs — hardware list, BIOS settings and the tweaks that made it stable.'
 date: 2021-10-06 13:48:25
 updated: 2022-11-03 21:48:07
-cover: /img/header_post.webp
+cover: /img/17r4-poster.webp
+cover_video: /img/17r4.mp4
 ---
 
 <br><video class="rj-gifv" src="/img/17r4.mp4" poster="/img/17r4-poster.webp" autoplay loop muted playsinline title="aw17.jpg"></video>

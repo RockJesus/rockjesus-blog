@@ -4,6 +4,7 @@ description: '黑苹果常见五国与开机报错的处理笔记，从 Busy Tim
 date: 2019-01-11 13:48:28
 updated: 2022-11-03 18:56:24
 cover: /img/color-poster.webp
+cover_video: /img/color.mp4
 ---
 
 # Busy Timeout[0], kextd wait(0):’AppleACPICPU’

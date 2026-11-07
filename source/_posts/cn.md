@@ -4,6 +4,7 @@ description: 'Alienware 17 R4（i7-7700HQ + HD630 / GTX 1060）双显卡黑苹�
 date: 2021-10-06 13:48:26
 updated: 2022-11-03 21:47:54
 cover: /img/alienwareb2-poster.webp
+cover_video: /img/alienwareb2.mp4
 sticky: true
 ---
 

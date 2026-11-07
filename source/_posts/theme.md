@@ -3,7 +3,8 @@ title: 'CLOVER高清开机动画主题'
 description: 'Clover 1920×1080 高清开机动画主题合集，含 awmanhd、awhd、yoona 等多套，解压即用。'
 date: 2019-01-11 13:48:25
 updated: 2022-11-03 18:56:31
-cover: /img/header_theme.webp
+cover: /img/bgz-poster.webp
+cover_video: /img/bgz.mp4
 ---
 
 > awmanhd （1920x1080）<br><video class="rj-gifv" src="/img/bgz.mp4" poster="/img/bgz-poster.webp" autoplay loop muted playsinline title="The_Alien_Logo_Reveal_1080p_20171123143002.gif"></video>
