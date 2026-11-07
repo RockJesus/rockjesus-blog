@@ -354,23 +354,23 @@ index_post_content:
 # 也就是说这里写什么版本号都不影响线上结果，改样式不必再手动升号。
 inject:
   head:
-    - <link rel="stylesheet" href="/css/tokens.css?v=1.7.7">
-    - <link rel="stylesheet" href="/css/custom.css?v=1.7.7">
-    - <link rel="stylesheet" href="/css/liquid-glass.css?v=1.7.7">
-    - <link rel="stylesheet" href="/css/liquid-glass-global.css?v=1.7.7">
+    - <link rel="stylesheet" href="/css/tokens.css?v=1.7.8">
+    - <link rel="stylesheet" href="/css/custom.css?v=1.7.8">
+    - <link rel="stylesheet" href="/css/liquid-glass.css?v=1.7.8">
+    - <link rel="stylesheet" href="/css/liquid-glass-global.css?v=1.7.8">
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
-    - <script src="/js/player.js?v=1.7.7" defer></script>
-    - <script src="/js/rj-enhance.js?v=1.7.7" defer></script>
-    - <script src="/js/cover-video.js?v=1.7.7" defer></script>
-    - <script src="/js/liquid-glass-boot.js?v=1.7.7" defer></script>
-    - <script src="/js/liquid-glass.js?v=1.7.7" defer></script>
+    - <script src="/js/player.js?v=1.7.8" defer></script>
+    - <script src="/js/rj-enhance.js?v=1.7.8" defer></script>
+    - <script src="/js/cover-video.js?v=1.7.8" defer></script>
+    - <script src="/js/liquid-glass-boot.js?v=1.7.8" defer></script>
+    - <script src="/js/liquid-glass.js?v=1.7.8" defer></script>
     - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');addEventListener('load',function(){var go=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};window.requestIdleCallback?requestIdleCallback(go,{timeout:3000}):setTimeout(go,1500);});document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
   bottom:
     - <div id="site-player"></div>
     - <meta name="google-site-verification" content="wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98" />
     # 和风天气挂件已下线：widget.qweather.net 域名现在解析不到（NXDOMAIN），
     # 脚本每页都加载失败并报控制台错误，故连同 /js/weather.js 配置一起移除。
-    - <script src="/js/live2d-guard.js?v=1.7.7" defer></script>
+    - <script src="/js/live2d-guard.js?v=1.7.8" defer></script>
 
 # CDN
 CDN:
