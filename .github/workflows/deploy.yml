@@ -31,6 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # 样式表合并压缩：head 里 4 个 CSS 拼成 1 个（见 tools/css-bundle.py 注释）。
+      # 必须在 hexo g 之前跑，否则 public 里发布的是上一版拼接结果。
+      - name: Build CSS bundle
+        run: python3 tools/css-bundle.py
+
       - name: Generate static site
         run: npx hexo g
 
