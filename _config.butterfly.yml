@@ -361,7 +361,7 @@ inject:
     - <link rel="stylesheet" href="//at.alicdn.com/t/font_2875562_kkb6ns0eiij.css">
     - <script src="/js/player.js?v=1.8.0" defer></script>
     - <script src="/js/rj-enhance.js?v=1.8.0" defer></script>
-    - <script src="/js/oc-video-bg.js?v=1.0.1" defer></script>
+    - <script src="/js/oc-video-bg.js?v=1.0.2" defer></script>
     - <script src="/js/cover-video.js?v=1.8.0" defer></script>
     - <script src="/js/liquid-glass-boot.js?v=1.8.0" defer></script>
     - <script src="/js/liquid-glass.js?v=1.8.0" defer></script>
