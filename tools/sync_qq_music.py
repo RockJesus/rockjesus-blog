@@ -110,6 +110,12 @@ def main():
         tracks.append({'name': it['name'], 'artist': it['artist'],
                        'duration': it['duration'], 'url': u, 'cover': cover})
 
+    # 守卫：vkey 通道被风控时（如数据中心 IP 返回 10006）会拿不到直链，
+    # 这时绝不能把线上好数据覆盖成空表，直接失败退出，保留上一版。
+    if len(tracks) < 100:
+        print('ABORT: only %d playable, keep previous playlist untouched' % len(tracks), flush=True)
+        sys.exit(1)
+
     data = {
         'updated': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         'source': 'qq',
