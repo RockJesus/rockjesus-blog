@@ -49,7 +49,7 @@ function probeOnce(u, depth = 0) {
           Range: 'bytes=0-2047',
           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
           Accept: '*/*',
-          Referer: 'https://y.qq.com/'
+          Referer: /163\.com/.test(parsed.host) ? 'https://music.163.com/' : 'https://y.qq.com/'
         },
         timeout: TIMEOUT
       }, res => {
@@ -61,9 +61,22 @@ function probeOnce(u, depth = 0) {
           return probeOnce(next, depth + 1).then(resolve);
         }
         if (c === 200 || c === 206) {
-          res.once('data', () => done(true, c));
-          res.once('end', () => done(true, c));   // 空 body 但 2xx，按可读处理
-          res.once('error', () => done(false, 'stream-err'));
+          // 2xx 不代表有音频：音乐平台对下架/无版权曲目会返回 200 的 HTML 404 页。
+          // 必须看首块字节与 content-type，否则会把整份不可播歌单判成 100% 健康。
+          const ct = String(res.headers['content-type'] || '').toLowerCase();
+          let judged = false;
+          res.once('data', chunk => {
+            if (judged) return; judged = true;
+            const head = chunk ? chunk.slice(0, 3).toString('binary') : '';
+            const html = head.slice(0, 2) === '<!';
+            const id3 = head === 'ID3';
+            const frame = chunk && chunk.length >= 2 && chunk[0] === 0xFF && (chunk[1] & 0xE0) === 0xE0;
+            const audioCt = /audio|octet-stream|mpeg|mp3|mp4|m4a|ogg/.test(ct);
+            const ok = !html && (id3 || frame || audioCt);
+            done(ok, ok ? c : 'notaudio:' + (ct || 'no-ct'));
+          });
+          res.once('end', () => { if (!judged) { judged = true; done(false, 'empty-body'); } });
+          res.once('error', () => { if (!judged) { judged = true; done(false, 'stream-err'); } });
         } else {
           res.resume();
           done(false, c);
