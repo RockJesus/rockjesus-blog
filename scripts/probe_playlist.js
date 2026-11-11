@@ -115,10 +115,23 @@ async function main() {
     process.exit(1);
   }
   const tracks = Array.isArray(data.tracks) ? data.tracks : [];
-  const withUrl = tracks.filter(t => t && t.url);
+  let withUrl = tracks.filter(t => t && t.url);
   if (!withUrl.length) {
     console.log('probe_playlist: 没有带直链的曲目，跳过');
     return;
+  }
+
+  /* 曲目多时改抽样：3000 首逐条探测会跑几十分钟并把 CI 拖到超时。
+     均匀抽样保持首中尾都覆盖，判定仍用 MIN_OK（抽样基数下的通过数）。 */
+  const MAX_PROBE = Math.max(1, parseInt(process.env.PROBE_MAX || '80', 10));
+  let sampled = false;
+  if (withUrl.length > MAX_PROBE) {
+    const step = withUrl.length / MAX_PROBE;
+    const pick = [];
+    for (let i = 0; i < MAX_PROBE; i++) pick.push(withUrl[Math.floor(i * step)]);
+    withUrl = pick;
+    sampled = true;
+    console.log(`probe_playlist: 共 ${tracks.filter(t => t && t.url).length} 条直链，均匀抽样 ${MAX_PROBE} 条探测`);
   }
 
   const t0 = Date.now();
@@ -139,13 +152,18 @@ async function main() {
   const tally = Object.entries(codeTally).sort((a, b) => b[1] - a[1])
     .map(([k, v]) => `${k}×${v}`).join(' ');
   console.log(
-    `probe_playlist: ${withUrl.length} 条直链 → 可播 ${alive.length}，失效 ${dead}` +
+    `probe_playlist: ${sampled ? '抽样 ' : ''}${withUrl.length} 条直链 → 可播 ${alive.length}，失效 ${dead}` +
     `（${(rate * 100).toFixed(1)}%），耗时 ${(ms / 1000).toFixed(1)}s / 并发 ${CONC}` +
     (tally ? ` | 失败码 ${tally}` : '')
   );
 
   if (alive.length < MIN_OK) {
     console.log(`probe_playlist: 可播数 ${alive.length} < 阈值 ${MIN_OK}，判定为 vkey 全局失效或网络异常 → 保留原样`);
+    return;
+  }
+  /* 抽样只用来判断整体是否健康，绝不能按抽样结果写回文件 —— 那会把 3000 首砍成 80 首 */
+  if (sampled) {
+    console.log(`probe_playlist: 抽样模式，只报告不写回，完整歌单 ${tracks.filter(t => t && t.url).length} 条保留`);
     return;
   }
   if (dead === 0) {
