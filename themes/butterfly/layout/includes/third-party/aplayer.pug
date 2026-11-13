@@ -1,3 +1,7 @@
 link(rel='stylesheet' href=url_for(theme.asset.aplayer_css) media="print" onload="this.media='all'")
 script(src=url_for(theme.asset.aplayer_js))
-script(src=url_for(theme.asset.meting_js))
+//- 本站播放器是自建的：source/js/player.js 直接 new APlayer 读取本地 playlist.json，
+//- 页面里没有 <meting-js> 元素，用不到 meting。2026-11-13 起不再注入 meting.min.js，
+//- 省一次请求，也从根上避免它的 loadMeting() 再插手我们的播放器。
+//- 将来若真要用 meting 播放器，取消下一行注释，并确认 pjax.pug 里的 loadMeting 调用仍然存在。
+//- script(src=url_for(theme.asset.meting_js))

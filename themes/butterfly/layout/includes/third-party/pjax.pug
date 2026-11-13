@@ -75,6 +75,8 @@ script.
     //- 原判据是「页面里存在 .aplayer」，但本站自定义播放器 #site-player 自身就带 .aplayer 类，
     //- 于是每次 pjax 切页都会调 loadMeting() → 它 destroy 掉自定义 APlayer 实例 → 正在播的歌被打断重载。
     //- 2026-11-13 实测：pjax:send 后栈为 loadMeting → APlayer.destroy → player.js 再 new APlayer 续播。
+    //- 注：meting.min.js 自 2.1.7 起已不再注入，loadMeting 不存在，这行现在恒不触发；
+    //- 保留它是为了将来若重新接入 meting 播放器时不需要再改这里。
     typeof loadMeting === 'function' && document.querySelector('meting-js') && loadMeting()
 
     // prismjs
