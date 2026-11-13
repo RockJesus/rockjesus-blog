@@ -15,7 +15,13 @@ jobs:
       group: qq-music-sync
       cancel-in-progress: true
     steps:
+      # 必须用 DEPLOY_TOKEN 而不是默认 GITHUB_TOKEN：GitHub 规定由
+      # GITHUB_TOKEN 推送的提交不会触发其他 workflow，导致 Deploy Blog
+      # 不启动、刷新后的歌单永远上不了线（2026-11-12 两次刷新就是这样
+      # “成功”但线上仍是旧 vkey，最终全部 403）。
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.DEPLOY_TOKEN }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'

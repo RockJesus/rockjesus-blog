@@ -112,8 +112,19 @@ def main():
 
     # 守卫：vkey 通道被风控时（如数据中心 IP 返回 10006）会拿不到直链，
     # 这时绝不能把线上好数据覆盖成空表，直接失败退出，保留上一版。
-    if len(tracks) < 100:
-        print('ABORT: only %d playable, keep previous playlist untouched' % len(tracks), flush=True)
+    # 阈值不能写死 100：GitHub Actions 的机房 IP 实测只能拿到 128/3068
+    # （普通网络可拿 910），若按 100 放行，就会把线上 910 首静默降级成 128 首。
+    # 因此以“不劣于现有版本”为准。
+    prev = 0
+    try:
+        with open(OUT, encoding='utf-8') as f:
+            prev = int(json.load(f).get('playable') or 0)
+    except Exception:
+        prev = 0
+    floor = max(100, prev)
+    if len(tracks) < floor:
+        print('ABORT: only %d playable (< floor %d), keep previous playlist untouched'
+              % (len(tracks), floor), flush=True)
         sys.exit(1)
 
     data = {
