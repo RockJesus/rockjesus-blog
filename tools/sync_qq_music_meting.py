@@ -138,9 +138,9 @@ def main():
         with open(OUT, encoding='utf-8') as f:
             prev = json.load(f)
         for t in prev.get('tracks') or []:
-            m = re.search(r'(?:M500|M800|C400|F200|O400)([0-9A-Za-z]+)\.', t.get('url') or '')
-            if m:
-                known.add(m.group(1))
+            mid = t.get('mid')
+            if mid:
+                known.add(mid)
     except Exception:
         prev = {}
         known = set()
@@ -177,6 +177,7 @@ def main():
         if not u:
             continue
         tracks.append({
+            'mid': it['mid'],
             'name': it['name'],
             'artist': it['artist'],
             'duration': 0,
