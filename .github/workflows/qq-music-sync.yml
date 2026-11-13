@@ -2,11 +2,13 @@ name: QQ Music Sync
 on:
   schedule:
     # vkey 有效期约 22 小时（musicu.fcg 返回 expiration=80400），每天两次足够覆盖。
+    # 03:00 UTC 那次（对应北京上午）在脚本里会自动走全量扫描，另一轮走快速模式。
     - cron: '0 3,15 * * *'
   workflow_dispatch: {}
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   sync:
@@ -15,16 +17,16 @@ jobs:
       group: qq-music-sync
       cancel-in-progress: true
     steps:
-      # 必须用 DEPLOY_TOKEN 而不是默认 GITHUB_TOKEN：GitHub 规定由
-      # GITHUB_TOKEN 推送的提交不会触发其他 workflow，导致 Deploy Blog
-      # 不启动、刷新后的歌单永远上不了线（2026-11-12 两次刷新就是这样
-      # “成功”但线上仍是旧 vkey，最终全部 403）。
+      # 这里必须用默认 GITHUB_TOKEN：它对当前仓库有写权限，能直接 push。
+      # （曾经换成 DEPLOY_TOKEN 想借它的身份触发下游部署，但那个 token 只授权了
+      #  RockJesus/RockJesus.github.io 部署仓，对本仓库 push 会 403。）
+      # 代价是 GITHUB_TOKEN 推送的提交不会触发其他 workflow，所以下面显式
+      # dispatch 一次 Deploy Blog 来补上这一步。
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.DEPLOY_TOKEN }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
       # 主通道：经 Meting 大陆中转生成 vkey。
       # runner 在海外机房，直接调 u.y.qq.com 只拿得到 128/3069 首（版权按地区
       # 授权），而大陆出口能拿 910 首；中转服务在大陆生成 vkey 再 302 给真实
@@ -39,14 +41,26 @@ jobs:
       - name: Fallback direct fetch
         if: steps.relay.outcome == 'failure'
         run: python tools/sync_qq_music.py source/data/playlist.json
+
       - name: Commit if changed
+        id: commit
         run: |
           git config user.name "RockJesus"
           git config user.email "rockjesus@users.noreply.github.com"
           git add source/data/playlist.json
           if git diff --cached --quiet; then
             echo "playlist unchanged, skip commit"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "chore(music): 刷新 QQ 歌单直链"
             git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      # GITHUB_TOKEN 推的提交不触发下游 workflow，这里显式拉起部署，
+      # 否则刷新后的歌单永远上不了线（2026-11-12 就是这么「成功」但线上仍是旧 vkey）。
+      - name: Trigger deploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref main
