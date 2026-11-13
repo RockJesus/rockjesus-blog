@@ -191,10 +191,13 @@ def main():
             prev = int(json.load(f).get('playable') or 0)
     except Exception:
         prev = 0
-    floor = max(100, prev)
+    # 守卫允许 5% 的波动：单曲可能被下架，跨境请求也可能偶发超时，
+    # 不能让三五首的抖动就否掉整轮刷新（那样 vkey 永远来不及更新）。
+    # 但大幅塌方（例如海外出口只剩 128 首）仍然会被拦下，线上不会降级。
+    floor = max(100, int(prev * 0.95))
     if len(tracks) < floor:
-        print('ABORT: only %d playable (< floor %d), keep previous playlist untouched'
-              % (len(tracks), floor), flush=True)
+        print('ABORT: only %d playable (< floor %d, previous %d), keep previous playlist untouched'
+              % (len(tracks), floor, prev), flush=True)
         sys.exit(1)
 
     data = {
