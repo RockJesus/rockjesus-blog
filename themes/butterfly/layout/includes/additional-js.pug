@@ -8,27 +8,60 @@ div
   if theme.medium_zoom
     script(src=url_for(theme.asset.medium_zoom))
   else if theme.fancybox
-    //- 灯箱只有点开图片才需要，25KB 不该压在首屏。
+    //- 灯箱只有点开图片才需要，30KB 不该压在首屏。
     //- 注意：不能直接关 theme.fancybox —— utils.js 的 loadLightbox 里
     //- 「给 <img> 包 <a data-fancybox>」那一步也受这个开关控制，关掉就再也绑不上。
-    //- 所以保留包装逻辑，只把脚本改成空闲后加载：先放一个占位的 Fancybox.bind
-    //- 把调用排队，真库到位后重放，主题代码一行不用动。
+    //- 所以保留包装逻辑，只把脚本改成「首次点图才加载」：先放一个占位的
+    //- Fancybox.bind 把调用排队，真库到位后重放，主题代码一行不用动。
     script.
       (function () {
         var q = window.__fbQueue = [];
         window.Fancybox = { bind: function (s, o) { q.push([s, o]); } };
-        function go () {
+        var started = false, ready = false, pending = null;
+        function flush () {
+          var fn = pending; pending = null;
+          if (!fn) return;
+          // click 若已由回放的 bind 打开了一个实例，就不再补开，避免双开
+          try { if (Fancybox.getInstance && Fancybox.getInstance()) return; } catch (e) {}
+          try { fn(); } catch (e) {}
+        }
+        function go (after) {
+          if (after) pending = after;
+          if (started) return;
+          started = true;
           var s = document.createElement('script');
           s.src = '!{url_for(theme.asset.fancybox_v4)}';
           s.onload = function () {
             q.forEach(function (a) { try { Fancybox.bind(a[0], a[1]); } catch (e) {} });
             q.length = 0;
+            ready = true;
+            // 等这次点击自己走完，再判断要不要补开
+            setTimeout(flush, 140);
           };
           document.body.appendChild(s);
         }
-        addEventListener('load', function () {
-          window.requestIdleCallback ? requestIdleCallback(go, { timeout: 4000 }) : setTimeout(go, 2000);
-        });
+        function openerOf (t) {
+          while (t && t.nodeType === 1) {
+            if (t.hasAttribute('data-fancybox')) return t;
+            t = t.parentNode;
+          }
+          return null;
+        }
+        // 手一按下就开始下（一般 1 个 RTT 就够），点击时库往往已经到位
+        document.addEventListener('pointerdown', function (e) {
+          var a = openerOf(e.target);
+          if (a) go(pending || null);
+        }, true);
+        document.addEventListener('click', function (e) {
+          var a = openerOf(e.target);
+          if (!a) return;
+          if (ready) return;                       // 库已就绪，正常走 Fancybox.bind
+          // 库还没到：拦下这次「跳到原图」，load 完由 flush 补开这一张
+          e.preventDefault();
+          var href = a.getAttribute('href') || a.getAttribute('data-src') || '';
+          if (!href) return;
+          go(function () { try { Fancybox.show([{ src: href, type: 'image' }]); } catch (err) {} });
+        }, true);
       })();
 
   if theme.instantpage

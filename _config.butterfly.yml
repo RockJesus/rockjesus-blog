@@ -90,7 +90,7 @@ beautify:
   title-prefix-icon-color: '#F47466'
 
 # Favicon 站点图标
-favicon: /img/apple.png
+favicon: /img/favicon.ico
 
 # Background 全站背景
 background: url(/img/oc.webp)
@@ -365,13 +365,13 @@ inject:
     - <script src="/js/cover-video.js?v=1.8.0" defer></script>
     - <script src="/js/liquid-glass-boot.js?v=1.8.0" defer></script>
     - <script src="/js/liquid-glass.js?v=1.8.0" defer></script>
-    - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');addEventListener('load',function(){var go=function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};window.requestIdleCallback?requestIdleCallback(go,{timeout:3000}):setTimeout(go,1500);});document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
+    - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');(function(){var done=false;var gate=false;var go=function(){if(done)return;done=true;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};var later=function(){if(gate)return;gate=true;window.requestIdleCallback?requestIdleCallback(go,{timeout:4000}):setTimeout(go,2000);};document.addEventListener('rj:player-ready',later);document.addEventListener('rj:hero-ready',function(){setTimeout(later,2500);});if(document.readyState==='complete'){setTimeout(later,8000);}else{addEventListener('load',function(){setTimeout(later,8000);});}setTimeout(later,20000);})();document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
   bottom:
     - <div id="site-player"></div>
     - <meta name="google-site-verification" content="wcu3_1CqmZW-eiZzYE1VkXQ83NfhxXYyUYjqofL2s98" />
     # 和风天气挂件已下线：widget.qweather.net 域名现在解析不到（NXDOMAIN），
     # 脚本每页都加载失败并报控制台错误，故连同 /js/weather.js 配置一起移除。
-    - <script src="/js/live2d-guard.js?v=1.8.0" defer></script>
+    - <script src="/js/live2d-guard.js?v=2.1.8" defer></script>
 
 # CDN
 CDN:

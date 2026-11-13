@@ -29,6 +29,18 @@ else
   - var isHomeClass = 'not-top-img'
 
 header#page-header(class=isHomeClass style=bg_img)
+  //- 首屏视频由服务端直接输出：解析器一看到 <video> 就发起下载，不再等
+  //- DOMContentLoaded 后由 rj-enhance.js 动态插 —— 那样实测要到第 4.1 秒才起跑，
+  //- 前面 4 秒全被 CSS/JS 占着。加载优先级：首屏视频 > 播放器音乐 > 其它。
+  //- 多个 <source> 按 type/media 择优：浏览器只下第一个能解的（AV1 优先，
+  //- 老设备自动落回 H.264；窄屏取 672 宽小档），不用再靠 JS 探测。
+  //- 省流 / 减弱动效的收放仍归 rj-enhance.js 的 heroSync（发现已有 video 就只做 play/卸载）。
+  if is_home()
+    video.rj-hero-video(autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1")
+      source(src=url_for('/img/hero-bg-sm.av1.mp4') media="(max-width: 819px)" type='video/mp4; codecs="av01.0.05M.08"')
+      source(src=url_for('/img/hero-bg-sm.mp4') media="(max-width: 819px)" type="video/mp4")
+      source(src=url_for('/img/hero-bg.av1.mp4') type='video/mp4; codecs="av01.0.05M.08"')
+      source(src=url_for('/img/hero-bg.mp4') type="video/mp4")
   !=partial('includes/header/nav', {}, {cache: true})
   if top_img !== false
     if is_post()
