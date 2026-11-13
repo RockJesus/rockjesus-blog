@@ -125,9 +125,39 @@ def main():
         print('ABORT: 歌单列表抓取失败（中转实例可能不可用）', flush=True)
         sys.exit(1)
 
+    total = len(items)
+
+    # 快速模式：一首歌是否可播在 22 小时尺度上基本稳定，没必要每轮都把
+    # 3069 首全探一遍（GitHub runner 跨境访问大陆中转很慢，全量要 20 分钟+）。
+    # 默认只重新解析上一版已确认可播的 mid，把单轮压到三分之一；
+    # UTC 周一 0-6 点那次（对应北京时间周一上午的定时）自动做全量扫描，
+    # 用来发现歌单新增曲目。QQ_MODE=full / fast 可强制。
+    known = set()
+    prev = {}
+    try:
+        with open(OUT, encoding='utf-8') as f:
+            prev = json.load(f)
+        for t in prev.get('tracks') or []:
+            m = re.search(r'(?:M500|M800|C400|F200|O400)([0-9A-Za-z]+)\.', t.get('url') or '')
+            if m:
+                known.add(m.group(1))
+    except Exception:
+        prev = {}
+        known = set()
+
+    mode = os.environ.get('QQ_MODE', 'auto')
+    full = (mode == 'full') or (mode == 'auto' and not known) or \
+           (mode == 'auto' and time.gmtime().tm_wday == 0 and time.gmtime().tm_hour < 6)
+    if full:
+        scan = items
+        print('FULL: 全量扫描 %d 首' % len(scan), flush=True)
+    else:
+        scan = [it for it in items if it['mid'] in known]
+        print('FAST: 只重新解析已知可播 %d 首（歌单共 %d 首）' % (len(scan), total), flush=True)
+
     results = {}
     with ThreadPoolExecutor(max_workers=WORKERS) as ex:
-        futures = {ex.submit(work, it): it for it in items}
+        futures = {ex.submit(work, it): it for it in scan}
         done = 0
         for fut in as_completed(futures):
             it = futures[fut]
@@ -139,10 +169,10 @@ def main():
             if loc:
                 results[it['mid']] = loc
             if done % 500 == 0:
-                print('  ..%d/%d playable=%d' % (done, len(items), len(results)), flush=True)
+                print('  ..%d/%d playable=%d' % (done, len(scan), len(results)), flush=True)
 
     tracks = []
-    for it in items:
+    for it in scan:
         u = results.get(it['mid'])
         if not u:
             continue
@@ -170,14 +200,14 @@ def main():
         'updated': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         'source': 'qq',
         'playlist': os.environ.get('QQ_PLAYLIST_NAME', 'QQ 歌单'),
-        'total': len(items),
+        'total': total,
         'playable': len(tracks),
         'tracks': tracks,
         'note': 'QQ 音乐歌单直链，经 Meting 大陆中转生成；vkey 约 22 小时过期，由 GitHub Actions 定时刷新',
     }
     with open(OUT, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, separators=(',', ':'))
-    print('WROTE %s playable=%d/%d' % (OUT, len(tracks), len(items)), flush=True)
+    print('WROTE %s playable=%d/%d' % (OUT, len(tracks), total), flush=True)
 
 
 if __name__ == '__main__':
