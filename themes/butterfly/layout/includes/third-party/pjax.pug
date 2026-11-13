@@ -71,7 +71,11 @@ script.
     // baidu analytics
     typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
 
-    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+    //- 只在页面真的存在 <meting-js> 时才重建 meting 播放器。
+    //- 原判据是「页面里存在 .aplayer」，但本站自定义播放器 #site-player 自身就带 .aplayer 类，
+    //- 于是每次 pjax 切页都会调 loadMeting() → 它 destroy 掉自定义 APlayer 实例 → 正在播的歌被打断重载。
+    //- 2026-11-13 实测：pjax:send 后栈为 loadMeting → APlayer.destroy → player.js 再 new APlayer 续播。
+    typeof loadMeting === 'function' && document.querySelector('meting-js') && loadMeting()
 
     // prismjs
     typeof Prism === 'object' && Prism.highlightAll()
