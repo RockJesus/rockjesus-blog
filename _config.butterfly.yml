@@ -365,7 +365,6 @@ inject:
     - <script src="/js/cover-video.js?v=1.8.0" defer></script>
     - <script src="/js/liquid-glass-boot.js?v=1.8.0" defer></script>
     - <script src="/js/liquid-glass.js?v=1.8.0" defer></script>
-    - <script src="/js/hero-smoke.js?v=1.0.0" defer></script>
     - "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MBJRWEHZ50');(function(){var done=false;var gate=false;var go=function(){if(done)return;done=true;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-MBJRWEHZ50';document.head.appendChild(s);};var later=function(){if(gate)return;gate=true;window.requestIdleCallback?requestIdleCallback(go,{timeout:4000}):setTimeout(go,2000);};document.addEventListener('rj:player-ready',later);document.addEventListener('rj:hero-ready',function(){setTimeout(later,2500);});if(document.readyState==='complete'){setTimeout(later,8000);}else{addEventListener('load',function(){setTimeout(later,8000);});}setTimeout(later,20000);})();document.addEventListener('pjax:complete',function(){gtag('config','G-MBJRWEHZ50',{page_path:location.pathname});});</script>"
   bottom:
     - <div id="site-player"></div>
